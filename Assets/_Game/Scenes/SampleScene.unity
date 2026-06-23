@@ -938,9 +938,9 @@ GameObject:
   - component: {fileID: 334884871}
   - component: {fileID: 334884870}
   - component: {fileID: 334884872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1168,10 +1168,7 @@ MonoBehaviour:
   poolAmounts:
   - prefab: {fileID: 7628998395187402203, guid: b16eeac7bfc54d346b3f3c504956956a, type: 3}
     parent: {fileID: 1254753503}
-    amount: 50
-  - prefab: {fileID: 7628998395187402203, guid: b16eeac7bfc54d346b3f3c504956956a, type: 3}
-    parent: {fileID: 1002065883}
-    amount: 10
+    amount: 0
 --- !u!4 &391889523
 Transform:
   m_ObjectHideFlags: 0
@@ -3076,7 +3073,7 @@ Transform:
   m_GameObject: {fileID: 1002065882}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.688, z: -0.563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3304,9 +3301,9 @@ GameObject:
   - component: {fileID: 1056856943}
   - component: {fileID: 1056856942}
   - component: {fileID: 1056856944}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5801,9 +5798,9 @@ GameObject:
   - component: {fileID: 1665725421}
   - component: {fileID: 1665725420}
   - component: {fileID: 1665725422}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7765,9 +7762,10 @@ GameObject:
   - component: {fileID: 4127710887291935381}
   - component: {fileID: 5428225426481981651}
   - component: {fileID: 3086199987061428026}
+  - component: {fileID: 8423373540357640036}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7951,14 +7949,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bricks: []
   animator: {fileID: 1346599827533475147}
-  renderer: {fileID: 8843903627225370751}
+  renderer: {fileID: 4149967611695472526}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
   tf: {fileID: 150795002817149325}
+  bricksTF: {fileID: 1002065883}
+  brickPrefab: {fileID: 6508498507073927964, guid: b16eeac7bfc54d346b3f3c504956956a, type: 3}
   camera: {fileID: 963194227}
   movementSpeed: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!1 &3220795982819696398
 GameObject:
   m_ObjectHideFlags: 0
@@ -8445,14 +8445,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.42112887
   m_Height: 2.1281772
   m_Direction: 1
-  m_Center: {x: 0.07887113, y: 1.0345333, z: 0}
+  m_Center: {x: 0.07887113, y: 0.72, z: 0}
 --- !u!4 &5578554013208549994
 Transform:
   m_ObjectHideFlags: 0
@@ -8968,6 +8968,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038932969491286395}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &8423373540357640036
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038932969491286395}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8439898387186275072
 GameObject:
   m_ObjectHideFlags: 0

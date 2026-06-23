@@ -29,7 +29,6 @@ public class Player : Character
             if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, groundLayer))
             {
                 targerPos = raycastHit.point;
-                Debug.Log("Hit point: "+ raycastHit.collider.name);
             }
         }
         Move(targerPos);

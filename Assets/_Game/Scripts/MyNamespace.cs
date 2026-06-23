@@ -21,4 +21,20 @@ namespace MyNamespace
         public const string IDLE_ANIM = "idle";
         public const string RUN_ANIM = "run";
     }
+
+    public static class MyCache
+    {
+        private static Dictionary<Collider, Character> dicBridge = new Dictionary<Collider, Character>();
+
+        public static T GetCharacter<T>(Collider collider) where T : Character
+        {
+            if (!dicBridge.ContainsKey(collider))
+            {
+                Character newChar = collider.gameObject.GetComponent<Character>();
+                dicBridge.Add(collider, newChar);   
+                Debug.Log(newChar.ColorType);
+            }
+            return dicBridge[collider] as T;
+        }
+    }
 }

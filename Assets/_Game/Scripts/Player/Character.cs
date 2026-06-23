@@ -10,7 +10,9 @@ public class Character : MonoBehaviour
     [SerializeField] Renderer renderer;
     [SerializeField] ColorDataSO colorDataSO;
     [SerializeField] protected Transform tf;
-    private ColorType colorType;
+    [SerializeField] private Transform bricksTF;
+    [SerializeField] private float brickOffSetY;
+    private float brickOffsetY;
     public ColorType ColorType { get; private set;}
 
     public virtual void OnInit()
@@ -27,14 +29,20 @@ public class Character : MonoBehaviour
         
     }
 
-    public virtual void AddBrick(Brick brick)
+    public void AddBrick()
     {
-        
+        brickOffsetY = bricks.Count * brickOffSetY;
+        Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + Vector3.up*brickOffsetY, bricksTF.rotation);
+        newBrick.transform.parent = bricksTF;
+        bricks.Add(newBrick);
+        newBrick.OnInit(ColorType);
     }
 
-    public virtual void RemoveBrick(Brick brick)
+    public void RemoveBrick()
     {
-        
+        if (bricks.Count <= 0) return;
+        bricks[bricks.Count - 1].Despawn();
+        bricks.RemoveAt(bricks.Count - 1);
     }
 
     public virtual void ClearBricks()
@@ -58,7 +66,8 @@ public class Character : MonoBehaviour
     }
     public void ChangeColor(ColorType colorType)
     {
-        this.colorType = colorType;
+        this.ColorType = colorType;
         renderer.material = colorDataSO.GetMat(colorType);
+        Debug.Log("ChangeColor: "+ colorType.ToString());
     }
 }

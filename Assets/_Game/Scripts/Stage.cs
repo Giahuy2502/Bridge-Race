@@ -57,6 +57,13 @@ public class Stage : MonoBehaviour
     {
         Brick brick = SimplePool.Spawn<Brick>(PoolType.Brick, position, Quaternion.identity);
         brick.OnInit(color);
+        brick.Stage = this;
         bricks.Add(brick);
+    }
+
+    public void Despawn(Brick brick)
+    {
+        if (!bricks.Contains(brick)) return;
+        bricks.Remove(brick);
     }
 }
