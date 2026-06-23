@@ -25,7 +25,5 @@ public class PoolAmount
 }
 public enum PoolType
 {
-    Bullet_1=0,
-    Bullet_2=1,
-    Bullet_3=2,
+    Brick = 0,
 }
