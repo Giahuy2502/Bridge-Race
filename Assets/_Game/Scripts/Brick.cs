@@ -39,5 +39,13 @@ public class Brick : GameUnit
             Despawn();
             isTaked = true;
         }
+        if (!isTaked && other.CompareTag(Variables.BOT_TAG))
+        {
+            Bot bot = MyCache.GetCharacter<Bot>(other);
+            if (ColorType != bot.ColorType) return;
+            bot.AddBrick();
+            Despawn();
+            isTaked = true;
+        }
     }
 }

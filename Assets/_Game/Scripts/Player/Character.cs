@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] private ColorType targetColor;
     [SerializeField] List<Brick> bricks = new List<Brick>();
     [SerializeField] private Animator animator;
     [SerializeField] Renderer renderer;
@@ -15,21 +16,20 @@ public class Character : MonoBehaviour
     private float brickOffsetY;
     private string animName;
     public ColorType ColorType { get; private set;}
+    public List<Brick> Bricks { get => bricks; private set => bricks = value; }
 
     public virtual void OnInit()
     {
-        
+        ChangeColor(targetColor);
     }
     protected void Start()
     {
-        ChangeColor(ColorType.Green);
+        OnInit();
     }
-
     public virtual void OnDespawn()
     {
         
     }
-
     public void AddBrick()
     {
         brickOffsetY = bricks.Count * brickOffSetY;
@@ -38,29 +38,24 @@ public class Character : MonoBehaviour
         bricks.Add(newBrick);
         newBrick.OnInit(ColorType);
     }
-
     public void RemoveBrick()
     {
         if (bricks.Count <= 0) return;
         bricks[bricks.Count - 1].Despawn();
         bricks.RemoveAt(bricks.Count - 1);
     }
-
     public virtual void ClearBricks()
     {
         
     }
-
     public virtual void Move(Vector3 targetPos)
     {
         RotateToTarget(targetPos);
     }
-
     public virtual void RotateToTarget(Vector3 targetPos)
     {
         
     }
-
     public void ChangeAnim(string anim)
     {
         if (animName == anim) return;

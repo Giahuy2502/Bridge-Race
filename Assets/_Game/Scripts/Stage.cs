@@ -25,9 +25,10 @@ public class Stage : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Variables.PLAYER_TAG))
+        if (other.CompareTag(Variables.BOT_TAG))
         {
-            
+            Bot bot = MyCache.GetCharacter<Bot>(other);
+            bot.Stage = this;
         }
     }
 
@@ -64,5 +65,26 @@ public class Stage : MonoBehaviour
     {
         if (!bricks.Contains(brick)) return;
         bricks.Remove(brick);
+    }
+
+    public Vector3 GetNearestBrick(Bot bot)
+    {
+        bool hasBrickSameColor = false;
+        ColorType color = bot.ColorType;
+        Vector3 nearestBrick = Vector3.positiveInfinity;
+        foreach (Brick brick in bricks)
+        {
+            if (brick.ColorType == color)
+            {
+                hasBrickSameColor = true;
+                float distance = Vector3.Distance(bot.transform.position, brick.transform.position);
+                if (distance <= Vector3.Distance(nearestBrick, bot.transform.position))
+                {
+                    nearestBrick = brick.transform.position;
+                }
+            }
+        }
+        if(!hasBrickSameColor) return bot.transform.position;
+        return nearestBrick;
     }
 }
