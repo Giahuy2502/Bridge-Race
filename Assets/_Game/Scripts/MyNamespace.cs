@@ -14,4 +14,11 @@ namespace MyNamespace
         Violet = 5,
         Black = 6,
     }
+
+    public static class Variables
+    {
+        public const string PLAYER_TAG = "Player";
+        public const string IDLE_ANIM = "idle";
+        public const string RUN_ANIM = "run";
+    }
 }

@@ -2,23 +2,56 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
+using Variables = MyNamespace.Variables;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    [SerializeField] Renderer renderer;
-    [SerializeField] ColorDataSO colorDataSO;
-    private ColorType colorType;
-    public ColorType ColorType { get; private set;}
+    [SerializeField] private Camera camera;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private LayerMask groundLayer;
+    private Ray ray;
+    private RaycastHit raycastHit;
+    private Vector3 targerPos;
 
     private void Start()
     {
-        ChangeColor(ColorType.Green);
+        base.Start();
+        targerPos = tf.position;
     }
 
-    public void ChangeColor(ColorType colorType)
+    private void Update()
     {
-        this.colorType = colorType;
-        renderer.material = colorDataSO.GetMat(colorType);
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, groundLayer))
+            {
+                targerPos = raycastHit.point;
+                Debug.Log("Hit point: "+ raycastHit.collider.name);
+            }
+        }
+        Move(targerPos);
+    }
+
+    public override void Move(Vector3 pos)
+    {
+        if (Vector3.Distance(tf.position, pos) < 0.1f)
+        {
+            // ChangeAnim(Variables.IDLE_ANIM);
+            return;
+        }
+        tf.position = Vector3.MoveTowards(tf.position, pos, Time.deltaTime * movementSpeed);
+        base.Move(pos);
+        // ChangeAnim(Variables.RUN_ANIM);
+    }
+
+    public override void RotateToTarget(Vector3 pos)
+    {
+        Vector3 direction = pos - transform.position;
+        direction.y = 0;
+
+        tf.rotation = Quaternion.LookRotation(direction);
     }
 }
