@@ -35,7 +35,6 @@ public class Stage : MonoBehaviour
     {
         bricks.Clear();
         Bounds stageBounds = stageCollider.bounds;
-        Debug.Log("Stage Bounds: "+ stageBounds.min.x +" "+ stageBounds.min.z +" "+ stageBounds.max.x +" "+ stageBounds.max.z);
         for (float x = stageBounds.min.x + offSetX; x <= stageBounds.max.x -offSetX ; x += step)
         {
             for (float z = stageBounds.min.z + offSetZ; z <= stageBounds.max.z + offSetZ ; z += step)

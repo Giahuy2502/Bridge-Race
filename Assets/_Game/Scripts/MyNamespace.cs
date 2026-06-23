@@ -32,7 +32,6 @@ namespace MyNamespace
             {
                 Character newChar = collider.gameObject.GetComponent<Character>();
                 dicBridge.Add(collider, newChar);   
-                Debug.Log(newChar.ColorType);
             }
             return dicBridge[collider] as T;
         }

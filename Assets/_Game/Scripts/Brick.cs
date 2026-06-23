@@ -33,10 +33,7 @@ public class Brick : GameUnit
     {
         if (!isTaked && other.CompareTag(Variables.PLAYER_TAG))
         {
-            Character newChar = other.gameObject.GetComponent<Character>();
-            Debug.Log(newChar.ColorType);
             Player player = MyCache.GetCharacter<Player>(other);
-            Debug.Log("Player entered:" + player.ColorType + ", " + ColorType);
             if (ColorType != player.ColorType) return;
             player.AddBrick();
             Despawn();

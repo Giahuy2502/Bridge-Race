@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform bricksTF;
     [SerializeField] private float brickOffSetY;
     private float brickOffsetY;
+    private string animName;
     public ColorType ColorType { get; private set;}
 
     public virtual void OnInit()
@@ -62,12 +63,14 @@ public class Character : MonoBehaviour
 
     public void ChangeAnim(string anim)
     {
-        animator.SetTrigger(anim);
+        if (animName == anim) return;
+        animator.ResetTrigger(animName);
+        animName = anim;
+        animator.SetTrigger(animName);
     }
     public void ChangeColor(ColorType colorType)
     {
         this.ColorType = colorType;
         renderer.material = colorDataSO.GetMat(colorType);
-        Debug.Log("ChangeColor: "+ colorType.ToString());
     }
 }

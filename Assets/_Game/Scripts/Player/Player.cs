@@ -38,12 +38,12 @@ public class Player : Character
     {
         if (Vector3.Distance(tf.position, pos) < 0.1f)
         {
-            // ChangeAnim(Variables.IDLE_ANIM);
+            ChangeAnim(Variables.IDLE_ANIM);
             return;
         }
         tf.position = Vector3.MoveTowards(tf.position, pos, Time.deltaTime * movementSpeed);
         base.Move(pos);
-        // ChangeAnim(Variables.RUN_ANIM);
+        ChangeAnim(Variables.RUN_ANIM);
     }
 
     public override void RotateToTarget(Vector3 pos)
