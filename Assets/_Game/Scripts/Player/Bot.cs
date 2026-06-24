@@ -17,8 +17,8 @@ public class Bot : Character
     public override void OnInit()
     {
         base.OnInit();
+        this.name = "Bot-"+ColorType.ToString();
         ChangeState(new IdleState());
-        Debug.Log("OnInit");
     }
 
     private void Update()

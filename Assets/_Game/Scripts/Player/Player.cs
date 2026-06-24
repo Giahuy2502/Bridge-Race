@@ -10,6 +10,7 @@ public class Player : Character
 {
     [SerializeField] private Camera camera;
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float rotationSpeed; 
     [SerializeField] private LayerMask groundLayer;
     private Ray ray;
     private RaycastHit raycastHit;
@@ -50,7 +51,6 @@ public class Player : Character
     {
         Vector3 direction = pos - transform.position;
         direction.y = 0;
-
-        tf.rotation = Quaternion.LookRotation(direction);
+        tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
     }
 }
