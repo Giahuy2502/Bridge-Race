@@ -35,7 +35,6 @@ public class Character : MonoBehaviour
     {
         Vector3 newpos = GetNewestBrickPos();
         Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + newpos, bricksTF.rotation);
-        Debug.Log(newBrick.gameObject.activeSelf);
         newBrick.transform.parent = bricksTF;
         bricks.Add(newBrick);
         newBrick.OnInit(ColorType);
@@ -63,6 +62,7 @@ public class Character : MonoBehaviour
         renderer.material = colorDataSO.GetMat(colorType);
     }
 
+    // tra ve vi tri cua brick moi so voi brickTF
     public Vector3 GetNewestBrickPos()
     {
         brickOffsetY = bricks.Count * brickOffSetY;

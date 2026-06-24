@@ -9,7 +9,7 @@ public class Brick : GameUnit
     [SerializeField] Renderer renderer;
     [SerializeField] ColorDataSO colorDataSO;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private TrailRenderer[] trailRenderers;
     private Vector3 startPosition;
     private Stage stage;
     private bool isTaked = false;
@@ -18,10 +18,10 @@ public class Brick : GameUnit
     public void OnInit(ColorType color)
     {
         ChangeColor(color);
+        ChangeTrailRendererColor(color,trailRenderers);
         startPosition = transform.position;
         isTaked = false;
-        trailRenderer.enabled = false;
-        trailRenderer.emitting = false;
+        TurnOffTrailRenderer(trailRenderers);
     }
 
     public void Despawn()
@@ -33,10 +33,27 @@ public class Brick : GameUnit
         SimplePool.Despawn(this);
     }
 
-    public void ChangeColor(ColorType colorType)
+    private void ChangeColor(ColorType colorType)
     {
         this.ColorType = colorType;
         renderer.material = colorDataSO.GetMat(colorType);
+    }
+
+    private void ChangeTrailRendererColor(ColorType colorType, TrailRenderer[] trailRenderers)
+    {
+        Material material = colorDataSO.GetMat(colorType);
+        Gradient gradient = new Gradient();
+        GradientColorKey[] colorKeys = new GradientColorKey[2];
+        colorKeys[0] = new GradientColorKey(material.color, 0.0f);
+        colorKeys[1] = new GradientColorKey(material.color, 1.0f);
+        GradientAlphaKey[] alphaKeys = new GradientAlphaKey[2];
+        alphaKeys[0] = new GradientAlphaKey(material.color.a, 0.0f);
+        alphaKeys[1] = new GradientAlphaKey(0f, 1.0f);
+        gradient.SetKeys(colorKeys, alphaKeys);
+        foreach (TrailRenderer trailRenderer in trailRenderers)
+        {
+            trailRenderer.colorGradient = gradient;
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -60,9 +77,8 @@ public class Brick : GameUnit
 
     IEnumerator MoveBrickToNewPos(Vector3 newPos, Character character)
     {
-        trailRenderer.enabled = true;
-        trailRenderer.emitting = true;
-        trailRenderer.Clear();
+        TurnOnTrailRenderer(trailRenderers);
+        yield return StartCoroutine(MoveToBackCharacter(newPos - Vector3.forward));
         while (Vector3.Distance(transform.localPosition, newPos) > 0.1f)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, newPos, Time.deltaTime * speed);
@@ -71,9 +87,36 @@ public class Brick : GameUnit
         }
         transform.localPosition = newPos;
         transform.localRotation = Quaternion.identity;
-        trailRenderer.enabled = false;
-        trailRenderer.emitting = false;
+        TurnOffTrailRenderer(trailRenderers);
         Despawn();
         character.AddBrick();
+    }
+
+    IEnumerator MoveToBackCharacter(Vector3 backPos)
+    {
+        while (Vector3.Distance(transform.localPosition, backPos) > 0.1f)
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, backPos, Time.deltaTime * speed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * speed);
+            yield return null;
+        }
+    }
+
+    private void TurnOnTrailRenderer(TrailRenderer[] trailRenderers)
+    {
+        foreach (TrailRenderer trailRenderer in trailRenderers)
+        {
+            trailRenderer.enabled = true;
+            trailRenderer.emitting = true;
+            trailRenderer.Clear();
+        }
+    }
+    private void TurnOffTrailRenderer(TrailRenderer[] trailRenderers)
+    {
+        foreach (TrailRenderer trailRenderer in trailRenderers)
+        {
+            trailRenderer.enabled = false;
+            trailRenderer.emitting = false;
+        }
     }
 }
