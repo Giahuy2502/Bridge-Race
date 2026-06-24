@@ -48,14 +48,6 @@ public class Character : MonoBehaviour
     {
         
     }
-    public virtual void Move(Vector3 targetPos)
-    {
-        RotateToTarget(targetPos);
-    }
-    public virtual void RotateToTarget(Vector3 targetPos)
-    {
-        
-    }
     public void ChangeAnim(string anim)
     {
         if (animName == anim) return;

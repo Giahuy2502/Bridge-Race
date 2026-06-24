@@ -24,33 +24,27 @@ public class Player : Character
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity, groundLayer))
-            {
-                targerPos = raycastHit.point;
-            }
-        }
-        Move(targerPos);
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(moveX, 0, moveY);
+        Move(movement);
     }
 
-    public override void Move(Vector3 pos)
+    public void Move(Vector3 movement)
     {
-        if (Vector3.Distance(tf.position, pos) < 0.1f)
+        if (movement.magnitude <= 0.1f)
         {
             ChangeAnim(Variables.IDLE_ANIM);
             return;
         }
-        tf.position = Vector3.MoveTowards(tf.position, pos, Time.deltaTime * movementSpeed);
-        base.Move(pos);
+        targerPos = tf.position + movement;
+        tf.position = Vector3.MoveTowards(tf.position, targerPos, Time.deltaTime * movementSpeed);
         ChangeAnim(Variables.RUN_ANIM);
+        RotateToTarget(movement);
     }
 
-    public override void RotateToTarget(Vector3 pos)
+    public void RotateToTarget(Vector3 movement)
     {
-        Vector3 direction = pos - transform.position;
-        direction.y = 0;
-        tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
+        tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(movement), Time.deltaTime * rotationSpeed);
     }
 }
