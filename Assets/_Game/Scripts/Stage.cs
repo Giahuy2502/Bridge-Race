@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MyNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private Collider stageCollider;
     [SerializeField] private GameObject brickPrefab;
     [SerializeField] private float step;
+    private List<Brick> activeBricks = new List<Brick>();
     private float offSetX;
     private float offSetZ;
     
@@ -59,20 +61,22 @@ public class Stage : MonoBehaviour
         brick.OnInit(color);
         brick.Stage = this;
         bricks.Add(brick);
+        activeBricks.Add(brick);
     }
 
     public void Despawn(Brick brick)
     {
-        if (!bricks.Contains(brick)) return;
-        bricks.Remove(brick);
+        if (!activeBricks.Contains(brick) || !bricks.Contains(brick)) return;
+        activeBricks.Remove(brick);
     }
 
+    // tra ve vi tri vien gach gan nhat so voi bot
     public Vector3 GetNearestBrick(Bot bot)
     {
         bool hasBrickSameColor = false;
         ColorType color = bot.ColorType;
         Vector3 nearestBrick = Vector3.positiveInfinity;
-        foreach (Brick brick in bricks)
+        foreach (Brick brick in activeBricks)
         {
             if (brick.ColorType == color)
             {

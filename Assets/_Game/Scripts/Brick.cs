@@ -20,6 +20,7 @@ public class Brick : GameUnit
     public void Despawn()
     {
         ChangeColor(ColorType.None);
+        gameObject.SetActive(false);
         if(stage != null) stage.Despawn(this);
     }
 
