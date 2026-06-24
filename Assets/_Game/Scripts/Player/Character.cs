@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
     private string animName;
     public ColorType ColorType { get; private set;}
     public List<Brick> Bricks { get => bricks; private set => bricks = value; }
+    public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
 
     public virtual void OnInit()
     {
@@ -32,8 +33,9 @@ public class Character : MonoBehaviour
     }
     public void AddBrick()
     {
-        brickOffsetY = bricks.Count * brickOffSetY;
-        Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + Vector3.up*brickOffsetY, bricksTF.rotation);
+        Vector3 newpos = GetNewestBrickPos();
+        Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + newpos, bricksTF.rotation);
+        Debug.Log(newBrick.gameObject.activeSelf);
         newBrick.transform.parent = bricksTF;
         bricks.Add(newBrick);
         newBrick.OnInit(ColorType);
@@ -59,5 +61,11 @@ public class Character : MonoBehaviour
     {
         this.ColorType = colorType;
         renderer.material = colorDataSO.GetMat(colorType);
+    }
+
+    public Vector3 GetNewestBrickPos()
+    {
+        brickOffsetY = bricks.Count * brickOffSetY;
+        return Vector3.up * brickOffsetY;
     }
 }

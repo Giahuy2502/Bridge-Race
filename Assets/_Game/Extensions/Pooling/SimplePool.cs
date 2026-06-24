@@ -118,6 +118,7 @@ public class Pool
             unit = inActives.Dequeue();
         }
         unit.TF.SetPositionAndRotation(pos,rot);
+        unit.gameObject.SetActive(true);
         actives.Add(unit);
         return unit;
     }
@@ -130,6 +131,7 @@ public class Pool
             actives.Remove(unit);
             inActives.Enqueue(unit);
             unit.gameObject.SetActive(false);
+            unit.TF.SetParent(parent);
         }
     }
 

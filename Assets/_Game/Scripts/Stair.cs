@@ -23,7 +23,7 @@ public class Stair : MonoBehaviour
     {
         hasFilled = false;
         isBlocked = false;
-        ChangeColor(ColorType.None);
+        renderer.enabled = false;
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -32,6 +32,7 @@ public class Stair : MonoBehaviour
         {
             if (!hasFilled && character.Bricks.Count > 0)
             {
+                renderer.enabled = true;
                 ChangeColor(character.ColorType);
                 character.RemoveBrick();
                 hasFilled = true;
