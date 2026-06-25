@@ -40,17 +40,11 @@ public class Bot : Character
         {
             currentState.OnEnter(this);
         }
-        Debug.Log("ChangeState: "+ currentState);
+        // Debug.Log("ChangeState: "+ currentState);
     }
     
-    public void SetDestination()
+    public void SetDestination(Vector3 destination)
     {
-        Vector3 destination = GetNearestDestination();
-        if (Vector3.Distance(transform.position, destination) < 0.1f)
-        {
-            ChangeState(new BuildState());
-            return;
-        }
         agent.SetDestination(destination);
         ChangeAnim(Variables.RUN_ANIM);
     }
@@ -60,9 +54,20 @@ public class Bot : Character
         ChangeAnim(Variables.IDLE_ANIM);
     }
 
-    public Vector3 GetNearestDestination()
+    public Brick GetNearestBrick()
     {
         return Stage.GetNearestBrick(this);
+    }
+
+    public Vector3 GetNearestBrickPos(Brick brick)
+    {
+        if(brick == null) return Vector3.zero;
+        return brick.transform.position;
+    }
+
+    public Bridge GetNearestBridge()
+    {
+        return Stage.GetNearestBridge(this);
     }
 
     public bool ReachedDestination()
@@ -70,5 +75,10 @@ public class Bot : Character
         return !agent.pathPending &&
                agent.remainingDistance <= agent.stoppingDistance &&
                (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
+    }
+
+    public int GetStairWalkable(int brickCount)
+    {
+        return Stage.GetStairWalkable(this.ColorType, brickCount,Stage.GetNearestBridge(this));
     }
 }

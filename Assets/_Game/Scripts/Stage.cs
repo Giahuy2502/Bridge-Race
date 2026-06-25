@@ -11,6 +11,7 @@ using Variables = MyNamespace.Variables;
 public class Stage : MonoBehaviour
 {
     [SerializeField] private List<Brick> bricks = new List<Brick>();
+    [SerializeField] private List<Bridge> bridges = new List<Bridge>();
     [SerializeField] private Collider stageCollider;
     [SerializeField] private GameObject brickPrefab;
     [SerializeField] private float step;
@@ -71,24 +72,84 @@ public class Stage : MonoBehaviour
     }
 
     // tra ve vi tri vien gach gan nhat so voi bot
-    public Vector3 GetNearestBrick(Bot bot)
+    public Brick GetNearestBrick(Bot bot)
     {
         bool hasBrickSameColor = false;
         ColorType color = bot.ColorType;
-        Vector3 nearestBrick = Vector3.positiveInfinity;
+        Vector3 botPosition = bot.transform.position;
+        Brick nearestBrick = null;
         foreach (Brick brick in activeBricks)
         {
             if (brick.ColorType == color)
             {
+                if(nearestBrick == null) nearestBrick = brick;
                 hasBrickSameColor = true;
-                float distance = Vector3.Distance(bot.transform.position, brick.transform.position);
-                if (distance <= Vector3.Distance(nearestBrick, bot.transform.position))
+                float distance = Vector3.Distance(botPosition, brick.transform.position);
+                if (distance <= Vector3.Distance(nearestBrick.transform.position, botPosition))
                 {
-                    nearestBrick = brick.transform.position;
+                    nearestBrick = brick;
                 }
             }
         }
-        if(!hasBrickSameColor) return bot.transform.position;
+        if(!hasBrickSameColor) return null;
         return nearestBrick;
+    }
+
+    // lay vi tri cay cau gan bot nhat
+    public Bridge GetNearestBridge(Bot bot)
+    {
+        Bridge nearestBridge = bridges[0];
+        foreach (Bridge bridge in bridges)
+        {
+            float distance = Vector3.Distance(bot.transform.position, bridge.transform.position);
+            if (distance <= Vector3.Distance(nearestBridge.TF.position, bot.transform.position))
+            {
+                nearestBridge = bridge;
+            }
+        }
+        return nearestBridge;
+    }
+    // lay so stair co the di
+
+    public int GetStairWalkable(ColorType color, int brickCount, Bridge bridge)
+    {
+        int stairWalkable = 0;
+        foreach (Stair stair in bridge.Stairs)
+        {
+            if (stair.ColorType == color)
+            {
+                stairWalkable++;
+            }
+            if (stair.ColorType == ColorType.None)
+            {
+                if (brickCount >= 1)
+                {
+                    brickCount--;
+                    stairWalkable++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else if (stair.ColorType != color)
+            {
+                if (brickCount >= 2)
+                {
+                    brickCount -= 2;
+                    stairWalkable++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        if (stairWalkable >= bridge.Stairs.Count)
+        {
+            stairWalkable = bridge.Stairs.Count;
+        }
+        return stairWalkable;
     }
 }

@@ -37,6 +37,7 @@ public class Character : MonoBehaviour
         Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + newpos, bricksTF.rotation);
         newBrick.transform.parent = bricksTF;
         bricks.Add(newBrick);
+        // Debug.Log("Brick added brick :" + bricks.Count);
         newBrick.OnInit(ColorType);
     }
     public void RemoveBrick()
@@ -44,6 +45,7 @@ public class Character : MonoBehaviour
         if (bricks.Count <= 0) return;
         bricks[bricks.Count - 1].Despawn();
         bricks.RemoveAt(bricks.Count - 1);
+        // Debug.Log("Brick remove brick :" + bricks.Count);
     }
     public virtual void ClearBricks()
     {

@@ -68,13 +68,12 @@ public class Brick : GameUnit
         
     }
 
-    public void MoveBrick(Transform characterBrick, Character character)
+    private void MoveBrick(Transform characterBrick, Character character)
     {
         transform.SetParent(characterBrick);
         Vector3 newPos = character.GetNewestBrickPos();
         StartCoroutine(MoveBrickToNewPos(newPos,character));
     }
-
     IEnumerator MoveBrickToNewPos(Vector3 newPos, Character character)
     {
         TurnOnTrailRenderer(trailRenderers);
@@ -91,7 +90,6 @@ public class Brick : GameUnit
         Despawn();
         character.AddBrick();
     }
-
     IEnumerator MoveToBackCharacter(Vector3 backPos)
     {
         while (Vector3.Distance(transform.localPosition, backPos) > 0.1f)
@@ -101,7 +99,6 @@ public class Brick : GameUnit
             yield return null;
         }
     }
-
     private void TurnOnTrailRenderer(TrailRenderer[] trailRenderers)
     {
         foreach (TrailRenderer trailRenderer in trailRenderers)

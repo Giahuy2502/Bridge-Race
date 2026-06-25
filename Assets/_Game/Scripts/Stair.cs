@@ -41,6 +41,16 @@ public class Stair : MonoBehaviour
             {
                 isBlocked = true;
             }
+            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count >= 2)
+            {
+                character.RemoveBrick();
+                ChangeColor(character.ColorType);
+                character.RemoveBrick();
+            }
+            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count < 2)
+            {
+                
+            }
         }
     }
     public void ChangeColor(ColorType colorType)

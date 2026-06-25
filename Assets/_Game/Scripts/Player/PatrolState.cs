@@ -9,7 +9,15 @@ public class PatrolState : IState
     {
         if(bot.Bricks.Count < bot.MaxBrick)
         {
-            bot.SetDestination();
+            Brick brick = bot.GetNearestBrick();
+            if (brick != null)
+            {
+                bot.SetDestination(bot.GetNearestBrickPos(brick));
+            }
+            else
+            {
+                bot.StopMove();
+            }
         }
         else
         {
@@ -24,7 +32,22 @@ public class PatrolState : IState
             bot.StopMove();
             if(bot.Bricks.Count < bot.MaxBrick)
             {
-                bot.SetDestination();
+                Brick brick = bot.GetNearestBrick();
+                if (brick != null)
+                {
+                    bot.SetDestination(bot.GetNearestBrickPos(brick));
+                }
+                else
+                {
+                    if (bot.Bricks.Count > 0)
+                    {
+                        bot.ChangeState(new BuildState());
+                    }
+                    else
+                    {
+                        bot.StopMove();
+                    }
+                }
             }
             else
             {
