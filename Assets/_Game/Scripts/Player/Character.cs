@@ -18,6 +18,7 @@ public class Character : MonoBehaviour
     public ColorType ColorType { get; private set;}
     public List<Brick> Bricks { get => bricks; private set => bricks = value; }
     public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
+    public Stage Stage { get; set; }
 
     public virtual void OnInit()
     {
@@ -46,6 +47,7 @@ public class Character : MonoBehaviour
         bricks[bricks.Count - 1].Despawn();
         bricks.RemoveAt(bricks.Count - 1);
         // Debug.Log("Brick remove brick :" + bricks.Count);
+        Stage.SpawnBrick(ColorType);
     }
     public virtual void ClearBricks()
     {

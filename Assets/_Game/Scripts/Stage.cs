@@ -28,10 +28,10 @@ public class Stage : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Variables.BOT_TAG))
+        if (other.CompareTag(Variables.BOT_TAG)|| other.CompareTag(Variables.PLAYER_TAG))
         {
-            Bot bot = MyCache.GetCharacter<Bot>(other);
-            bot.Stage = this;
+            Character character = MyCache.GetCharacter<Character>(other);
+            character.Stage = this;
         }
     }
 

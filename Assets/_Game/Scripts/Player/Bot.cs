@@ -10,8 +10,6 @@ public class Bot : Character
     [SerializeField] private int maxBrick;
     [SerializeField] NavMeshAgent agent;
     private IState currentState;
-    
-    public Stage Stage { get; set; }
     public int MaxBrick{get{return maxBrick;}}
 
     public override void OnInit()
