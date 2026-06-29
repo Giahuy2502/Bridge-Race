@@ -47,7 +47,7 @@ public class Character : MonoBehaviour
         bricks[bricks.Count - 1].Despawn();
         bricks.RemoveAt(bricks.Count - 1);
         // Debug.Log("Brick remove brick :" + bricks.Count);
-        Stage.SpawnBrick(ColorType);
+        Stage.RespawnBrick(ColorType);
     }
     public virtual void ClearBricks()
     {

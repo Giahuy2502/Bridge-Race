@@ -10,27 +10,33 @@ public class Brick : GameUnit
     [SerializeField] ColorDataSO colorDataSO;
     [SerializeField] private float speed = 5f;
     [SerializeField] private TrailRenderer[] trailRenderers;
-    private Vector3 startPosition;
-    private Stage stage;
+    [SerializeField] private Vector3 startPosition;
+    [SerializeField] private Stage stage;
     private bool isTaked = false;
     public ColorType ColorType { get; private set;}
     public Stage Stage { get => stage;set => stage = value; }
-    public void OnInit(ColorType color)
+    public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
+    public void OnInit(ColorType color,Stage stage = null)
     {
         ChangeColor(color);
         ChangeTrailRendererColor(color,trailRenderers);
-        startPosition = transform.position;
+        if (stage != null)
+        {
+            this.Stage = stage;
+        }
         isTaked = false;
         TurnOffTrailRenderer(trailRenderers);
+        this.name = "Brick "+ColorType.ToString();
     }
 
     public void Despawn()
     {
-        ChangeColor(ColorType.None);
         transform.SetParent(null);
+        // Debug.Log("Despawn brick" + TF.position +" "+ startPosition);
         transform.position = startPosition;
-        if(stage != null) stage.Despawn(this);
-        SimplePool.Despawn(this);
+        transform.rotation = Quaternion.identity;
+        // Debug.Log("Despawn brick" + TF.position +" "+ startPosition);
+        this.gameObject.SetActive(false);
     }
 
     private void ChangeColor(ColorType colorType)
@@ -62,6 +68,7 @@ public class Brick : GameUnit
         {
             Character character = MyCache.GetCharacter<Character>(other);
             if (ColorType != character.ColorType) return;
+            if(stage != null) stage.Despawn(this);
             MoveBrick(character.BricksTF, character);
             isTaked = true;
         }
@@ -115,5 +122,11 @@ public class Brick : GameUnit
             trailRenderer.enabled = false;
             trailRenderer.emitting = false;
         }
+    }
+
+    public void SetStartPosition(Vector3 position)
+    {
+        startPosition = position;
+        TF.position = startPosition;
     }
 }

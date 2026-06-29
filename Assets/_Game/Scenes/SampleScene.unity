@@ -6246,6 +6246,7 @@ MonoBehaviour:
   stageCollider: {fileID: 1056856944}
   brickPrefab: {fileID: 3525896140012882810, guid: b16eeac7bfc54d346b3f3c504956956a, type: 3}
   step: 2
+  activeBricks: []
 --- !u!1 &1067274190
 GameObject:
   m_ObjectHideFlags: 0

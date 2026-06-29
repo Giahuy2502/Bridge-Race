@@ -16,6 +16,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private GameObject brickPrefab;
     [SerializeField] private float step;
     private List<Brick> activeBricks = new List<Brick>();
+    private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
     private float offSetX;
     private float offSetZ;
     
@@ -49,26 +50,54 @@ public class Stage : MonoBehaviour
                     if (hit.collider == stageCollider)
                     {
                         int colorIndex = Random.Range(1, 7);
-                        SpawnBrick(hit.point,(ColorType)colorIndex);
+                        Brick newBrick = SpawnBrick(hit.point,(ColorType)colorIndex);
+                        bricks.Add(newBrick);
                     }
                 }
             }
         }
     }
 
-    public void SpawnBrick(Vector3 position, ColorType color)
+    public Brick SpawnBrick(Vector3 position, ColorType color)
     {
         Brick brick = SimplePool.Spawn<Brick>(PoolType.Brick, position, Quaternion.identity);
-        brick.OnInit(color);
-        brick.Stage = this;
-        bricks.Add(brick);
+        brick.OnInit(color, this);
+        brick.SetStartPosition(position);
         activeBricks.Add(brick);
+        return brick;
+    }
+
+    public void RespawnBrick(ColorType color)
+    {
+        foreach(Brick brick in bricks)
+        {
+            if (brick.ColorType == color && emptyPositions[color].Contains(brick.StartPosition))
+            {
+                brick.TF.SetParent(null);
+                brick.TF.position = brick.StartPosition;
+                brick.TF.rotation = Quaternion.identity;
+                brick.gameObject.SetActive(true);
+                brick.OnInit(color, this); 
+                activeBricks.Add(brick);
+                emptyPositions[color].Remove(brick.StartPosition);
+                break;
+            }
+        }
     }
 
     public void Despawn(Brick brick)
+    
     {
         if (!activeBricks.Contains(brick) || !bricks.Contains(brick)) return;
         activeBricks.Remove(brick);
+        if (!emptyPositions.ContainsKey(brick.ColorType))
+        {
+            emptyPositions.Add(brick.ColorType, new List<Vector3>());
+        }
+        if (!emptyPositions[brick.ColorType].Contains(brick.StartPosition))
+        {
+            emptyPositions[brick.ColorType].Add(brick.StartPosition);
+        }
     }
 
     // tra ve vi tri vien gach gan nhat so voi bot
