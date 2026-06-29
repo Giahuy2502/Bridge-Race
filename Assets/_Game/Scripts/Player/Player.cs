@@ -58,6 +58,7 @@ public class Player : Character
         tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(movement.normalized), Time.deltaTime * rotationSpeed);
     }
 
+    // can fix lai ham nay
     private bool IsBlockByStair(Vector3 movement)
     {
         if (movement.z <= 0)
@@ -75,11 +76,11 @@ public class Player : Character
             if (stair != null)
             {
                 float newY = stair.transform.position.y - 0.15f;
-                if (stair.CheckCanBlockCharacter(this) && Math.Abs(blockPosY- newY) >0.2f)
+                if (stair.CheckCanBlockPlayer(this) && Math.Abs(blockPosY- newY) >0.2f)
                 {
                     blockPosY = newY;
                 }
-                return stair.CheckCanBlockCharacter(this);
+                return stair.CheckCanBlockPlayer(this);
             }
         }
         return false;

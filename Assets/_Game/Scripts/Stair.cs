@@ -59,11 +59,11 @@ public class Stair : MonoBehaviour
         renderer.material = colorDataSO.GetMat(colorType);
     }
 
-    public bool CheckCanBlockCharacter(Character character)
+    public bool CheckCanBlockPlayer(Character character)
     {
         if (hasFilled && (ColorType == character.ColorType)) return false;
         if(!hasFilled && character.Bricks.Count <=0) return true;
-        if(hasFilled && (ColorType != character.ColorType) && character.Bricks.Count <=0) return true;
+        if(hasFilled && (ColorType != character.ColorType) && character.Bricks.Count < 2) return true;
         return false;
     }
     

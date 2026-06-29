@@ -27,17 +27,17 @@ public class BuildState : IState
             // di den bac thang cao nhat
             if (Vector3.Distance(bot.transform.position, highestStairPos) <= 0.4f)
             {
-                Debug.Log("Reached the highest stair");
+                // Debug.Log("Reached the highest stair");
                 nearestBridge = bot.GetNearestBridge();
                 if (nearestBridge.CanCrossBridge(stairWalkeableCount))
                 {
                     bot.SetDestination(bot.transform.position + Vector3.forward * 5);
-                    Debug.Log("Can Cross Bridge"+ stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
+                    // Debug.Log("Can Cross Bridge"+ stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
                 }
                 else
                 {
                     bot.ChangeState(new PatrolState());
-                    Debug.Log("Can't Cross Bridge " + stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
+                    // Debug.Log("Can't Cross Bridge " + stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
                 }
             }
             // di chuyen den truoc Bridge
