@@ -55,7 +55,7 @@ public class Player : Character
 
     public void RotateToTarget(Vector3 movement)
     {
-        tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(movement), Time.deltaTime * rotationSpeed);
+        tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(movement.normalized), Time.deltaTime * rotationSpeed);
     }
 
     private bool IsBlockByStair(Vector3 movement)

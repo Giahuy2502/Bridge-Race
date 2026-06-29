@@ -27,5 +27,9 @@ public class Bridge : MonoBehaviour
         private set{stairs = value;}
     }
     
-    
+    public bool CanCrossBridge(int stairWalkeableCount)
+    {
+        int numStairs = Stairs.Count;
+        return stairWalkeableCount == numStairs;
+    }
 }

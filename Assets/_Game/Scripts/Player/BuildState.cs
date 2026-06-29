@@ -8,10 +8,12 @@ public class BuildState : IState
     private Vector3 targetPos;
     private int indexStair = 0;
     private bool isMoving = false;
-    private Vector3 endPos;
+    private Vector3 highestStairPos;
+    private int stairWalkeableCount = 0;
     public void OnEnter(Bot bot)
     {
         isMoving = false;
+        stairWalkeableCount = 0;
         nearestBridge = bot.GetNearestBridge();
         targetPos = nearestBridge.Stairs[0].transform.position + Vector3.back*1.15f;
         bot.SetDestination(targetPos);
@@ -22,14 +24,27 @@ public class BuildState : IState
         // di chuyen den stair gan nhat
         if (bot.ReachedDestination())
         {
-            if (Vector3.Distance(bot.transform.position, endPos) <= 0.4f)
+            // di den bac thang cao nhat
+            if (Vector3.Distance(bot.transform.position, highestStairPos) <= 0.4f)
             {
-                bot.ChangeState(new PatrolState());
+                Debug.Log("Reached the highest stair");
+                nearestBridge = bot.GetNearestBridge();
+                if (nearestBridge.CanCrossBridge(stairWalkeableCount))
+                {
+                    bot.SetDestination(bot.transform.position + Vector3.forward * 5);
+                    Debug.Log("Can Cross Bridge"+ stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
+                }
+                else
+                {
+                    bot.ChangeState(new PatrolState());
+                    Debug.Log("Can't Cross Bridge " + stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
+                }
             }
+            // di chuyen den truoc Bridge
             else
             {
-                endPos = GetEndPos(bot);
-                bot.SetDestination(endPos);
+                highestStairPos = GetHighestStairPos(bot);
+                bot.SetDestination(highestStairPos);
             }
         }
     }
@@ -51,9 +66,9 @@ public class BuildState : IState
         return index >= 0 && index < nearestBridge.Stairs.Count;
     }
     
-    private Vector3 GetEndPos(Bot bot)
+    private Vector3 GetHighestStairPos(Bot bot)
     {
-        int stairWalkeableCount = bot.GetStairWalkable(bot.Bricks.Count);
+        stairWalkeableCount = bot.GetStairWalkable(bot.Bricks.Count);
         if (stairWalkeableCount == 0)
         {
             bot.StopMove();

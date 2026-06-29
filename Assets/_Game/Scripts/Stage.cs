@@ -71,6 +71,11 @@ public class Stage : MonoBehaviour
     {
         foreach(Brick brick in bricks)
         {
+            if (!emptyPositions.ContainsKey(color))
+            {
+                Debug.Log("empty position not contained color: "+ color);
+                return;
+            }
             if (brick.ColorType == color && emptyPositions[color].Contains(brick.StartPosition))
             {
                 brick.TF.SetParent(null);
