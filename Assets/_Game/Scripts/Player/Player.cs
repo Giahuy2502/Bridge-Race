@@ -41,7 +41,7 @@ public class Player : Character
         }
         ChangeAnim(Variables.RUN_ANIM);
         RotateToTarget(movement);
-        if (IsBlockByStair(movement))
+        if (IsBlockByStair(movement) || IsBlockByDoor(movement))
         {
             if (Math.Abs(blockPosY - tf.position.y) > 0.2f)
             {
@@ -81,6 +81,26 @@ public class Player : Character
                     blockPosY = newY;
                 }
                 return stair.CheckCanBlockPlayer(this);
+            }
+        }
+        return false;
+    }
+
+    private bool IsBlockByDoor(Vector3 movement)
+    {
+        if (movement.z >= 0)
+        {
+            blockPosY = tf.position.y;
+            return false;
+        }
+        Vector3 ray = tf.position + Vector3.up * 0.5f;
+        Vector3 rayDirection = movement.normalized;
+        RaycastHit hit;
+        if (Physics.Raycast(ray , rayDirection, out hit, 2.5f, stairLayer))
+        {
+            if (hit.transform.CompareTag(Variables.DOOR_TAG))
+            {
+                return true;
             }
         }
         return false;
