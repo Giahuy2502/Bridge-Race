@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Stair : MonoBehaviour
 {
     [SerializeField] private Renderer renderer;
     [SerializeField] private ColorDataSO colorDataSO;
+    [SerializeField] private float duration;
+    private float timer;
     private ColorType colorType;
     public ColorType ColorType{get{return colorType;}set{colorType = value;}}
 
@@ -55,7 +58,8 @@ public class Stair : MonoBehaviour
     public void ChangeColor(ColorType colorType)
     {
         this.ColorType = colorType;
-        renderer.material = colorDataSO.GetMat(colorType);
+        Color newColor = colorDataSO.GetMat(colorType).color;
+        StartCoroutine(CoChangeColor(newColor, duration));
     }
 
     public bool CheckCanBlockPlayer(Character character)
@@ -64,6 +68,18 @@ public class Stair : MonoBehaviour
         if(!hasFilled && character.Bricks.Count <=0) return true;
         if(hasFilled && (ColorType != character.ColorType) && character.Bricks.Count <= 0) return true;
         return false;
+    }
+
+    IEnumerator CoChangeColor(Color targetColor, float duration)
+    {
+        timer = 0;
+        Material mat = renderer.material;
+        while (timer <= duration)
+        {
+            mat.color = Color.Lerp(mat.color,targetColor, timer/this.duration);
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
     
 }

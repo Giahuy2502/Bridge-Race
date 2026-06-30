@@ -14,6 +14,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private List<Bridge> bridges = new List<Bridge>();
     [SerializeField] private Collider stageCollider;
     [SerializeField] private GameObject brickPrefab;
+    [SerializeField] private Transform bricksParent;
     [SerializeField] private float step;
     private List<Brick> activeBricks = new List<Brick>();
     private List<ColorType> activeColors = new List<ColorType>();
@@ -90,8 +91,8 @@ public class Stage : MonoBehaviour
                 brick.TF.SetParent(null);
                 brick.TF.position = brick.StartPosition;
                 brick.TF.rotation = Quaternion.identity;
-                brick.gameObject.SetActive(true);
                 brick.OnInit(color, this); 
+                brick.gameObject.SetActive(true);
                 activeBricks.Add(brick);
                 emptyPositions[color].Remove(brick.StartPosition);
                 break;
@@ -102,6 +103,7 @@ public class Stage : MonoBehaviour
     {
         if (!activeBricks.Contains(brick) || !bricks.Contains(brick)) return;
         activeBricks.Remove(brick);
+        brick.TF.SetParent(bricksParent);
         if (!emptyPositions.ContainsKey(brick.ColorType))
         {
             emptyPositions.Add(brick.ColorType, new List<Vector3>());
@@ -186,6 +188,7 @@ public class Stage : MonoBehaviour
 
     private void ActiveColorBricks(ColorType color)
     {
+        if (activeColors.Contains(color)) return;
         activeColors.Add(color);
         foreach (Brick brick in bricks)
         {

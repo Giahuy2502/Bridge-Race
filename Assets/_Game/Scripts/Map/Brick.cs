@@ -16,6 +16,7 @@ public class Brick : GameUnit
     public ColorType ColorType { get; private set;}
     public Stage Stage { get => stage;set => stage = value; }
     public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
+    public bool IsTaked { get => isTaked; set => isTaked = value; }
     public void OnInit(ColorType color,Stage stage = null)
     {
         ChangeColor(color);
@@ -69,10 +70,9 @@ public class Brick : GameUnit
             Character character = MyCache.GetCharacter<Character>(other);
             if (ColorType != character.ColorType) return;
             if(stage != null) stage.DespawnBrick(this);
-            MoveBrick(character.BricksTF, character);
             isTaked = true;
+            MoveBrick(character.BricksTF, character);
         }
-        
     }
 
     private void MoveBrick(Transform characterBrick, Character character)
