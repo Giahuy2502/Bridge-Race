@@ -16,6 +16,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private GameObject brickPrefab;
     [SerializeField] private float step;
     private List<Brick> activeBricks = new List<Brick>();
+    private List<ColorType> activeColors = new List<ColorType>();
     private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
     private float offSetX;
     private float offSetZ;
@@ -23,20 +24,30 @@ public class Stage : MonoBehaviour
 
     private void Start()
     {
+        OnInit();
+    }
+
+    private void OnInit()
+    {
         offSetX = brickPrefab.transform.localScale.x;
         offSetZ = brickPrefab.transform.localScale.z;
+        activeColors.Clear();
         GenerateBricks();
+        DeactiveAllBricks();
     }
+
+    
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Variables.BOT_TAG)|| other.CompareTag(Variables.PLAYER_TAG))
         {
             Character character = MyCache.GetCharacter<Character>(other);
             character.Stage = this;
+            ActiveColorBricks(character.ColorType);
         }
     }
-
-    public void GenerateBricks()
+    private void GenerateBricks()
     {
         bricks.Clear();
         Bounds stageBounds = stageCollider.bounds;
@@ -57,16 +68,14 @@ public class Stage : MonoBehaviour
             }
         }
     }
-
-    public Brick SpawnBrick(Vector3 position, ColorType color)
+    private Brick SpawnBrick(Vector3 position, ColorType color)
     {
         Brick brick = SimplePool.Spawn<Brick>(PoolType.Brick, position, Quaternion.identity);
         brick.OnInit(color, this);
         brick.SetStartPosition(position);
-        activeBricks.Add(brick);
+        brick.gameObject.SetActive(false);
         return brick;
     }
-
     public void RespawnBrick(ColorType color)
     {
         foreach(Brick brick in bricks)
@@ -89,9 +98,7 @@ public class Stage : MonoBehaviour
             }
         }
     }
-
-    public void Despawn(Brick brick)
-    
+    public void DespawnBrick(Brick brick)
     {
         if (!activeBricks.Contains(brick) || !bricks.Contains(brick)) return;
         activeBricks.Remove(brick);
@@ -104,7 +111,6 @@ public class Stage : MonoBehaviour
             emptyPositions[brick.ColorType].Add(brick.StartPosition);
         }
     }
-
     // tra ve vi tri vien gach gan nhat so voi bot
     public Brick GetNearestBrick(Bot bot)
     {
@@ -144,7 +150,6 @@ public class Stage : MonoBehaviour
         return nearestBridge;
     }
     // lay so stair co the di
-
     public int GetStairWalkable(ColorType color, int brickCount, Bridge bridge)
     {
         int stairWalkable = 0;
@@ -173,5 +178,32 @@ public class Stage : MonoBehaviour
             stairWalkable = bridge.Stairs.Count;
         }
         return stairWalkable;
+    }
+    private void Despawn()
+    {
+        
+    }
+
+    private void ActiveColorBricks(ColorType color)
+    {
+        activeColors.Add(color);
+        foreach (Brick brick in bricks)
+        {
+            if (brick.ColorType == color)
+            {
+                brick.gameObject.SetActive(true);
+                if (!activeBricks.Contains(brick))
+                {
+                    activeBricks.Add(brick);
+                }
+            }
+        }
+    }
+    private void DeactiveAllBricks()
+    {
+        foreach (Brick brick in bricks)
+        {
+            brick.gameObject.SetActive(false);
+        }
     }
 }

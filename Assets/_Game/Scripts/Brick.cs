@@ -68,7 +68,7 @@ public class Brick : GameUnit
         {
             Character character = MyCache.GetCharacter<Character>(other);
             if (ColorType != character.ColorType) return;
-            if(stage != null) stage.Despawn(this);
+            if(stage != null) stage.DespawnBrick(this);
             MoveBrick(character.BricksTF, character);
             isTaked = true;
         }
