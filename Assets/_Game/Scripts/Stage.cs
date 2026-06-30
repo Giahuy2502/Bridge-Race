@@ -154,23 +154,11 @@ public class Stage : MonoBehaviour
             {
                 stairWalkable++;
             }
-            if (stair.ColorType == ColorType.None)
+            if (stair.ColorType != color)
             {
                 if (brickCount >= 1)
                 {
                     brickCount--;
-                    stairWalkable++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-            else if (stair.ColorType != color)
-            {
-                if (brickCount >= 2)
-                {
-                    brickCount -= 2;
                     stairWalkable++;
                 }
                 else

@@ -41,13 +41,12 @@ public class Stair : MonoBehaviour
             {
                 isBlocked = true;
             }
-            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count >= 2)
+            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count > 0)
             {
-                character.RemoveBrick();
                 ChangeColor(character.ColorType);
                 character.RemoveBrick();
             }
-            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count < 2)
+            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count <= 0)
             {
                 
             }
@@ -63,7 +62,7 @@ public class Stair : MonoBehaviour
     {
         if (hasFilled && (ColorType == character.ColorType)) return false;
         if(!hasFilled && character.Bricks.Count <=0) return true;
-        if(hasFilled && (ColorType != character.ColorType) && character.Bricks.Count < 2) return true;
+        if(hasFilled && (ColorType != character.ColorType) && character.Bricks.Count <= 0) return true;
         return false;
     }
     
