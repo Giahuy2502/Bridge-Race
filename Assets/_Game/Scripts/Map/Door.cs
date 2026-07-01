@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Door : MonoBehaviour
 {
     [SerializeField] private ColorDataSO colorDataSO;
-    [SerializeField] private Renderer renderer;
+    [SerializeField] private Renderer[] renderers;
     private ColorType colorType;
     private Stage stage;
     public Stage Stage{get{return stage;} set{stage = value;}}
@@ -15,7 +16,6 @@ public class Door : MonoBehaviour
 
     public void OnInit(Stage stage)
     {
-        this.renderer.enabled = false;
         this.stage = stage;
     }
 
@@ -30,9 +30,11 @@ public class Door : MonoBehaviour
 
     public void ChangeColor(ColorType colorType)
     {
-        this.renderer.enabled = true;
         this.colorType = colorType;
-        renderer.material = colorDataSO.GetMat(colorType);
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material = colorDataSO.GetMat(colorType);
+        }
     }
 
     public void Despawn()

@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
         newBrick.transform.parent = bricksTF;
         bricks.Add(newBrick);
         // Debug.Log("Brick added brick :" + bricks.Count);
-        newBrick.OnInit(ColorType);
+        newBrick.OnInit(ColorType, this.Stage);
     }
     public void RemoveBrick()
     {

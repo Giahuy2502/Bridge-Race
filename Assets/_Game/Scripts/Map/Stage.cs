@@ -89,7 +89,7 @@ public class Stage : MonoBehaviour
             }
             if (brick.ColorType == color && emptyPositions[color].Contains(brick.StartPosition))
             {
-                brick.TF.SetParent(null);
+                brick.TF.SetParent(bricksParent);
                 brick.TF.position = brick.StartPosition;
                 brick.TF.rotation = Quaternion.identity;
                 brick.OnInit(color, this); 
@@ -102,9 +102,9 @@ public class Stage : MonoBehaviour
     }
     public void DespawnBrick(Brick brick)
     {
+        brick.TF.SetParent(bricksParent);
         if (!activeBricks.Contains(brick) || !bricks.Contains(brick)) return;
         activeBricks.Remove(brick);
-        brick.TF.SetParent(bricksParent);
         if (!emptyPositions.ContainsKey(brick.ColorType))
         {
             emptyPositions.Add(brick.ColorType, new List<Vector3>());

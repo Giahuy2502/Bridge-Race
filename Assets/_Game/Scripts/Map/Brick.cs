@@ -38,6 +38,7 @@ public class Brick : GameUnit
         transform.rotation = Quaternion.identity;
         // Debug.Log("Despawn brick" + TF.position +" "+ startPosition);
         this.gameObject.SetActive(false);
+        if(stage != null) stage.DespawnBrick(this);
     }
 
     private void ChangeColor(ColorType colorType)
@@ -69,7 +70,6 @@ public class Brick : GameUnit
         {
             Character character = MyCache.GetCharacter<Character>(other);
             if (ColorType != character.ColorType) return;
-            if(stage != null) stage.DespawnBrick(this);
             isTaked = true;
             MoveBrick(character.BricksTF, character);
         }
