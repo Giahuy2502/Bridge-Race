@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bridge : MonoBehaviour
 {
     [SerializeField] private List<Stair> stairs = new List<Stair>();
+    [SerializeField] private Door door;
+    private Stage stage;
 
     private Transform tf;
     public Transform TF
@@ -31,5 +33,14 @@ public class Bridge : MonoBehaviour
     {
         int numStairs = Stairs.Count;
         return stairWalkeableCount == numStairs;
+    }
+
+    public void OnInit(Stage stage)
+    {
+        foreach (Stair stair in stairs)
+        {
+            stair.OnInit(stage);
+        }
+        door.OnInit(stage);
     }
 }

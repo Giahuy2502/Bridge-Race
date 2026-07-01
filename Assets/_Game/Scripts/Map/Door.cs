@@ -9,21 +9,20 @@ public class Door : MonoBehaviour
     [SerializeField] private ColorDataSO colorDataSO;
     [SerializeField] private Renderer renderer;
     private ColorType colorType;
+    private Stage stage;
+    public Stage Stage{get{return stage;} set{stage = value;}}
+    
 
-    private void Start()
-    {
-        OnInit();
-    }
-
-    public void OnInit()
+    public void OnInit(Stage stage)
     {
         this.renderer.enabled = false;
+        this.stage = stage;
     }
 
     public void OnTriggerEnter(Collider other)
     {
         Character character = MyCache.GetCharacter<Character>(other);
-        if (character != null)
+        if (character != null && stage == character.Stage)
         {
             ChangeColor(character.ColorType);
         }

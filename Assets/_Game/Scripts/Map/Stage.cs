@@ -35,6 +35,7 @@ public class Stage : MonoBehaviour
         activeColors.Clear();
         GenerateBricks();
         DeactiveAllBricks();
+        SetOnInitBridge(this);
     }
 
     
@@ -207,6 +208,14 @@ public class Stage : MonoBehaviour
         foreach (Brick brick in bricks)
         {
             brick.gameObject.SetActive(false);
+        }
+    }
+
+    private void SetOnInitBridge(Stage stage)
+    {
+        foreach (Bridge bridge in bridges)
+        {
+            bridge.OnInit(stage);
         }
     }
 }

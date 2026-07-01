@@ -17,13 +17,12 @@ public class Stair : MonoBehaviour
     private bool hasFilled;
     private bool isBlocked;
     private Coroutine changColorCoroutine;
+    private Stage stage;
+    
+    public Stage Stage{get{return stage;}set{stage = value;}}
+    
 
-    private void Start()
-    {
-        OnInit();
-    }
-
-    public void OnInit()
+    public void OnInit(Stage stage)
     {
         hasFilled = false;
         isBlocked = false;
@@ -33,11 +32,12 @@ public class Stair : MonoBehaviour
             StopCoroutine(changColorCoroutine);
             changColorCoroutine = null;
         }
+        this.stage = stage;
     }
     public void OnTriggerEnter(Collider other)
     {
         Character character = MyCache.GetCharacter<Character>(other);
-        if (character != null)
+        if (character != null && stage == character.Stage)
         {
             if (!hasFilled && character.Bricks.Count > 0)
             {
