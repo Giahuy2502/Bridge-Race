@@ -96,7 +96,7 @@ public class Player : Character
         Vector3 ray = tf.position + Vector3.up * 0.5f;
         Vector3 rayDirection = movement.normalized;
         RaycastHit hit;
-        if (Physics.Raycast(ray , rayDirection, out hit, 2.5f, stairLayer))
+        if (Physics.Raycast(ray , rayDirection, out hit, 1f, stairLayer))
         {
             if (hit.transform.CompareTag(Variables.DOOR_TAG))
             {

@@ -16,6 +16,7 @@ public class Stair : MonoBehaviour
 
     private bool hasFilled;
     private bool isBlocked;
+    private Coroutine changColorCoroutine;
 
     private void Start()
     {
@@ -27,6 +28,11 @@ public class Stair : MonoBehaviour
         hasFilled = false;
         isBlocked = false;
         renderer.enabled = false;
+        if (changColorCoroutine != null)
+        {
+            StopCoroutine(changColorCoroutine);
+            changColorCoroutine = null;
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
@@ -59,7 +65,11 @@ public class Stair : MonoBehaviour
     {
         this.ColorType = colorType;
         Color newColor = colorDataSO.GetMat(colorType).color;
-        StartCoroutine(CoChangeColor(newColor, duration));
+        if (changColorCoroutine != null)
+        {
+            StopCoroutine(changColorCoroutine);
+        }
+        changColorCoroutine = StartCoroutine(CoChangeColor(newColor, duration));
     }
 
     public bool CheckCanBlockPlayer(Character character)
