@@ -54,6 +54,7 @@ public class Stage : MonoBehaviour
     {
         bricks.Clear();
         Bounds stageBounds = stageCollider.bounds;
+        List<Vector3> spawnPoints = new List<Vector3>();
         for (float x = stageBounds.min.x + offSetX; x <= stageBounds.max.x -offSetX ; x += step)
         {
             for (float z = stageBounds.min.z + offSetZ; z <= stageBounds.max.z + offSetZ ; z += step)
@@ -63,12 +64,41 @@ public class Stage : MonoBehaviour
                 {
                     if (hit.collider == stageCollider)
                     {
-                        ColorType colorRandom = RandomColor(colors.Count);
-                        Brick newBrick = SpawnBrick(hit.point,colorRandom);
-                        bricks.Add(newBrick);
+                        spawnPoints.Add(hit.point);
                     }
                 }
             }
+        }
+        
+        int totalBricks = spawnPoints.Count;
+        int totalColors = colors.Count;
+        int bricksPerColor = totalBricks / totalColors;
+        int extraBricks = totalBricks % totalColors;
+        
+        List<ColorType> colorGenerates = new List<ColorType>();
+        for (int i = 0; i < totalColors; i++)
+        {
+            int bricksCount = bricksPerColor;
+            if (i < extraBricks)
+            {
+                bricksCount++;
+            }
+            for (int j = 0; j < bricksCount; j++)
+            {
+                colorGenerates.Add(colors[i]);
+            }
+        }
+        for (int i = 0; i < totalBricks; i++)
+        {
+            ColorType temp = colorGenerates[i];
+            int randomIndex = Random.Range(i, totalBricks);
+            colorGenerates[i] = colorGenerates[randomIndex];
+            colorGenerates[randomIndex] = temp;
+        }
+        for (int i = 0; i < totalBricks; i++)
+        {
+            Brick newBrick = SpawnBrick(spawnPoints[i], colorGenerates[i]);
+            bricks.Add(newBrick);
         }
     }
     private Brick SpawnBrick(Vector3 position, ColorType color)
@@ -211,7 +241,6 @@ public class Stage : MonoBehaviour
             brick.gameObject.SetActive(false);
         }
     }
-
     private void SetOnInitBridge(Stage stage)
     {
         foreach (Bridge bridge in bridges)
@@ -220,8 +249,4 @@ public class Stage : MonoBehaviour
         }
     }
 
-    private ColorType RandomColor(int colorCount)
-    {
-        return colors[Random.Range(0, colorCount)];
-    }
 }
