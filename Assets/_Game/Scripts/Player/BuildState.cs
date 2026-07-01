@@ -31,7 +31,8 @@ public class BuildState : IState
                 nearestBridge = bot.GetNearestBridge();
                 if (nearestBridge.CanCrossBridge(stairWalkeableCount))
                 {
-                    bot.SetDestination(bot.transform.position + Vector3.forward * 5);
+                    highestStairPos = bot.transform.position + Vector3.forward * 5;
+                    bot.SetDestination(highestStairPos);
                     // Debug.Log("Can Cross Bridge"+ stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
                 }
                 else

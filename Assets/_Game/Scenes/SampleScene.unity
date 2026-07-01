@@ -4096,7 +4096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 742605140}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &743657664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4591,7 +4591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 784757800}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &787752282
 GameObject:
   m_ObjectHideFlags: 0
@@ -6669,7 +6669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1067274193}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1073695850
 GameObject:
   m_ObjectHideFlags: 0
@@ -7469,7 +7469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1183513345}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1187529916
 GameObject:
   m_ObjectHideFlags: 0
@@ -8684,7 +8684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1338066187}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1347474389
 GameObject:
   m_ObjectHideFlags: 0
@@ -10119,7 +10119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1542506841}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1543942223
 GameObject:
   m_ObjectHideFlags: 0
@@ -10513,7 +10513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1568403358}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1576265203
 GameObject:
   m_ObjectHideFlags: 0
@@ -12066,7 +12066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1802147144}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1806856414
 GameObject:
   m_ObjectHideFlags: 0
@@ -12492,7 +12492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 1829716659}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &1837397032
 GameObject:
   m_ObjectHideFlags: 0
@@ -13473,7 +13473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 2037745707}
   colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
-  duration: 0
+  duration: 2
 --- !u!1 &2051563912
 GameObject:
   m_ObjectHideFlags: 0
