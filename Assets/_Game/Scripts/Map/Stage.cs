@@ -16,6 +16,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private GameObject brickPrefab;
     [SerializeField] private Transform bricksParent;
     [SerializeField] private float step;
+    [SerializeField] private List<ColorType> colors = new List<ColorType>();
     private List<Brick> activeBricks = new List<Brick>();
     private List<ColorType> activeColors = new List<ColorType>();
     private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
@@ -62,8 +63,8 @@ public class Stage : MonoBehaviour
                 {
                     if (hit.collider == stageCollider)
                     {
-                        int colorIndex = Random.Range(1, 7);
-                        Brick newBrick = SpawnBrick(hit.point,(ColorType)colorIndex);
+                        ColorType colorRandom = RandomColor(colors.Count);
+                        Brick newBrick = SpawnBrick(hit.point,colorRandom);
                         bricks.Add(newBrick);
                     }
                 }
@@ -217,5 +218,10 @@ public class Stage : MonoBehaviour
         {
             bridge.OnInit(stage);
         }
+    }
+
+    private ColorType RandomColor(int colorCount)
+    {
+        return colors[Random.Range(0, colorCount)];
     }
 }

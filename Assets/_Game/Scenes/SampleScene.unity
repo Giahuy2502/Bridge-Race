@@ -6505,6 +6505,7 @@ MonoBehaviour:
   brickPrefab: {fileID: 3525896140012882810, guid: b16eeac7bfc54d346b3f3c504956956a, type: 3}
   bricksParent: {fileID: 1254753503}
   step: 2
+  colors: 010000000200000004000000
 --- !u!1 &1067274190
 GameObject:
   m_ObjectHideFlags: 0
@@ -10892,6 +10893,7 @@ MonoBehaviour:
   brickPrefab: {fileID: 3525896140012882810, guid: b16eeac7bfc54d346b3f3c504956956a, type: 3}
   bricksParent: {fileID: 1254753503}
   step: 2
+  colors: 010000000200000004000000
 --- !u!1 &1691599930
 GameObject:
   m_ObjectHideFlags: 0
