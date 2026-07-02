@@ -79,4 +79,22 @@ public class Bot : Character
     {
         return Stage.GetStairWalkable(this.ColorType, brickCount,Stage.GetNearestBridge(this));
     }
+
+    public override void SetWinState()
+    {
+        base.SetWinState();
+        if (currentState != null)
+        {
+            currentState.OnExit(this);
+            currentState = null;
+        }
+        if (agent != null)
+        {
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            agent.isStopped = true;
+            agent.enabled = false;
+        }
+        StopMove();
+    }
 }

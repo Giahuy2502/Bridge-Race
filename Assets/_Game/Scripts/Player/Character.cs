@@ -49,9 +49,16 @@ public class Character : MonoBehaviour
         // Debug.Log("Brick remove brick :" + bricks.Count);
         Stage.RespawnBrick(ColorType);
     }
-    public virtual void ClearBricks()
+    private void ClearAllBricks()
     {
-        
+        while (bricks.Count > 0)
+        {
+            bricks[bricks.Count - 1].Despawn();
+            bricks.RemoveAt(bricks.Count - 1);
+            Stage.RespawnBrick(ColorType);
+        }
+        bricksTF.gameObject.SetActive(false);
+        Debug.Log("Bricks destroyed: "+ bricks.Count+" "+this.name);
     }
     public void ChangeAnim(string anim)
     {
@@ -71,5 +78,11 @@ public class Character : MonoBehaviour
     {
         brickOffsetY = bricks.Count * brickOffSetY;
         return Vector3.up * brickOffsetY;
+    }
+
+    public virtual void SetWinState()
+    {
+        ClearAllBricks();
+        
     }
 }

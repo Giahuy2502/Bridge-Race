@@ -15,6 +15,13 @@ namespace MyNamespace
         Black = 6,
     }
 
+    public enum GameState
+    {
+        Playing = 0,
+        Win = 1,
+        Lose = 2,
+    }
+
     public static class Variables
     {
         public const string PLAYER_TAG = "Player";

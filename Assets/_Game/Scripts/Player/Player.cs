@@ -16,6 +16,7 @@ public class Player : Character
     private RaycastHit raycastHit;
     private Vector3 targerPos;
     private float blockPosY;
+    private GameManager GameManager => GameManager.Instance;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class Player : Character
 
     private void Update()
     {
+        if (GameManager.GameState != GameState.Playing) return;
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(moveX, 0, moveY);
@@ -104,5 +106,11 @@ public class Player : Character
             }
         }
         return false;
+    }
+
+    public override void SetWinState()
+    {
+        base.SetWinState();
+        ChangeAnim(Variables.IDLE_ANIM);
     }
 }
