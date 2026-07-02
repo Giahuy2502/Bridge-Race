@@ -13,12 +13,13 @@ public class Character : MonoBehaviour
     [SerializeField] protected Transform tf;
     [SerializeField] private Transform bricksTF;
     [SerializeField] private float brickOffSetY;
+    private Stage stage;
     private float brickOffsetY;
     private string animName;
     public ColorType ColorType { get; private set;}
     public List<Brick> Bricks { get => bricks; private set => bricks = value; }
     public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
-    public Stage Stage { get; set; }
+    public Stage Stage { get => stage; set => stage = value; }
 
     public virtual void OnInit()
     {
@@ -58,7 +59,7 @@ public class Character : MonoBehaviour
             Stage.RespawnBrick(ColorType);
         }
         bricksTF.gameObject.SetActive(false);
-        Debug.Log("Bricks destroyed: "+ bricks.Count+" "+this.name);
+        // Debug.Log("Bricks destroyed: "+ bricks.Count+" "+this.name);
     }
     public void ChangeAnim(string anim)
     {

@@ -21,7 +21,7 @@ public class RankManager : Singleton<RankManager>
         if(!finishedRankings.Contains(character))
         {
             finishedRankings.Add(character);
-            Debug.Log("SetWinner: "+ character.name);
+            // Debug.Log("SetWinner: "+ character.name);
         }
     }
     private void SortCharacters()
@@ -47,10 +47,11 @@ public class RankManager : Singleton<RankManager>
     {
         for (int i = 0; i < finishPositions.Count; i++)
         {
+            if (i>= finishedRankings.Count || finishedRankings[i] == null) return;
             finishedRankings[i].SetWinState();
             finishedRankings[i].gameObject.transform.position = finishPositions[i].position;
             finishedRankings[i].gameObject.transform.rotation = finishPositions[i].rotation;
-            Debug.Log("Set Positions: "+ finishedRankings[i].gameObject.name + " " +finishPositions[i].position);
+            // Debug.Log("Set Positions: "+ finishedRankings[i].gameObject.name + " " +finishPositions[i].position);
         }
     }
 
@@ -66,7 +67,7 @@ public class RankManager : Singleton<RankManager>
             return;
         }
         stageRankings[stage].Add(character);
-        Debug.Log("Registered Stage Passed: "+stage.name +" "+character.name);
+        // Debug.Log("Registered Stage Passed: "+stage.name +" "+character.name);
     }
 
     private void Despawn()

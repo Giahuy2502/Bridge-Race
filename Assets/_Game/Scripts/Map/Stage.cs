@@ -64,7 +64,7 @@ public class Stage : MonoBehaviour
                 {
                     if (hit.collider == stageCollider)
                     {
-                        spawnPoints.Add(hit.point);
+                        spawnPoints.Add(hit.point+Vector3.up*0.125f);
                     }
                 }
             }
