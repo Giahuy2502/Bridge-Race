@@ -13,15 +13,13 @@ public class Stage : MonoBehaviour
     [SerializeField] private List<Brick> bricks = new List<Brick>();
     [SerializeField] private List<Bridge> bridges = new List<Bridge>();
     [SerializeField] private Collider stageCollider;
-    [SerializeField] private GameObject brickPrefab;
     [SerializeField] private Transform bricksParent;
     [SerializeField] private float step;
+    [SerializeField] private float offset = 2f;
     [SerializeField] private List<ColorType> colors = new List<ColorType>();
     private List<Brick> activeBricks = new List<Brick>();
     private List<ColorType> activeColors = new List<ColorType>();
     private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
-    private float offSetX;
-    private float offSetZ;
     
 
     private void Start()
@@ -31,8 +29,6 @@ public class Stage : MonoBehaviour
 
     private void OnInit()
     {
-        offSetX = brickPrefab.transform.localScale.x;
-        offSetZ = brickPrefab.transform.localScale.z;
         activeColors.Clear();
         GenerateBricks();
         DeactiveAllBricks();
@@ -55,9 +51,9 @@ public class Stage : MonoBehaviour
         bricks.Clear();
         Bounds stageBounds = stageCollider.bounds;
         List<Vector3> spawnPoints = new List<Vector3>();
-        for (float x = stageBounds.min.x + offSetX; x <= stageBounds.max.x -offSetX ; x += step)
+        for (float x = stageBounds.min.x + offset; x <= stageBounds.max.x - offset ; x += step)
         {
-            for (float z = stageBounds.min.z + offSetZ; z <= stageBounds.max.z + offSetZ ; z += step)
+            for (float z = stageBounds.min.z + offset; z <= stageBounds.max.z + offset ; z += step)
             {
                 Vector3 rayOrigin = new Vector3(x, stageBounds.max.y + 1f, z); 
                 if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, stageBounds.size.y + 2f))
