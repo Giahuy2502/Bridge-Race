@@ -37,7 +37,7 @@ public class RankManager : Singleton<RankManager>
                 if (!finishedRankings.Contains(currentValue[j]))
                 {
                     finishedRankings.Add(currentValue[j]);
-                    Debug.Log("SortCharacters: "+ currentValue[j].name);
+                    // Debug.Log("SortCharacters: "+ currentValue[j].name);
                 }
             }
         }
