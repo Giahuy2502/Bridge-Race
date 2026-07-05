@@ -8,33 +8,43 @@ using UnityEngine.Serialization;
 public class Door : MonoBehaviour
 {
     [SerializeField] private ColorDataSO colorDataSO;
+    [SerializeField] private Animator animator;
     [SerializeField] private Renderer[] renderers;
     private ColorType colorType;
     private Stage stage;
+    private bool isOpened = false;
     public Stage Stage{get{return stage;} set{stage = value;}}
     
 
     public void OnInit(Stage stage)
     {
         this.stage = stage;
+        isOpened = false;
     }
 
     public void OnTriggerEnter(Collider other)
     {
         Character character = MyCache.GetCharacter<Character>(other);
-        if (character != null && stage == character.Stage)
+        if (!isOpened && character != null && stage == character.Stage)
         {
+            isOpened = true;
             ChangeColor(character.ColorType);
+            PlayOpenAnim();
         }
     }
 
-    public void ChangeColor(ColorType colorType)
+    private void ChangeColor(ColorType colorType)
     {
         this.colorType = colorType;
         foreach (Renderer renderer in renderers)
         {
             renderer.material = colorDataSO.GetMat(colorType);
         }
+    }
+    private void PlayOpenAnim()
+    {
+        animator.ResetTrigger(Variables.OPEN_ANIM);
+        animator.SetTrigger(Variables.OPEN_ANIM);
     }
 
     public void Despawn()
