@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
@@ -20,6 +21,7 @@ public class Character : MonoBehaviour
     public List<Brick> Bricks { get => bricks; private set => bricks = value; }
     public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
     public Stage Stage { get => stage; set => stage = value; }
+    public GameManager GameManager => GameManager.Instance;
 
     public virtual void OnInit()
     {
@@ -85,5 +87,10 @@ public class Character : MonoBehaviour
     {
         ClearAllBricks();
         
+    }
+
+    public bool IsPlaying()
+    {
+        return GameManager.GameState == GameState.Playing;
     }
 }

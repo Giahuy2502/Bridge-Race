@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CanvasMainMenu : UICanvas
 {
+    private GameManager GameManager => GameManager.Instance;
     public void PlayButton()
     {
+        GameManager.NewGame();
         Close(0);
         UIManager.Instance.Open<CanvasGamePlay>();
     }

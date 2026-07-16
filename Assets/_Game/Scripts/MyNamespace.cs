@@ -17,9 +17,10 @@ namespace MyNamespace
 
     public enum GameState
     {
-        Playing = 0,
-        Win = 1,
-        Lose = 2,
+        OnMain = 0,
+        Playing = 1,
+        Win = 2,
+        Lose = 3,
     }
 
     public static class Variables

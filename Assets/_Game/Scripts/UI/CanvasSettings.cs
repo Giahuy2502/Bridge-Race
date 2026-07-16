@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanvasSettings : UICanvas
 {
     [SerializeField] private GameObject[] buttons;
+    private GameManager GameManager => GameManager.Instance;
 
     public void SetState(UICanvas canvas)
     {

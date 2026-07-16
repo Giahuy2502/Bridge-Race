@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     
     public GameState GameState{ get { return gameState; } }
     private LevelManager LevelManager => LevelManager.Instance;
+    private UIController UIController => UIController.Instance;
     public static Action WinAction;
 
     private void Start()
@@ -19,7 +20,8 @@ public class GameManager : Singleton<GameManager>
 
     private void OnInit()
     {
-        gameState = GameState.Playing;
+        gameState = GameState.OnMain;
+        UIController.ShowMenu();
         LevelManager.OnInit();
     }
 
@@ -30,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     public void OnWinGame()
     {
         this.gameState = GameState.Win;
+        UIController.ShowWinMenu();
         WinAction?.Invoke();
     }
     
@@ -51,5 +54,12 @@ public class GameManager : Singleton<GameManager>
 
     public void NewGame()
     {
+        this.gameState = GameState.Playing;
+        Debug.Log("New Game");
+    }
+
+    public void OnMainMenu()
+    {
+        this.gameState = GameState.OnMain;
     }
 }

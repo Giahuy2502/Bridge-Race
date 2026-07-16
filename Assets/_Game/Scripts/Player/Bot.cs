@@ -21,6 +21,7 @@ public class Bot : Character
 
     private void Update()
     {
+        if (!IsPlaying()) return;
         if (currentState != null)
         {
             currentState.OnExcute(this);

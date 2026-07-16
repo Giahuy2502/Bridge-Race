@@ -27,7 +27,7 @@ public class Player : Character
 
     private void Update()
     {
-        if (GameManager.GameState != GameState.Playing) return;
+        if (!IsPlaying()) return;
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
         Vector3 movement = new Vector3(moveX, 0, moveY);
