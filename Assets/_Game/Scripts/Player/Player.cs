@@ -17,10 +17,10 @@ public class Player : Character
     private Vector3 targerPos;
     private float blockPosY;
     private GameManager GameManager => GameManager.Instance;
-
-    private void Start()
+    
+    public override void OnInit(Transform startPoints)
     {
-        base.Start();
+        base.OnInit(startPoints);
         targerPos = tf.position;
         blockPosY = tf.position.y;
     }

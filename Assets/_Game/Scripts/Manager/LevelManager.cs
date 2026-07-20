@@ -6,6 +6,8 @@ using UnityEngine;
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private List<Character> characters = new List<Character>();
+    [SerializeField] private List<Transform> startPoints;
+    [SerializeField] private int currentLevel = 0;
     private RankManager RankManager => RankManager.Instance;
     private GameManager GameManager => GameManager.Instance;
     
@@ -20,9 +22,10 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadLevel()
     {
         // data manager load map
-        DataManager.LoadLevel();
-        // truyen character vao cac class can su dung
-        
+        DataManager.DespawnLevel(currentLevel -1);
+        DataManager.LoadLevel(currentLevel -1);
+        // khoi tao character
+        SpawnCharacters(startPoints);
     }
 
     public void OnPlay()
@@ -71,6 +74,26 @@ public class LevelManager : Singleton<LevelManager>
         OnInit();
         OnPlay();
     }
-    
-    
+
+    private void SpawnCharacters(List<Transform> spawnPoints)
+    {
+        if (characters == null || characters.Count == 0)
+        {
+            Debug.LogError("No characters assigned");
+            return;
+        }
+
+        if (startPoints == null || startPoints.Count == 0 || startPoints.Count != characters.Count)
+        {
+            Debug.LogError("No startPoints assigned or startPoints don't match characters");
+            return;
+        }
+
+        for (int i = 0; i < characters.Count; i++)
+        {
+            Character character = characters[i];
+            Transform startPoint = startPoints[i];
+            character.OnInit(startPoint);
+        }
+    }
 }

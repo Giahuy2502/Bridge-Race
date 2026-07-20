@@ -22,21 +22,20 @@ public class Stage : MonoBehaviour
     private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
     
 
-    private void Start()
-    {
-        OnInit();
-    }
+    // private void Start()
+    // {
+    //     OnInit();
+    // }
 
-    private void OnInit()
+    public void OnInit()
     {
+        Debug.Log("Call OnInit Stage");
         activeColors.Clear();
         GenerateBricks();
         DeactiveAllBricks();
         SetOnInitBridge(this);
     }
-
     
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Variables.BOT_TAG)|| other.CompareTag(Variables.PLAYER_TAG))
@@ -209,9 +208,20 @@ public class Stage : MonoBehaviour
         }
         return stairWalkable;
     }
-    private void Despawn()
+    public void Despawn()
     {
-        
+        // despawn brick 
+        if (bricks == null || bricks.Count == 0)
+        {
+            Debug.LogError("No bricks found");
+            return;
+        }
+
+        foreach (Brick brick in bricks)
+        {
+            brick.Despawn();
+            SimplePool.Despawn(brick);
+        }
     }
 
     private void ActiveColorBricks(ColorType color)

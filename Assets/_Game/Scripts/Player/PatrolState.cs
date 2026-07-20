@@ -36,6 +36,7 @@ public class PatrolState : IState
                 if (brick != null)
                 {
                     bot.SetDestination(bot.GetNearestBrickPos(brick));
+                    Debug.Log("Reached brick: " + bot.Agent.destination);
                 }
                 else
                 {

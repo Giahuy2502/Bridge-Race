@@ -23,14 +23,18 @@ public class Character : MonoBehaviour
     public Stage Stage { get => stage; set => stage = value; }
     public GameManager GameManager => GameManager.Instance;
 
-    public virtual void OnInit()
+    public virtual void OnInit(Transform startPoints)
     {
+        this.gameObject.SetActive(true);
+        this.transform.position = startPoints.position;
+        this.transform.rotation = startPoints.rotation;
+        bricksTF.gameObject.SetActive(true);
         ChangeColor(targetColor);
     }
-    protected void Start()
-    {
-        OnInit();
-    }
+    // protected void Start()
+    // {
+    //     OnInit();
+    // }
     public virtual void OnDespawn()
     {
         

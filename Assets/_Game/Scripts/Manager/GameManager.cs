@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using MyNamespace;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {

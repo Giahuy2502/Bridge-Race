@@ -63,7 +63,6 @@ public class Brick : GameUnit
             trailRenderer.colorGradient = gradient;
         }
     }
-
     public void OnTriggerEnter(Collider other)
     {
         if (!isTaked && (other.CompareTag(Variables.PLAYER_TAG)||other.CompareTag(Variables.BOT_TAG)))

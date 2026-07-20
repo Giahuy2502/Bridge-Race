@@ -11,11 +11,13 @@ public class Bot : Character
     [SerializeField] NavMeshAgent agent;
     private IState currentState;
     public int MaxBrick{get{return maxBrick;}}
+    public NavMeshAgent Agent{get{return agent;}}
 
-    public override void OnInit()
+    public override void OnInit(Transform startPoints)
     {
-        base.OnInit();
+        base.OnInit(startPoints);
         this.name = "Bot-"+ColorType.ToString();
+        agent.enabled = true;
         ChangeState(new IdleState());
     }
 
@@ -97,5 +99,11 @@ public class Bot : Character
             agent.enabled = false;
         }
         StopMove();
+    }
+    
+    [ContextMenu("Show Destination")]
+    public void ShowDestination()
+    {
+        Debug.Log("Show Destination: Transform: " + transform.position + ",Destibation: " + agent.destination);
     }
 }
