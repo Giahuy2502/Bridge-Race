@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using MyNamespace;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public GameState GameState{ get { return gameState; } }
     private LevelManager LevelManager => LevelManager.Instance;
     private UIController UIController => UIController.Instance;
+    private DataManager DataManager => DataManager.Instance;
     public static Action WinAction;
 
     private void Start()
@@ -48,13 +50,26 @@ public class GameManager : Singleton<GameManager>
     {
     }
 
-    public void ChangeState()
+    public void ChangeState(GameState newState)
     {
+        if (newState == this.gameState) return;
+        this.gameState = newState;
     }
-
+    
+    // ham goi khi nguoi choi bam vao nut play
+    public void PlayGame()
+    {
+        // OnDespawn();
+        // OnInit();
+        LevelManager.OnRestart();
+        Debug.Log("Play Game");
+    }
+    // ham goi khi game duoc restart ( thanh game moi)
     public void NewGame()
     {
-        this.gameState = GameState.Playing;
+        OnDespawn();
+        OnInit();
+        LevelManager.OnRestart();
         Debug.Log("New Game");
     }
 
