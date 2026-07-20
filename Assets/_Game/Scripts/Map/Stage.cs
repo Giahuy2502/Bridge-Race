@@ -230,6 +230,16 @@ public class Stage : MonoBehaviour
         activeBricks.Clear();
         activeColors.Clear();
         emptyPositions.Clear();
+        if (bridges == null || bridges.Count == 0)
+        {
+            Debug.LogError("No bricks found");
+            return;
+        }
+
+        foreach (Bridge bridge in bridges)
+        {
+            bridge.Despawn();
+        }
     }
 
     private void ActiveColorBricks(ColorType color)

@@ -43,4 +43,13 @@ public class Bridge : MonoBehaviour
         }
         door.OnInit(stage);
     }
+
+    public void Despawn()
+    {
+        foreach (Stair stair in stairs)
+        {
+            stair.Despawn();
+        }
+        door.Despawn();
+    }
 }

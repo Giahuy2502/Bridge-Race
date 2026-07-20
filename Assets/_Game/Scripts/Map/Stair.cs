@@ -91,5 +91,16 @@ public class Stair : MonoBehaviour
             yield return null;
         }
     }
-    
+
+    public void Despawn()
+    {
+        // hasFilled = false;
+        // isBlocked = false;
+        // renderer.enabled = false;
+        // if (changColorCoroutine != null)
+        // {
+        //     StopCoroutine(changColorCoroutine);
+        //     changColorCoroutine = null;
+        // }
+    }
 }

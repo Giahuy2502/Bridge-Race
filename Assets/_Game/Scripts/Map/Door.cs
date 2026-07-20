@@ -47,8 +47,16 @@ public class Door : MonoBehaviour
         animator.SetTrigger(Variables.OPEN_ANIM);
     }
 
+    private void ResetAnimator()
+    {
+        animator.Rebind();
+        animator.Update(0f);
+    }
+
     public void Despawn()
     {
-        
+        isOpened = true;
+        ChangeColor(ColorType.white);
+        ResetAnimator();
     }
 }

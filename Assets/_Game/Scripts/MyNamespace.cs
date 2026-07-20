@@ -13,6 +13,7 @@ namespace MyNamespace
         Yellow = 4,
         Violet = 5,
         Black = 6,
+        white = 7,
     }
 
     public enum GameState
