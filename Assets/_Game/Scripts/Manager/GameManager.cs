@@ -77,6 +77,5 @@ public class GameManager : Singleton<GameManager>
     public void OnMainMenu()
     {
         this.gameState = GameState.OnMain;
-        LevelManager.OnDespawn();
     }
 }
