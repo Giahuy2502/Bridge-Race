@@ -22,7 +22,6 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadLevel()
     {
         // data manager load map
-        DataManager.DespawnLevel(currentLevel -1);
         DataManager.LoadLevel(currentLevel -1);
         // khoi tao character
         SpawnCharacters(startPoints);
@@ -45,7 +44,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnDespawn()
     {
-      
+        DataManager.DespawnLevel(currentLevel -1);
     }
 
     public void OnWin()

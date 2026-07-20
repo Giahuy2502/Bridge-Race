@@ -31,6 +31,9 @@ public class Stage : MonoBehaviour
     {
         Debug.Log("Call OnInit Stage");
         activeColors.Clear();
+        activeBricks.Clear();
+        emptyPositions.Clear();
+        bricks.Clear();
         GenerateBricks();
         DeactiveAllBricks();
         SetOnInitBridge(this);
@@ -220,8 +223,13 @@ public class Stage : MonoBehaviour
         foreach (Brick brick in bricks)
         {
             brick.Despawn();
+            brick.gameObject.SetActive(true);
             SimplePool.Despawn(brick);
         }
+        bricks.Clear();
+        activeBricks.Clear();
+        activeColors.Clear();
+        emptyPositions.Clear();
     }
 
     private void ActiveColorBricks(ColorType color)
