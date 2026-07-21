@@ -24,7 +24,7 @@ public class LevelManager : Singleton<LevelManager>
         // data manager load map
         DataManager.LoadLevel(currentLevel -1);
         // khoi tao character
-        SpawnCharacters(startPoints);
+        StartCoroutine(ISpawnCharactersRoutine(startPoints));
     }
 
     public void OnPlay()
@@ -94,5 +94,11 @@ public class LevelManager : Singleton<LevelManager>
             Transform startPoint = startPoints[i];
             character.OnInit(startPoint);
         }
+    }
+
+    IEnumerator ISpawnCharactersRoutine(List<Transform> spawnPoints)
+    {
+        yield return new WaitForSeconds(0.25f);
+        SpawnCharacters(spawnPoints);
     }
 }

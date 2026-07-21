@@ -70,6 +70,14 @@ public class RankManager : Singleton<RankManager>
         // Debug.Log("Registered Stage Passed: "+stage.name +" "+character.name);
     }
 
+    public void SetFinishedPosition(List<Transform> positions)
+    {
+        finishPositions.Clear();
+        foreach (Transform position in positions)
+        {
+            finishPositions.Add(position);
+        }
+    }
     private void Despawn()
     {
         

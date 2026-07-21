@@ -7,7 +7,7 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface surface;
     [SerializeField] private List<Platform> platforms = new List<Platform>();
-    [SerializeField] private GameObject finishPlatform;
+    [SerializeField] private FinishPlatform finishPlatform;
     
     public void OnInit()
     {
@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
         {
             Debug.LogError("No finish platform assigned!");
         }
-        finishPlatform.SetActive(true);
+        finishPlatform.OnInit();
         
         // sau khi spawn xong cac platform thi phai bake lai surface
         // if (surface == null)
