@@ -91,12 +91,16 @@ public class Bot : Character
             currentState.OnExit(this);
             currentState = null;
         }
-        if (agent != null)
+        if (agent != null && agent.isOnNavMesh)
         {
             agent.ResetPath();
             agent.velocity = Vector3.zero;
             agent.isStopped = true;
             agent.enabled = false;
+        }
+        else if (agent != null)
+        {
+            agent.enabled = false; 
         }
         StopMove();
     }

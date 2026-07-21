@@ -7,12 +7,14 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private List<Character> characters = new List<Character>();
     [SerializeField] private List<Transform> startPoints;
+    [SerializeField] private Transform brickParent;
     [SerializeField] private int currentLevel = 0;
     private RankManager RankManager => RankManager.Instance;
     private GameManager GameManager => GameManager.Instance;
     
     private DataManager DataManager => DataManager.Instance;
     public List<Character> Characters { get => characters; set => characters = value; }
+    public Transform BrickParent { get => brickParent; set => brickParent = value; }
     public void OnInit()
     {
         RankManager.OnInit();

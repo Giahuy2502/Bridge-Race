@@ -21,7 +21,7 @@ public class Stage : MonoBehaviour
     private List<ColorType> activeColors = new List<ColorType>();
     private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
     
-
+    private LevelManager LevelManager => LevelManager.Instance;
     // private void Start()
     // {
     //     OnInit();
@@ -34,6 +34,7 @@ public class Stage : MonoBehaviour
         activeBricks.Clear();
         emptyPositions.Clear();
         bricks.Clear();
+        bricksParent = LevelManager.BrickParent;
         StartCoroutine(IGenerateBricks());
         DeactiveAllBricks();
         SetOnInitBridge(this);

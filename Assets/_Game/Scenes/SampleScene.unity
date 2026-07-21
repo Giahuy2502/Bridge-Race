@@ -2511,6 +2511,7 @@ MonoBehaviour:
   - {fileID: 1223436705}
   - {fileID: 1286008473}
   - {fileID: 159751729}
+  brickParent: {fileID: 1254753503}
   currentLevel: 1
 --- !u!4 &1249745479
 Transform:
