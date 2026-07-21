@@ -11,13 +11,13 @@ public class Stair : MonoBehaviour
     [SerializeField] private ColorDataSO colorDataSO;
     [SerializeField] private float duration;
     private float timer;
-    private ColorType colorType;
+    [SerializeField] private ColorType colorType;
     public ColorType ColorType{get{return colorType;}set{colorType = value;}}
 
-    private bool hasFilled;
-    private bool isBlocked;
+    [SerializeField] private bool hasFilled;
+    [SerializeField] private bool isBlocked;
     private Coroutine changColorCoroutine;
-    private Stage stage;
+    [SerializeField] private Stage stage;
     
     public Stage Stage{get{return stage;}set{stage = value;}}
     
@@ -26,6 +26,8 @@ public class Stair : MonoBehaviour
     {
         hasFilled = false;
         isBlocked = false;
+        colorType = ColorType.None;
+        renderer.material = colorDataSO.GetMat(ColorType.white);
         renderer.enabled = false;
         if (changColorCoroutine != null)
         {
@@ -94,13 +96,14 @@ public class Stair : MonoBehaviour
 
     public void Despawn()
     {
-        // hasFilled = false;
-        // isBlocked = false;
-        // renderer.enabled = false;
-        // if (changColorCoroutine != null)
-        // {
-        //     StopCoroutine(changColorCoroutine);
-        //     changColorCoroutine = null;
-        // }
+        hasFilled = false;
+        isBlocked = false;
+        renderer.enabled = false;
+        colorType = ColorType.None;
+        if (changColorCoroutine != null)
+        {
+            StopCoroutine(changColorCoroutine);
+            changColorCoroutine = null;
+        }
     }
 }

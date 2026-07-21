@@ -7,12 +7,14 @@ public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField] private List<Character> characters = new List<Character>();
     [SerializeField] private List<Transform> startPoints;
+    [SerializeField] private Transform brickParent;
     [SerializeField] private int currentLevel = 0;
     private RankManager RankManager => RankManager.Instance;
     private GameManager GameManager => GameManager.Instance;
     
     private DataManager DataManager => DataManager.Instance;
     public List<Character> Characters { get => characters; set => characters = value; }
+    public Transform BrickParent { get => brickParent; set => brickParent = value; }
     public void OnInit()
     {
         RankManager.OnInit();
@@ -24,7 +26,7 @@ public class LevelManager : Singleton<LevelManager>
         // data manager load map
         DataManager.LoadLevel(currentLevel -1);
         // khoi tao character
-        SpawnCharacters(startPoints);
+        StartCoroutine(ISpawnCharactersRoutine(startPoints));
     }
 
     public void OnPlay()
@@ -94,5 +96,11 @@ public class LevelManager : Singleton<LevelManager>
             Transform startPoint = startPoints[i];
             character.OnInit(startPoint);
         }
+    }
+
+    IEnumerator ISpawnCharactersRoutine(List<Transform> spawnPoints)
+    {
+        yield return new WaitForSeconds(0.25f);
+        SpawnCharacters(spawnPoints);
     }
 }
