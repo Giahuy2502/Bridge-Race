@@ -47,6 +47,7 @@ public class Character : MonoBehaviour
         Vector3 newpos = GetNewestBrickPos();
         Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + newpos, bricksTF.rotation);
         newBrick.transform.parent = bricksTF;
+        newBrick.transform.localPosition =  newpos;
         bricks.Add(newBrick);
         // Debug.Log("Brick added brick :" + bricks.Count);
         newBrick.OnInit(ColorType, this.Stage);
