@@ -46,6 +46,8 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
+        LevelManager.OnRestart();
+        Debug.Log("Play Game");
     }
 
     public void NextLevel()

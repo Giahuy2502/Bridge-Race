@@ -40,7 +40,22 @@ public class Bot : Character
 
     private void Update()
     {
-        if (!IsPlaying()) return;
+        if (!IsPlaying())
+        {
+            if (agent != null && !agent.isStopped)
+            {
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+            }
+            return;
+        }
+        if (IsPlaying())
+        {
+            if (agent != null && agent.isStopped)
+            {
+                agent.isStopped = false;
+            }
+        }
         if (currentState != null)
         {
             currentState.OnExcute(this);

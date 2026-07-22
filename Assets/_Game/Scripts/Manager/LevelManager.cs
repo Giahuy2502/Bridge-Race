@@ -36,12 +36,12 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnPause()
     {
-        Time.timeScale = 0f;
+        GameManager.ChangeState(GameState.Pause);
     }
 
-    public void OnContinue()
+    public void OnContinue(GameState newState)
     {
-        Time.timeScale = 1f;
+        GameManager.ChangeState(newState);
     }
 
     public void Despawn()

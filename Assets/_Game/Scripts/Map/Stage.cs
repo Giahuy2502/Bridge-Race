@@ -223,7 +223,7 @@ public class Stage : MonoBehaviour
         // despawn brick 
         if (bricks == null || bricks.Count == 0)
         {
-            Debug.LogError("No bricks found");
+            // Debug.LogError("No bricks found");
             return;
         }
 

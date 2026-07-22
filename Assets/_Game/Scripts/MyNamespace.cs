@@ -22,6 +22,7 @@ namespace MyNamespace
         Playing = 1,
         Win = 2,
         Lose = 3,
+        Pause = 4,
     }
 
     public static class Variables
