@@ -8,7 +8,6 @@ using Variables = MyNamespace.Variables;
 
 public class Player : Character
 {
-    [SerializeField] private Camera camera;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed; 
     [SerializeField] private LayerMask stairLayer;
@@ -18,11 +17,17 @@ public class Player : Character
     private float blockPosY;
     private GameManager GameManager => GameManager.Instance;
     
-    public override void OnInit(Transform startPoints)
+    public override void OnInit()
     {
-        base.OnInit(startPoints);
+        base.OnInit();
         targerPos = tf.position;
         blockPosY = tf.position.y;
+    }
+
+    public override void Despawn()
+    {
+        base.Despawn();
+        this.gameObject.SetActive(false);
     }
 
     private void Update()

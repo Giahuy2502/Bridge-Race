@@ -36,6 +36,7 @@ public class GameManager : Singleton<GameManager>
     {
         this.gameState = GameState.Win;
         UIController.ShowWinMenu();
+        LevelManager.Despawn();
         WinAction?.Invoke();
     }
     
@@ -77,5 +78,6 @@ public class GameManager : Singleton<GameManager>
     public void OnMainMenu()
     {
         this.gameState = GameState.OnMain;
+        LevelManager.Despawn();
     }
 }

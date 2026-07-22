@@ -13,12 +13,29 @@ public class Bot : Character
     public int MaxBrick{get{return maxBrick;}}
     public NavMeshAgent Agent{get{return agent;}}
 
-    public override void OnInit(Transform startPoints)
+    public override void OnInit()
     {
-        base.OnInit(startPoints);
+        base.OnInit();
         this.name = "Bot-"+ColorType.ToString();
         agent.enabled = true;
         ChangeState(new IdleState());
+    }
+
+    public override void Despawn()
+    {
+        base.Despawn();
+        if (agent != null && agent.isOnNavMesh)
+        {
+            agent.ResetPath();
+            agent.velocity = Vector3.zero;
+            agent.isStopped = true;
+            agent.enabled = false;
+        }
+        else if (agent != null)
+        {
+            agent.enabled = false; 
+        }
+        this.gameObject.SetActive(false);
     }
 
     private void Update()

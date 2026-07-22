@@ -23,21 +23,24 @@ public class Character : MonoBehaviour
     public Stage Stage { get => stage; set => stage = value; }
     public GameManager GameManager => GameManager.Instance;
 
-    public virtual void OnInit(Transform startPoints)
+    public virtual void OnInit()
     {
         this.gameObject.SetActive(true);
-        this.transform.position = startPoints.position;
-        this.transform.rotation = startPoints.rotation;
         bricksTF.gameObject.SetActive(true);
         ChangeColor(targetColor);
     }
-    // protected void Start()
-    // {
-    //     OnInit();
-    // }
-    public virtual void OnDespawn()
+
+    public void SetStartPoints(Transform startPoints)
     {
-        
+        this.transform.position = startPoints.position;
+        this.transform.rotation = startPoints.rotation;
+    }
+    public virtual void Despawn()
+    {
+        ClearAllBricks();
+        stage = null;
+        animator.Rebind();
+        ChangeColor(ColorType.white);
     }
     public void AddBrick()
     {
@@ -90,7 +93,6 @@ public class Character : MonoBehaviour
     public virtual void SetWinState()
     {
         ClearAllBricks();
-        
     }
 
     public bool IsPlaying()

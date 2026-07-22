@@ -44,9 +44,10 @@ public class LevelManager : Singleton<LevelManager>
         Time.timeScale = 1f;
     }
 
-    public void OnDespawn()
+    public void Despawn()
     {
         DataManager.DespawnLevel(currentLevel -1);
+        DespawnCharacters();
     }
 
     public void OnWin()
@@ -62,7 +63,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnRestart()
     {
-        OnDespawn();
+        Despawn();
         LoadLevel();
         OnInit();
         OnPlay();
@@ -70,7 +71,7 @@ public class LevelManager : Singleton<LevelManager>
     // ham goi khi chuyen sang level tiep theo
     public void OnNext()
     {
-        OnDespawn();
+        Despawn();
         LoadLevel();
         OnInit();
         OnPlay();
@@ -94,7 +95,8 @@ public class LevelManager : Singleton<LevelManager>
         {
             Character character = characters[i];
             Transform startPoint = startPoints[i];
-            character.OnInit(startPoint);
+            character.OnInit();
+            character.SetStartPoints(startPoint);
         }
     }
 
@@ -102,5 +104,22 @@ public class LevelManager : Singleton<LevelManager>
     {
         yield return new WaitForSeconds(0.25f);
         SpawnCharacters(spawnPoints);
+    }
+    
+    private void DespawnCharacters()
+    {
+        if (characters == null || characters.Count == 0)
+        {
+            Debug.LogError("No characters assigned");
+            return;
+        }
+        
+        for (int i = 0; i < characters.Count; i++)
+        {
+            Character character = characters[i];
+            Transform startPoint = startPoints[i];
+            character.SetStartPoints(startPoint);
+            character.Despawn();
+        }
     }
 }
