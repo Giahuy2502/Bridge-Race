@@ -5,6 +5,7 @@ using System.Linq;
 using MyNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 using Variables = MyNamespace.Variables;
 
@@ -16,7 +17,7 @@ public class Stage : MonoBehaviour
     [SerializeField] private Transform bricksParent;
     [SerializeField] private float step;
     [SerializeField] private float offset = 2f;
-    [SerializeField] private List<ColorType> colors = new List<ColorType>();
+    [SerializeField] private List<ColorType> characterColors = new List<ColorType>();
     private List<Brick> activeBricks = new List<Brick>();
     private List<ColorType> activeColors = new List<ColorType>();
     private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
@@ -35,6 +36,7 @@ public class Stage : MonoBehaviour
         emptyPositions.Clear();
         bricks.Clear();
         bricksParent = LevelManager.BrickParent;
+        SetCharacterColors(LevelManager.GetCharacterColors());
         StartCoroutine(IGenerateBricks());
         DeactiveAllBricks();
         SetOnInitBridge(this);
@@ -76,7 +78,7 @@ public class Stage : MonoBehaviour
         }
         
         int totalBricks = spawnPoints.Count;
-        int totalColors = colors.Count;
+        int totalColors = characterColors.Count;
         int bricksPerColor = totalBricks / totalColors;
         int extraBricks = totalBricks % totalColors;
         
@@ -90,7 +92,7 @@ public class Stage : MonoBehaviour
             }
             for (int j = 0; j < bricksCount; j++)
             {
-                colorGenerates.Add(colors[i]);
+                colorGenerates.Add(characterColors[i]);
             }
         }
         for (int i = 0; i < totalBricks; i++)
@@ -280,4 +282,12 @@ public class Stage : MonoBehaviour
         }
     }
 
+    public void SetCharacterColors(List<ColorType> colors)
+    {
+        this.characterColors.Clear();
+        for (int i = 0; i < colors.Count; i++)
+        {
+            this.characterColors.Add(colors[i]);
+        }
+    }
 }

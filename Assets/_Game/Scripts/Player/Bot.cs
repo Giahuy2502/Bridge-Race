@@ -13,9 +13,9 @@ public class Bot : Character
     public int MaxBrick{get{return maxBrick;}}
     public NavMeshAgent Agent{get{return agent;}}
 
-    public override void OnInit()
+    public override void OnInit(ColorType colorType)
     {
-        base.OnInit();
+        base.OnInit(colorType);
         this.name = "Bot-"+ColorType.ToString();
         agent.enabled = true;
         ChangeState(new IdleState());

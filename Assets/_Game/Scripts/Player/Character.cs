@@ -23,11 +23,11 @@ public class Character : MonoBehaviour
     public Stage Stage { get => stage; set => stage = value; }
     public GameManager GameManager => GameManager.Instance;
 
-    public virtual void OnInit()
+    public virtual void OnInit(ColorType colorType)
     {
         this.gameObject.SetActive(true);
         bricksTF.gameObject.SetActive(true);
-        ChangeColor(targetColor);
+        ChangeColor(colorType);
     }
 
     public void SetStartPoints(Transform startPoints)

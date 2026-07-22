@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
@@ -5,15 +6,13 @@ using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    [SerializeField] private List<Character> characters = new List<Character>();
+    [SerializeField] private List<CharacterData> characterDatas = new List<CharacterData>();
     [SerializeField] private List<Transform> startPoints;
     [SerializeField] private Transform brickParent;
     [SerializeField] private int currentLevel = 0;
     private RankManager RankManager => RankManager.Instance;
     private GameManager GameManager => GameManager.Instance;
-    
     private DataManager DataManager => DataManager.Instance;
-    public List<Character> Characters { get => characters; set => characters = value; }
     public Transform BrickParent { get => brickParent; set => brickParent = value; }
     public void OnInit()
     {
@@ -26,7 +25,7 @@ public class LevelManager : Singleton<LevelManager>
         // data manager load map
         DataManager.LoadLevel(currentLevel -1);
         // khoi tao character
-        StartCoroutine(ISpawnCharactersRoutine(startPoints));
+        StartCoroutine(ISpawnCharactersRoutine());
     }
 
     public void OnPlay()
@@ -77,49 +76,68 @@ public class LevelManager : Singleton<LevelManager>
         OnPlay();
     }
 
-    private void SpawnCharacters(List<Transform> spawnPoints)
+    private void SpawnCharacters()
     {
-        if (characters == null || characters.Count == 0)
+        if (characterDatas == null || characterDatas.Count == 0)
         {
             Debug.LogError("No characters assigned");
             return;
         }
 
-        if (startPoints == null || startPoints.Count == 0 || startPoints.Count != characters.Count)
+        if (startPoints == null || startPoints.Count == 0 || startPoints.Count < characterDatas.Count)
         {
             Debug.LogError("No startPoints assigned or startPoints don't match characters");
             return;
         }
 
-        for (int i = 0; i < characters.Count; i++)
+        for (int i = 0; i < characterDatas.Count; i++)
         {
-            Character character = characters[i];
+            Character character = characterDatas[i].Character;
+            ColorType color = characterDatas[i].Color;
             Transform startPoint = startPoints[i];
-            character.OnInit();
+            character.OnInit(color);
             character.SetStartPoints(startPoint);
         }
     }
 
-    IEnumerator ISpawnCharactersRoutine(List<Transform> spawnPoints)
+    IEnumerator ISpawnCharactersRoutine()
     {
         yield return new WaitForSeconds(0.25f);
-        SpawnCharacters(spawnPoints);
+        SpawnCharacters();
     }
     
     private void DespawnCharacters()
     {
-        if (characters == null || characters.Count == 0)
+        if (characterDatas == null || characterDatas.Count == 0)
         {
             Debug.LogError("No characters assigned");
             return;
         }
         
-        for (int i = 0; i < characters.Count; i++)
+        for (int i = 0; i < characterDatas.Count; i++)
         {
-            Character character = characters[i];
+            Character character = characterDatas[i].Character;
             Transform startPoint = startPoints[i];
             character.SetStartPoints(startPoint);
             character.Despawn();
         }
     }
+
+    public List<ColorType> GetCharacterColors()
+    {
+        List<ColorType> colors = new List<ColorType>();
+        for (int i = 0; i < characterDatas.Count; i++)
+        {
+            ColorType color = characterDatas[i].Color;
+            colors.Add(color);
+        }
+        return colors;
+    }
+}
+
+[Serializable]
+public class CharacterData
+{
+    public Character Character;
+    public ColorType Color;
 }

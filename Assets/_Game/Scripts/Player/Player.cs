@@ -17,9 +17,9 @@ public class Player : Character
     private float blockPosY;
     private GameManager GameManager => GameManager.Instance;
     
-    public override void OnInit()
+    public override void OnInit(ColorType colorType)
     {
-        base.OnInit();
+        base.OnInit(colorType);
         targerPos = tf.position;
         blockPosY = tf.position.y;
     }

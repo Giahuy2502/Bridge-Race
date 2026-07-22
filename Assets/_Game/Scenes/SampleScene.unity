@@ -2641,10 +2641,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58830cd292b3934e95d96af1cf29fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters:
-  - {fileID: 3086199987061428026}
-  - {fileID: 1140852908}
-  - {fileID: 155413030}
+  characterDatas:
+  - Character: {fileID: 3086199987061428026}
+    Color: 2
+  - Character: {fileID: 1140852908}
+    Color: 1
+  - Character: {fileID: 155413030}
+    Color: 4
   startPoints:
   - {fileID: 1223436705}
   - {fileID: 1286008473}
