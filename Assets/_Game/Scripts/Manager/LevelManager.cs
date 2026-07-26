@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -22,6 +23,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void LoadLevel()
     {
+        SetCharacterColor(ColorType.Green);
         // data manager load map
         DataManager.LoadLevel(currentLevel -1);
         // khoi tao character
@@ -137,6 +139,42 @@ public class LevelManager : Singleton<LevelManager>
     public CharacterData GetPlayerData()
     {
         return characterDatas[0];
+    }
+    
+    
+    public void SetCharacterColor(ColorType playerColor)
+    {
+        if (characterDatas == null || characterDatas.Count == 0)
+        {
+            Debug.LogError("No characters assigned");
+            return;
+        }
+        
+        CharacterData playerData = characterDatas[0];
+        playerData.Color = playerColor;
+
+        for (int i = 1; i < characterDatas.Count; i++)
+        {
+            ColorType color = (ColorType)Random.Range(1, 7);
+            while (!IsValidRandomColor(color,i))
+            {
+                color = (ColorType)Random.Range(1, 7);
+            }
+            characterDatas[i].Color = color;
+        }
+    }
+
+    private bool IsValidRandomColor(ColorType color, int index)
+    {
+        for (int i = 0; i <= index; i++)
+        {
+            CharacterData characterData = characterDatas[i];
+            if (color == characterData.Color)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
