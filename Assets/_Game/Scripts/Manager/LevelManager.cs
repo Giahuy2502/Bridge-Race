@@ -51,7 +51,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnWin()
     {
-        
+        Despawn();
     }
 
     public void OnLose()
@@ -132,6 +132,11 @@ public class LevelManager : Singleton<LevelManager>
             colors.Add(color);
         }
         return colors;
+    }
+
+    public CharacterData GetPlayerData()
+    {
+        return characterDatas[0];
     }
 }
 

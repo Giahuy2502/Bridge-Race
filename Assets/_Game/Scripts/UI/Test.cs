@@ -14,10 +14,7 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && UIManager.Instance.IsOpened<CanvasGamePlay>())
-        {
-            UIManager.Instance.GetUI<CanvasGamePlay>().UpdateCoin(++score);
-        }
+       
 
         if (Input.GetKeyDown(KeyCode.V))
         {

@@ -1,26 +1,48 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using TMPro;
 using UnityEngine;
 
 public class CanvasGamePlay : UICanvas
 {
     [SerializeField] private TextMeshProUGUI coinText;
-
+    [SerializeField] private List<RankingItemUI> rankingItemUI = new List<RankingItemUI>();
+    [SerializeField] private ColorDataSO colorDataSO;
+    private LevelManager LevelManager => LevelManager.Instance;
     public override void Setup()
     {
         base.Setup();
-        UpdateCoin(0);
+        SetupRankingItems(LevelManager.GetPlayerData().Color);
     }
 
-    public void UpdateCoin(int coin)
+    public void SetupRankingItems(ColorType playerColor)
     {
-        coinText.text = coin.ToString();
+        for (int i = 0; i < rankingItemUI.Count; i++)
+        {
+            rankingItemUI[i].OnInit(playerColor);
+        }
     }
 
     public void SettingButton()
     {
         UIManager.Instance.Open<CanvasSettings>().SetState(this);
     }
+
+    public void UpdateColorRanking(List<ColorType> colorRanking)
+    {
+        for (int i = 0; i < rankingItemUI.Count; i++)
+        {
+            RankingItemUI rankingItem = rankingItemUI[i];
+            if (i >= colorRanking.Count)
+            {
+                return;
+            }
+            ColorType color = colorRanking[i];
+            Material material = colorDataSO.GetMat(color);
+            rankingItem.SetColor(color,material);
+        }
+    }
 }
+

@@ -2614,9 +2614,9 @@ MonoBehaviour:
   - Character: {fileID: 3086199987061428026}
     Color: 2
   - Character: {fileID: 1140852908}
-    Color: 1
-  - Character: {fileID: 155413030}
     Color: 4
+  - Character: {fileID: 155413030}
+    Color: 1
   startPoints:
   - {fileID: 1223436705}
   - {fileID: 1286008473}

@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 2179556299425043562}
   - component: {fileID: 780786155015801190}
   - component: {fileID: 7182704229778263531}
+  - component: {fileID: 5050947190625730355}
   m_Layer: 5
   m_Name: Image-CharacterRank
   m_TagString: Untagged
@@ -212,6 +213,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5050947190625730355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684842763084767881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cec1110fb44ec438042529025ddb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {fileID: 7182704229778263531}
+  name: {fileID: 7973946836769633360}
+  focus: {fileID: 7356257999569310149}
 --- !u!1 &2475142652032755490
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +373,7 @@ GameObject:
   - component: {fileID: 7591003569000627892}
   - component: {fileID: 3275264742824995331}
   - component: {fileID: 1822094945193232561}
+  - component: {fileID: 4841561155773839370}
   m_Layer: 5
   m_Name: Image-CharacterRank (2)
   m_TagString: Untagged
@@ -424,6 +441,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4841561155773839370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3093560226093265314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cec1110fb44ec438042529025ddb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {fileID: 1822094945193232561}
+  name: {fileID: 1259234158517278728}
+  focus: {fileID: 7415244332717182932}
 --- !u!1 &3832898996189428203
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +810,7 @@ GameObject:
   - component: {fileID: 7965361555600648356}
   - component: {fileID: 9034268405864299476}
   - component: {fileID: 6490657355184936343}
+  - component: {fileID: 5034905033713742402}
   m_Layer: 5
   m_Name: Image-CharacterRank (3)
   m_TagString: Untagged
@@ -845,6 +878,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5034905033713742402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056081613711743079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cec1110fb44ec438042529025ddb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {fileID: 6490657355184936343}
+  name: {fileID: 404615054936409915}
+  focus: {fileID: 7972952701396066621}
 --- !u!1 &5409978808518462329
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2196,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
   coinText: {fileID: 7973946836769633360}
+  rankingItemUI:
+  - {fileID: 5050947190625730355}
+  - {fileID: 2610439904809126528}
+  - {fileID: 4841561155773839370}
+  - {fileID: 5034905033713742402}
+  colorDataSO: {fileID: 11400000, guid: 45ed890cd5f37b54984d1e7b335e869f, type: 2}
 --- !u!1 &8989702659239839774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,6 +2213,7 @@ GameObject:
   - component: {fileID: 369797339928913017}
   - component: {fileID: 6907626225558356585}
   - component: {fileID: 4394220396781123809}
+  - component: {fileID: 2610439904809126528}
   m_Layer: 5
   m_Name: Image-CharacterRank (1)
   m_TagString: Untagged
@@ -2226,3 +2281,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2610439904809126528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989702659239839774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cec1110fb44ec438042529025ddb64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {fileID: 4394220396781123809}
+  name: {fileID: 3974038200135953447}
+  focus: {fileID: 5979486103179224733}

@@ -42,7 +42,7 @@ public class Bot : Character
     {
         if (!IsPlaying())
         {
-            if (agent != null && !agent.isStopped)
+            if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh && !agent.isStopped)
             {
                 agent.isStopped = true;
                 agent.velocity = Vector3.zero;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using UnityEngine;
 
 public class RankManager : Singleton<RankManager>
@@ -8,6 +9,7 @@ public class RankManager : Singleton<RankManager>
     [SerializeField] private List<Transform> finishPositions = new List<Transform>();
     private Dictionary<Stage,List<Character>> stageRankings = new Dictionary<Stage, List<Character>>();
     private GameManager GameManager => GameManager.Instance;
+    private UIController UIController => UIController.Instance;
     public void OnInit()
     {
         finishedRankings.Clear();
@@ -68,6 +70,7 @@ public class RankManager : Singleton<RankManager>
         }
         stageRankings[stage].Add(character);
         // Debug.Log("Registered Stage Passed: "+stage.name +" "+character.name);
+        UIController.UpdateColorRanking();
     }
 
     public void SetFinishedPosition(List<Transform> positions)
@@ -81,5 +84,25 @@ public class RankManager : Singleton<RankManager>
     private void Despawn()
     {
         
+    }
+
+    public List<ColorType> GetCurrentColorRanking()
+    {
+        List<ColorType> colorRanking = new List<ColorType>();
+        List<Stage> keys = new List<Stage>(stageRankings.Keys);
+        for (int i = keys.Count - 1; i >= 0; i--)
+        {
+            Stage currentKey = keys[i];
+            List<Character> currentValue = stageRankings[currentKey];
+
+            for (int j = 0; j < currentValue.Count; j++)
+            {
+                if (!colorRanking.Contains(currentValue[j].ColorType))
+                {
+                    colorRanking.Add(currentValue[j].ColorType);
+                }
+            }
+        }
+        return colorRanking;
     }
 }

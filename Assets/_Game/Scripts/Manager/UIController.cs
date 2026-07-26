@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using UnityEngine;
 
 public class UIController : Singleton<UIController>
 {
     [SerializeField] private float victoryDuration = 1f;
+    private List<ColorType> colorRanking = new List<ColorType>();
+    private CanvasGamePlay canvasGamePlay;
     private UIManager UIManager => UIManager.Instance;
-
+    private RankManager RankManager => RankManager.Instance;
     public void ShowMenu()
     {
         UIManager.Open<CanvasMainMenu>();
@@ -18,12 +21,29 @@ public class UIController : Singleton<UIController>
     }
     public IEnumerator ShowWinMenu()
     {
-        HideGamePlay(0f);
         yield return new WaitForSeconds(victoryDuration);
-        UIManager.Open<CanvasMainMenu>();
+        HideGamePlay(0f);
+        UIManager.Open<CanvasVictory>();
     }
     public void HideGamePlay(float duration)
     {
         UIManager.CloseUI<CanvasGamePlay>(duration);
+    }
+
+    public void ShowGamePlay()
+    {
+        canvasGamePlay = UIManager.Open<CanvasGamePlay>();
+    }
+
+    public void UpdateColorRanking()
+    {
+        if (canvasGamePlay == null)
+        {
+            Debug.LogError("canvasGamePlay is null");
+            return;
+        }
+        colorRanking.Clear();
+        colorRanking = RankManager.GetCurrentColorRanking();
+        canvasGamePlay.UpdateColorRanking(colorRanking);
     }
 }
