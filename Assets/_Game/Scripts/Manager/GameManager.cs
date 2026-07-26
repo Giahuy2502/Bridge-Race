@@ -35,11 +35,16 @@ public class GameManager : Singleton<GameManager>
     public void OnWinGame()
     {
         this.gameState = GameState.Win;
-        UIController.ShowWinMenu();
-        LevelManager.Despawn();
-        WinAction?.Invoke();
+        StartCoroutine(CoWinGameHandler());
+
     }
-    
+
+    private IEnumerator CoWinGameHandler()
+    {
+        WinAction?.Invoke();
+        yield return UIController.ShowWinMenu();
+        LevelManager.OnWin();
+    }
     public void OnLoseGame()
     {
     }

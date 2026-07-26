@@ -960,6 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbbe3ab07b1510e4ea423b33684aa713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victoryDuration: 3
 --- !u!1 &351561400
 GameObject:
   m_ObjectHideFlags: 0

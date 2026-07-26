@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIController : Singleton<UIController>
 {
+    [SerializeField] private float victoryDuration = 1f;
     private UIManager UIManager => UIManager.Instance;
 
     public void ShowMenu()
@@ -15,11 +16,11 @@ public class UIController : Singleton<UIController>
     {
         UIManager.CloseUI<CanvasMainMenu>(duration);
     }
-
-    public void ShowWinMenu()
+    public IEnumerator ShowWinMenu()
     {
         HideGamePlay(0f);
-        UIManager.Open<CanvasVictory>();
+        yield return new WaitForSeconds(victoryDuration);
+        UIManager.Open<CanvasMainMenu>();
     }
     public void HideGamePlay(float duration)
     {
