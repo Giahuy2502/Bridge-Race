@@ -105,4 +105,20 @@ public class RankManager : Singleton<RankManager>
         }
         return colorRanking;
     }
+
+    public int GetPlayerRanking()
+    {
+        for (int i = 0; i < finishedRankings.Count; i++)
+        {
+            Character character = finishedRankings[i];
+            if (character != null)
+            {
+                if (character is Player)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
 }

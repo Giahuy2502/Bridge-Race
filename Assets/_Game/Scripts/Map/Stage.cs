@@ -28,7 +28,7 @@ public class Stage : MonoBehaviour
     //     OnInit();
     // }
 
-    public void OnInit()
+    public virtual void OnInit()
     {
         Debug.Log("Call OnInit Stage");
         activeColors.Clear();

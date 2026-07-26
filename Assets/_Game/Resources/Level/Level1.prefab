@@ -1172,6 +1172,8 @@ GameObject:
   - component: {fileID: 4625204201152527642}
   - component: {fileID: 6928302755826622474}
   - component: {fileID: 5882362122897920492}
+  - component: {fileID: 1309448545064316654}
+  - component: {fileID: 1136292870809808316}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -1263,8 +1265,40 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2.0000005, z: 1.75}
-  m_Center: {x: 0, y: 1, z: 0.05}
+  m_Size: {x: 2, y: 2.0000005, z: 1.8296747}
+  m_Center: {x: 0, y: 1, z: 0.08516359}
+--- !u!114 &1309448545064316654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771940462697429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674b775480ad99d498e9335a3a0d50cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage: {fileID: 1136292870809808316}
+--- !u!114 &1136292870809808316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771940462697429904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0629eaad78e98c4985f7abf210e1907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bricks: []
+  bridges: []
+  stageCollider: {fileID: 0}
+  bricksParent: {fileID: 0}
+  step: 0
+  offset: 2
+  characterColors: 
 --- !u!1 &820761487344326661
 GameObject:
   m_ObjectHideFlags: 0
