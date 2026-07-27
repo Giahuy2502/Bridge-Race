@@ -23,6 +23,7 @@ public class UIController : Singleton<UIController>
     {
         yield return new WaitForSeconds(victoryDuration);
         HideGamePlay(0f);
+        HideJoyStick(0f);
         UIManager.Open<CanvasVictory>();
     }
     public void HideGamePlay(float duration)
@@ -30,9 +31,15 @@ public class UIController : Singleton<UIController>
         UIManager.CloseUI<CanvasGamePlay>(duration);
     }
 
+    public void HideJoyStick(float duration)
+    {
+        UIManager.CloseUI<CanvasInput>(duration);
+    }
+
     public void ShowGamePlay()
     {
         canvasGamePlay = UIManager.Open<CanvasGamePlay>();
+        UIManager.Open<CanvasInput>();
     }
 
     public void UpdateColorRanking()
