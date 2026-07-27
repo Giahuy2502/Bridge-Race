@@ -5510,7 +5510,6 @@ MonoBehaviour:
   stairLayer:
     serializedVersion: 2
     m_Bits: 128
-  rb: {fileID: 0}
 --- !u!23 &4127710887291935381
 MeshRenderer:
   m_ObjectHideFlags: 0
