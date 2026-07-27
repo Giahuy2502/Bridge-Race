@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     private LevelManager LevelManager => LevelManager.Instance;
     private UIController UIController => UIController.Instance;
     private DataManager DataManager => DataManager.Instance;
+    private InputManager InputManager => InputManager.Instance;
     public static Action WinAction;
 
     private void Start()
@@ -43,6 +44,7 @@ public class GameManager : Singleton<GameManager>
     {
         WinAction?.Invoke();
         yield return UIController.ShowWinMenu();
+        InputManager.Despawn();
         LevelManager.OnWin();
     }
     public void OnLoseGame()
@@ -72,6 +74,8 @@ public class GameManager : Singleton<GameManager>
         // OnInit();
         LevelManager.OnRestart();
         Debug.Log("Play Game");
+        UIController.ShowGamePlay();
+        InputManager.OnInit();
     }
     // ham goi khi game duoc restart ( thanh game moi)
     public void NewGame()

@@ -40,17 +40,15 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
                 inputDirection.y * (BG.sizeDelta.y / 2) * handleRange
             );
         }
-        //
+        // active move focus
         ActiveMoveFocus(GetVectorIndexMoveFocus(inputDirection));
     }
-
     public void OnPointerUp(PointerEventData eventData)
     { 
         inputDirection = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
         DisableMoveFocus();
     }
-
     public Vector2Int GetVectorIndexMoveFocus(Vector2 inputDirection)
     {
         Vector2Int vector = Vector2Int.zero;
@@ -63,7 +61,6 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         vector.y = (inputDirection.y <= 0) ? 0 : 1;
         return vector;
     }
-
     public void ActiveMoveFocus(Vector2Int vectorIndex)
     {
         DisableMoveFocus();
@@ -90,7 +87,6 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
             moveFocus[3].SetActive(true);
         }
     }
-
     private void DisableMoveFocus()
     {
         foreach (GameObject image in moveFocus)

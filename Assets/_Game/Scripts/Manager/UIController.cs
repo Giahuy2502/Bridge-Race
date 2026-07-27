@@ -8,8 +8,10 @@ public class UIController : Singleton<UIController>
     [SerializeField] private float victoryDuration = 1f;
     private List<ColorType> colorRanking = new List<ColorType>();
     private CanvasGamePlay canvasGamePlay;
+    private CanvasInput canvasInput;
     private UIManager UIManager => UIManager.Instance;
     private RankManager RankManager => RankManager.Instance;
+    public CanvasInput CanvasInput => canvasInput;
     public void ShowMenu()
     {
         UIManager.Open<CanvasMainMenu>();
@@ -39,7 +41,7 @@ public class UIController : Singleton<UIController>
     public void ShowGamePlay()
     {
         canvasGamePlay = UIManager.Open<CanvasGamePlay>();
-        UIManager.Open<CanvasInput>();
+        canvasInput = UIManager.Open<CanvasInput>();
     }
 
     public void UpdateColorRanking()

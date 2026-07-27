@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
-  joyStick: {fileID: 0}
+  joyStick: {fileID: 5106450714140218083}
 --- !u!1 &3374554290009946431
 GameObject:
   m_ObjectHideFlags: 0

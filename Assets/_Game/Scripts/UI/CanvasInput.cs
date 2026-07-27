@@ -6,5 +6,6 @@ public class CanvasInput : UICanvas
 {
     [SerializeField] private JoyStick joyStick;
     
+    public JoyStick JoyStick=> joyStick;
     
 }

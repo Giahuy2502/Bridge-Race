@@ -15,7 +15,9 @@ public class Player : Character
     private RaycastHit raycastHit;
     private Vector3 targerPos;
     private float blockPosY;
+    private Vector2 direction;
     private GameManager GameManager => GameManager.Instance;
+    private InputManager InputManager => InputManager.Instance;
     
     public override void OnInit(ColorType colorType)
     {
@@ -33,8 +35,9 @@ public class Player : Character
     private void Update()
     {
         if (!IsPlaying()) return;
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        direction = InputManager.GetMoveDirection();
+        float moveX = direction.x;
+        float moveY = direction.y;
         Vector3 movement = new Vector3(moveX, 0, moveY);
         Move(movement);
     }

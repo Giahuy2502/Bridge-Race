@@ -5,12 +5,10 @@ using UnityEngine;
 public class CanvasMainMenu : UICanvas
 {
     private GameManager GameManager => GameManager.Instance;
-    private UIController UIController => UIController.Instance;
     public void PlayButton()
     {
         GameManager.PlayGame();
         Close(0);
-        UIController.ShowGamePlay();
     }
 
     public void SettingButton()
