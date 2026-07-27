@@ -1365,6 +1365,7 @@ GameObject:
   - component: {fileID: 4763395787601742160}
   - component: {fileID: 7171467308323213326}
   - component: {fileID: 4879785209485998437}
+  - component: {fileID: 7369406776044288458}
   m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
@@ -1458,6 +1459,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7369406776044288458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865264224715488806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 3
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &947847615391142095
 GameObject:
   m_ObjectHideFlags: 0
@@ -8531,6 +8551,7 @@ GameObject:
   - component: {fileID: 4537168670242720237}
   - component: {fileID: 5935792820513886696}
   - component: {fileID: 8930081153779084751}
+  - component: {fileID: 1896251916102110130}
   m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
@@ -8624,6 +8645,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1896251916102110130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5355304539177525177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 3
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5457273930071802217
 GameObject:
   m_ObjectHideFlags: 0
@@ -9206,6 +9246,7 @@ GameObject:
   - component: {fileID: 137551514285493180}
   - component: {fileID: 6719505782334131398}
   - component: {fileID: 1327235919443289043}
+  - component: {fileID: 8875840674627547623}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -9299,6 +9340,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8875840674627547623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5741557281308240404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 3
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5754082709646447474
 GameObject:
   m_ObjectHideFlags: 0
@@ -14012,7 +14072,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b23a445a3b7fd43428e7d573e588c48c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ee63d04cfec0e30458e9452a1520bef4, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &3843379326523561500
 MonoBehaviour:
@@ -17978,7 +18038,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 506930100901643087, guid: 066bec5d576681e428ea16bf622106d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.02
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 506930100901643087, guid: 066bec5d576681e428ea16bf622106d0, type: 3}
       propertyPath: m_LocalPosition.y

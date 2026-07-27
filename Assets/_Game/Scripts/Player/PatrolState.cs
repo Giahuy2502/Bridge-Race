@@ -7,22 +7,22 @@ public class PatrolState : IState
 {
     public void OnEnter(Bot bot)
     {
-        if(bot.Bricks.Count < bot.MaxBrick)
-        {
-            Brick brick = bot.GetNearestBrick();
-            if (brick != null)
-            {
-                bot.SetDestination(bot.GetNearestBrickPos(brick));
-            }
-            else
-            {
-                bot.StopMove();
-            }
-        }
-        else
-        {
-            bot.ChangeState(new BuildState());
-        }
+        // if(bot.Bricks.Count < bot.MaxBrick)
+        // {
+        //     Brick brick = bot.GetNearestBrick();
+        //     if (brick != null)
+        //     {
+        //         bot.SetDestination(bot.GetNearestBrickPos(brick));
+        //     }
+        //     else
+        //     {
+        //         bot.StopMove();
+        //     }
+        // }
+        // else
+        // {
+        //     bot.ChangeState(new BuildState());
+        // }
     }
 
     public void OnExcute(Bot bot)

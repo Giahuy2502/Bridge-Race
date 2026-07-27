@@ -52,6 +52,7 @@ public class BuildState : IState
 
     public void OnExit(Bot bot)
     {
+        bot.Agent.velocity = Vector3.zero;
         // neu di qua bridge thi chuyen sang patrol state o stage moi
         
         // neu het brick thi chuyen sang patrol state va chon brick o tang duoi
