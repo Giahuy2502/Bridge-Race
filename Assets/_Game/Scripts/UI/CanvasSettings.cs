@@ -29,6 +29,7 @@ public class CanvasSettings : UICanvas
     }
     public void MainMenuButton()
     {
+        this.prevCanvas = null;
         UIManager.Instance.ClodeAll();
         GameManager.OnMainMenu();
         UIManager.Instance.Open<CanvasMainMenu>();

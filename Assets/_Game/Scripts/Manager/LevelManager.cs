@@ -35,7 +35,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnPlay()
     {
-        GameManager.ChangeState(GameState.Playing);
+        // GameManager.ChangeState(GameState.Playing);
     }
 
     public void OnPause()

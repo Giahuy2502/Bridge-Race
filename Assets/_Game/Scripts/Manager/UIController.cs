@@ -11,6 +11,7 @@ public class UIController : Singleton<UIController>
     private CanvasInput canvasInput;
     private UIManager UIManager => UIManager.Instance;
     private RankManager RankManager => RankManager.Instance;
+    private GameManager GameManager => GameManager.Instance;
     public CanvasInput CanvasInput => canvasInput;
     public void ShowMenu()
     {
@@ -49,6 +50,21 @@ public class UIController : Singleton<UIController>
     {
         canvasGamePlay = UIManager.Open<CanvasGamePlay>();
         canvasInput = UIManager.Open<CanvasInput>();
+    }
+
+    public void ShowLoading()
+    {
+        UIManager.Open<CanvasLoading>();
+    }
+
+    public void LoadingComplete()
+    {
+        HideLoading();
+        GameManager.LoadingComplete();
+    }
+    public void HideLoading()
+    {
+        UIManager.CloseUI<CanvasLoading>(0f);
     }
 
     public void UpdateColorRanking()

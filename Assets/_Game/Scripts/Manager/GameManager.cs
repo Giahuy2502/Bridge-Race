@@ -75,7 +75,7 @@ public class GameManager : Singleton<GameManager>
         LevelManager.OnRestart();
         Debug.Log("Play Game");
         UIController.ShowGamePlay();
-        InputManager.OnInit();
+        UIController.ShowLoading();
     }
     // ham goi khi game duoc restart ( thanh game moi)
     public void NewGame()
@@ -90,5 +90,11 @@ public class GameManager : Singleton<GameManager>
     {
         this.gameState = GameState.OnMain;
         LevelManager.Despawn();
+    }
+
+    public void LoadingComplete()
+    {
+        InputManager.OnInit();
+        ChangeState(GameState.Playing);
     }
 }
