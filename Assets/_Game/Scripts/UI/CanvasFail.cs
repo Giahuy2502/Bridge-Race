@@ -15,8 +15,7 @@ public class CanvasFail : UICanvas
 
      public void RetryButton()
      {
-         GameManager.OnMainMenu();
+         GameManager.PlayGame();
          Close(0);
-         UIManager.Instance.Open<CanvasMainMenu>();
      }
 }

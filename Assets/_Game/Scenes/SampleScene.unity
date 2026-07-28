@@ -3520,7 +3520,7 @@ MonoBehaviour:
   - {fileID: 159751729}
   - {fileID: 466343850}
   brickParent: {fileID: 1254753503}
-  currentLevel: 1
+  currentLevel: 2
 --- !u!4 &1249745479
 Transform:
   m_ObjectHideFlags: 0
