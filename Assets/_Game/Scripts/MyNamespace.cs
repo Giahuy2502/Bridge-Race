@@ -20,9 +20,8 @@ namespace MyNamespace
     {
         OnMain = 0,
         Playing = 1,
-        Win = 2,
-        Lose = 3,
-        Pause = 4,
+        EndGame = 2,
+        Pause = 3,
     }
 
     public static class Variables

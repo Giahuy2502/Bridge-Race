@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     private UIController UIController => UIController.Instance;
     private DataManager DataManager => DataManager.Instance;
     private InputManager InputManager => InputManager.Instance;
-    public static Action WinAction;
+    public static Action EndGameAction;
 
     private void Start()
     {
@@ -35,17 +35,17 @@ public class GameManager : Singleton<GameManager>
     
     public void OnWinGame()
     {
-        this.gameState = GameState.Win;
-        StartCoroutine(CoWinGameHandler());
+        this.gameState = GameState.EndGame;
+        StartCoroutine(CoEndGameHandler());
 
     }
 
-    private IEnumerator CoWinGameHandler()
+    private IEnumerator CoEndGameHandler()
     {
-        WinAction?.Invoke();
-        yield return UIController.ShowWinMenu();
+        EndGameAction?.Invoke();
+        yield return UIController.ShowEndGameMenu(LevelManager.IsWinGame());
         InputManager.Despawn();
-        LevelManager.OnWin();
+        LevelManager.OnEndGame();
     }
     public void OnLoseGame()
     {

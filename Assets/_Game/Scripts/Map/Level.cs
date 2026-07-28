@@ -49,5 +49,6 @@ public class Level : MonoBehaviour
         {
             platform.Despawn();
         }
+        Destroy(gameObject);
     }
 }

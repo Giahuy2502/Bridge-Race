@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class CanvasFail : UICanvas
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
-    
-    public void SetBestScore(int coin)
-    {
-        scoreText.text = coin.ToString();
-    }
-    public void MainMenuButton()
-    {
-        Close(0);
-        UIManager.Instance.Open<CanvasMainMenu>();
-    }
+    private GameManager GameManager => GameManager.Instance;
+     public void MainMenuButton()
+     {
+            GameManager.OnMainMenu();
+            Close(0);
+            UIManager.Instance.Open<CanvasMainMenu>();
+     }
+
+     public void RetryButton()
+     {
+         GameManager.OnMainMenu();
+         Close(0);
+         UIManager.Instance.Open<CanvasMainMenu>();
+     }
 }

@@ -13,8 +13,8 @@ public class RankManager : Singleton<RankManager>
     public void OnInit()
     {
         finishedRankings.Clear();
-        GameManager.WinAction += SortCharacters;
-        GameManager.WinAction += SetFinishedPosition;
+        GameManager.EndGameAction += SortCharacters;
+        GameManager.EndGameAction += SetFinishedPosition;
     }
     
 
@@ -120,5 +120,10 @@ public class RankManager : Singleton<RankManager>
             }
         }
         return -1;
+    }
+    
+    public bool IsPlayerLose()
+    {
+        return GetPlayerRanking() == (finishedRankings.Count-1);
     }
 }

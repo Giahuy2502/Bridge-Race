@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIController : Singleton<UIController>
 {
-    [SerializeField] private float victoryDuration = 1f;
+    [SerializeField] private float endGameDuration = 1f;
     private List<ColorType> colorRanking = new List<ColorType>();
     private CanvasGamePlay canvasGamePlay;
     private CanvasInput canvasInput;
@@ -21,12 +21,19 @@ public class UIController : Singleton<UIController>
     {
         UIManager.CloseUI<CanvasMainMenu>(duration);
     }
-    public IEnumerator ShowWinMenu()
+    public IEnumerator ShowEndGameMenu(bool isWinGame)
     {
-        yield return new WaitForSeconds(victoryDuration);
+        yield return new WaitForSeconds(endGameDuration);
         HideGamePlay(0f);
         HideJoyStick(0f);
-        UIManager.Open<CanvasVictory>();
+        if (isWinGame)
+        {
+            UIManager.Open<CanvasVictory>();
+        }
+        else
+        {
+            UIManager.Open<CanvasFail>();
+        }
     }
     public void HideGamePlay(float duration)
     {

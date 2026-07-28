@@ -11,6 +11,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private List<Transform> startPoints;
     [SerializeField] private Transform brickParent;
     [SerializeField] private int currentLevel = 0;
+    
+    private bool isWinGame = false;
     private RankManager RankManager => RankManager.Instance;
     private GameManager GameManager => GameManager.Instance;
     private DataManager DataManager => DataManager.Instance;
@@ -18,6 +20,7 @@ public class LevelManager : Singleton<LevelManager>
     public void OnInit()
     {
         RankManager.OnInit();
+        isWinGame = false;
         // GameManager.WinAction += OnPause;
     }
 
@@ -51,15 +54,11 @@ public class LevelManager : Singleton<LevelManager>
         DespawnCharacters();
     }
 
-    public void OnWin()
+    public void OnEndGame()
     {
         Despawn();
     }
-
-    public void OnLose()
-    {
-       
-    }
+    
     // ham goi khi choi lai level hien tai
 
     public void OnRestart()
@@ -175,6 +174,12 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
         return true;
+    }
+    
+    
+    public bool IsWinGame()
+    {
+        return !RankManager.IsPlayerLose();
     }
 }
 

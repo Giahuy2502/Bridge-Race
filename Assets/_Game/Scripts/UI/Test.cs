@@ -24,7 +24,6 @@ public class Test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             UIManager.Instance.ClodeAll();
-            UIManager.Instance.Open<CanvasFail>().SetBestScore(score);
         }
     }
 }

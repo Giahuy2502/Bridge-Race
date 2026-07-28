@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbbe3ab07b1510e4ea423b33684aa713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryDuration: 3
+  endGameDuration: 1
 --- !u!1 &351561400
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,7 +3520,7 @@ MonoBehaviour:
   - {fileID: 159751729}
   - {fileID: 466343850}
   brickParent: {fileID: 1254753503}
-  currentLevel: 2
+  currentLevel: 1
 --- !u!4 &1249745479
 Transform:
   m_ObjectHideFlags: 0
