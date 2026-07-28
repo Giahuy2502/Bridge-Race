@@ -13,19 +13,19 @@ public class Door : MonoBehaviour
     private ColorType colorType;
     private Stage stage;
     private bool isOpened = false;
-    public Stage Stage{get{return stage;} set{stage = value;}}
-    
+    private Bridge bridge;
 
-    public void OnInit(Stage stage)
+    public void OnInit(Stage stage, Bridge bridge)
     {
         this.stage = stage;
+        this.bridge = bridge;
         isOpened = false;
     }
 
     public void OnTriggerEnter(Collider other)
     {
         Character character = MyCache.GetCharacter<Character>(other);
-        if (!isOpened && character != null && stage == character.Stage)
+        if (bridge.CanOpenDoor()&&!isOpened && character != null && stage == character.Stage)
         {
             isOpened = true;
             ChangeColor(character.ColorType);

@@ -28,22 +28,19 @@ public class Bridge : MonoBehaviour
         }
         private set{stairs = value;}
     }
-    
     public bool CanCrossBridge(int stairWalkeableCount)
     {
         int numStairs = Stairs.Count;
         return stairWalkeableCount == numStairs;
     }
-
     public void OnInit(Stage stage)
     {
         foreach (Stair stair in stairs)
         {
             stair.OnInit(stage);
         }
-        door.OnInit(stage);
+        door.OnInit(stage,this);
     }
-
     public void Despawn()
     {
         foreach (Stair stair in stairs)
@@ -51,5 +48,19 @@ public class Bridge : MonoBehaviour
             stair.Despawn();
         }
         door.Despawn();
+    }
+
+    public bool CanOpenDoor()
+    {
+        if (stairs == null || stairs.Count == 0)
+        {
+            Debug.LogError("Can't open door without stairs");
+            return false;
+        }
+        for (int i = 0; i < stairs.Count; i++)
+        {
+            if (!stairs[i].HasFilled) return false;
+        }
+        return true;
     }
 }

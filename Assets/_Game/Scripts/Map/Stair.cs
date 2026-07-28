@@ -18,7 +18,7 @@ public class Stair : MonoBehaviour
     [SerializeField] private bool isBlocked;
     private Coroutine changColorCoroutine;
     [SerializeField] private Stage stage;
-    
+    public bool HasFilled{get{return hasFilled;}}
     public Stage Stage{get{return stage;}set{stage = value;}}
     
 
