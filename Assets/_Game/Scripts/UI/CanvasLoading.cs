@@ -15,7 +15,7 @@ public class CanvasLoading : UICanvas
     private float fillAmount = 0;
     private float timer = 0;
     
-    private UIController UIController => UIController.Instance;
+    private GameManager GameManager => GameManager.Instance;
 
     public override void Setup()
     {
@@ -33,7 +33,8 @@ public class CanvasLoading : UICanvas
             UpdateFillAmount(fillAmount);
             if (fillAmount >= 1f)
             {
-                UIController.LoadingComplete();
+                Close(0);
+                GameManager.LoadingComplete();
             }
         }
     }

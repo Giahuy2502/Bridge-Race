@@ -57,16 +57,6 @@ public class UIController : Singleton<UIController>
         UIManager.Open<CanvasLoading>();
     }
 
-    public void LoadingComplete()
-    {
-        HideLoading();
-        GameManager.LoadingComplete();
-    }
-    public void HideLoading()
-    {
-        UIManager.CloseUI<CanvasLoading>(0f);
-    }
-
     public void UpdateColorRanking()
     {
         if (canvasGamePlay == null)
