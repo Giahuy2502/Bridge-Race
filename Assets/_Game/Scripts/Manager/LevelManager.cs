@@ -24,11 +24,11 @@ public class LevelManager : Singleton<LevelManager>
         // GameManager.WinAction += OnPause;
     }
 
-    public void LoadLevel()
+    public void LoadLevel(int level)
     {
         SetCharacterColor(ColorType.Green);
         // data manager load map
-        DataManager.LoadLevel(currentLevel -1);
+        DataManager.LoadLevel(level);
         // khoi tao character
         StartCoroutine(ISpawnCharactersRoutine());
     }
@@ -50,7 +50,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void Despawn()
     {
-        DataManager.DespawnLevel(currentLevel -1);
+        DataManager.DespawnCurrentLevel();
         DespawnCharacters();
     }
 
@@ -61,10 +61,10 @@ public class LevelManager : Singleton<LevelManager>
     
     // ham goi khi choi lai level hien tai
 
-    public void OnRestart()
+    public void OnPlayGame()
     {
         Despawn();
-        LoadLevel();
+        LoadLevel(currentLevel-1);
         OnInit();
         OnPlay();
     }
@@ -72,7 +72,8 @@ public class LevelManager : Singleton<LevelManager>
     public void OnNext()
     {
         Despawn();
-        LoadLevel();
+        currentLevel = DataManager.GetNextLevel(currentLevel);
+        LoadLevel(currentLevel-1);
         OnInit();
         OnPlay();
     }

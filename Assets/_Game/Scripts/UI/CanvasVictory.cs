@@ -21,13 +21,19 @@ public class CanvasVictory : UICanvas
     public void MainMenuButton()
     {
         GameManager.OnMainMenu();
-        DisableAllStars();
         Close(0);
         UIManager.Instance.Open<CanvasMainMenu>();
     }
 
+    public void NextLevelButton()
+    {
+        GameManager.NextLevel();
+        Close(0);
+    }
+
     private void SetStar(int count)
     {
+        DisableAllStars();
         for (int i = 0; i < count; i++)
         {
             starts[i].gameObject.SetActive(true);

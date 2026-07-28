@@ -53,12 +53,16 @@ public class GameManager : Singleton<GameManager>
 
     public void Restart()
     {
-        LevelManager.OnRestart();
+        LevelManager.OnPlayGame();
         Debug.Log("Play Game");
     }
 
     public void NextLevel()
     {
+        Debug.Log("Play Game");
+        LevelManager.OnNext();
+        UIController.ShowGamePlay();
+        UIController.ShowLoading();
     }
 
     public void ChangeState(GameState newState)
@@ -72,7 +76,7 @@ public class GameManager : Singleton<GameManager>
     {
         // OnDespawn();
         // OnInit();
-        LevelManager.OnRestart();
+        LevelManager.OnPlayGame();
         Debug.Log("Play Game");
         UIController.ShowGamePlay();
         UIController.ShowLoading();
@@ -82,7 +86,7 @@ public class GameManager : Singleton<GameManager>
     {
         OnDespawn();
         OnInit();
-        LevelManager.OnRestart();
+        LevelManager.OnPlayGame();
         Debug.Log("New Game");
     }
 

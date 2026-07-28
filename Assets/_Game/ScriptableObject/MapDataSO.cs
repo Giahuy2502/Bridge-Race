@@ -15,6 +15,11 @@ public class MapDataSO : ScriptableObject
         }
         return mapObjects[index];
     }
+
+    public int GetMapObjectCount()
+    {
+        return mapObjects.Count;
+    }
 }
 
 // [Serializable]
