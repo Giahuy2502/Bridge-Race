@@ -18,12 +18,13 @@ public class CanvasSettings : UICanvas
         }
         if (canvas is CanvasMainMenu)
         {
-            buttons[2].gameObject.SetActive(true);
+            buttons[0].gameObject.SetActive(true);
         }
         else if (canvas is CanvasGamePlay)
         {
-            buttons[0].gameObject.SetActive(true);
             buttons[1].gameObject.SetActive(true);
+            buttons[2].gameObject.SetActive(true);
+            buttons[3].gameObject.SetActive(true);
         }
         this.prevCanvas = canvas;
     }
@@ -33,6 +34,13 @@ public class CanvasSettings : UICanvas
         UIManager.Instance.ClodeAll();
         GameManager.OnMainMenu();
         UIManager.Instance.Open<CanvasMainMenu>();
+    }
+
+    public void RetryButton()
+    {
+        this.prevCanvas = null;
+        GameManager.PlayGame();
+        Close(0);
     }
 
     public override void Open()
