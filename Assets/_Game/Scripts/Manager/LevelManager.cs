@@ -182,6 +182,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         return !RankManager.IsPlayerLose();
     }
+
+    public int GetCurrentLevel()
+    {
+        return currentLevel;
+    }
 }
 
 [Serializable]

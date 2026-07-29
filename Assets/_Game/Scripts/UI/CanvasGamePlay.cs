@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using MyNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CanvasGamePlay : UICanvas
 {
-    [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private List<RankingItemUI> rankingItemUI = new List<RankingItemUI>();
     [SerializeField] private ColorDataSO colorDataSO;
     private LevelManager LevelManager => LevelManager.Instance;
     public override void Setup()
     {
         base.Setup();
+        UpdateLevelText(LevelManager.GetCurrentLevel());
         SetupRankingItems(LevelManager.GetPlayerData().Color);
     }
 
@@ -43,6 +45,12 @@ public class CanvasGamePlay : UICanvas
             Material material = colorDataSO.GetMat(color);
             rankingItem.SetColor(color,material);
         }
+    }
+
+    public void UpdateLevelText(int level)
+    {
+        levelText.text = "Level "+ level.ToString();
+        return;
     }
 }
 

@@ -2195,7 +2195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
-  coinText: {fileID: 7973946836769633360}
+  levelText: {fileID: 712589135891869153}
   rankingItemUI:
   - {fileID: 5050947190625730355}
   - {fileID: 2610439904809126528}
