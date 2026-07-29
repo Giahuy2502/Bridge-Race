@@ -1191,7 +1191,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbbe3ab07b1510e4ea423b33684aa713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endGameDuration: 1
+  endGameDuration: 5
+--- !u!1 &331124245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 331124246}
+  m_Layer: 0
+  m_Name: EndGameCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &331124246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331124245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalPosition: {x: 0.0037270768, y: 24.116407, z: 78.19799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!1 &351561400
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2497,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapDataSO: {fileID: 11400000, guid: 0cfc4eb38865ab048888903974aeda81, type: 2}
-  level: {fileID: 0}
 --- !u!4 &897491597
 Transform:
   m_ObjectHideFlags: 0
@@ -2718,8 +2748,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 150795002817149325}
+  endCamTF: {fileID: 331124246}
   offset: {x: 0, y: 11, z: -12}
   speed: 5
+  transitionDuration: 2
 --- !u!1 &970237552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,7 +3552,7 @@ MonoBehaviour:
   - {fileID: 159751729}
   - {fileID: 466343850}
   brickParent: {fileID: 1254753503}
-  currentLevel: 2
+  currentLevel: 1
 --- !u!4 &1249745479
 Transform:
   m_ObjectHideFlags: 0
@@ -4351,6 +4383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f15ef8d03bbe34c9787977c8b56590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 963194229}
   gameState: 0
 --- !u!1 &1616664160
 GameObject:
@@ -6817,6 +6850,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 963194228}
+  - {fileID: 331124246}
   - {fileID: 705507995}
   - {fileID: 391889523}
   - {fileID: 1254753503}

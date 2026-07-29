@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class GameManager : Singleton<GameManager>
 {
+    [SerializeField] private CameraFollow camera;
     [SerializeField] private GameState gameState = GameState.Playing;
     
     public GameState GameState{ get { return gameState; } }
@@ -33,11 +34,11 @@ public class GameManager : Singleton<GameManager>
     {
     }
     
-    public void OnWinGame()
+    public void OnEndGame()
     {
         this.gameState = GameState.EndGame;
+        camera.SetEndGame(true);
         StartCoroutine(CoEndGameHandler());
-
     }
 
     private IEnumerator CoEndGameHandler()
@@ -77,6 +78,7 @@ public class GameManager : Singleton<GameManager>
         // OnDespawn();
         // OnInit();
         LevelManager.OnPlayGame();
+        camera.SetEndGame(false);
         Debug.Log("Play Game");
         UIController.ShowGamePlay();
         UIController.ShowLoading();

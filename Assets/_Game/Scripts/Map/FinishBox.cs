@@ -14,7 +14,7 @@ public class FinishBox : MonoBehaviour
         if (character != null)
         {
             RankManager.SetWinner(character);
-            GameManager.OnWinGame();
+            GameManager.OnEndGame();
         }
     }
 
