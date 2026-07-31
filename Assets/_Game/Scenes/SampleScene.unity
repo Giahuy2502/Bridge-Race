@@ -3052,6 +3052,7 @@ Transform:
   - {fileID: 326202934}
   - {fileID: 1616070257}
   - {fileID: 34391172}
+  - {fileID: 1473868315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140852901
@@ -4141,6 +4142,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 149838676}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1473868314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473868315}
+  - component: {fileID: 1473868316}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473868315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473868314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1092491312}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1473868316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473868314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c439c776e89de742ac8e3d738f15193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 897491598}
+  soundAus:
+  - {fileID: 8300000, guid: 72c5b792384bde54aa5ab653d3f27fb8, type: 3}
+  - {fileID: 8300000, guid: 0aa6067381089f0469a48c993033be11, type: 3}
+  fxAus:
+  - {fileID: 8300000, guid: 8b50a4b7ff9d65d4f924a2ebeaf468fa, type: 3}
+  - {fileID: 8300000, guid: d91129f806bcb8e409f667b485a3241b, type: 3}
+  - {fileID: 8300000, guid: 114ab42ea77192f488a976c3aa8ae981, type: 3}
+  - {fileID: 8300000, guid: 32574e6aa1346c743a9dcdb9be7558f2, type: 3}
+  - {fileID: 8300000, guid: 906b7099cbd39be4fbbe822bb68cb689, type: 3}
+  - {fileID: 8300000, guid: 0644ce7a8880d35458a13b91311d1c6b, type: 3}
+  - {fileID: 8300000, guid: 089796e0719363b4f8a12d774a293201, type: 3}
 --- !u!1 &1493042977
 GameObject:
   m_ObjectHideFlags: 0

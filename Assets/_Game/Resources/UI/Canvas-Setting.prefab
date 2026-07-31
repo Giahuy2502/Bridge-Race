@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 7626420852729588673}
   - component: {fileID: 6175803604375128195}
   - component: {fileID: 1386502125667496915}
+  - component: {fileID: 4982259076069372706}
   m_Layer: 5
   m_Name: Button-Continue
   m_TagString: Untagged
@@ -209,6 +210,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4982259076069372706}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4982259076069372706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666524343797308074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!1 &1862038694705619589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,6 +1293,7 @@ GameObject:
   - component: {fileID: 3004315516520208546}
   - component: {fileID: 5821250342375407466}
   - component: {fileID: 4013663831433170721}
+  - component: {fileID: 655927766212135828}
   m_Layer: 5
   m_Name: Button-MainMenu
   m_TagString: Untagged
@@ -1389,6 +1416,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 655927766212135828}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &655927766212135828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735268753610241633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!1 &6828618916042277363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,6 +1739,7 @@ GameObject:
   - component: {fileID: 3250694647021854983}
   - component: {fileID: 1990768236490412547}
   - component: {fileID: 1531119352790246153}
+  - component: {fileID: 5999890065048582830}
   m_Layer: 5
   m_Name: Button-Retry
   m_TagString: Untagged
@@ -1809,6 +1862,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5999890065048582830}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5999890065048582830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8673029196517353947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!1 &8866278227116456332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1899,7 @@ GameObject:
   - component: {fileID: 1163431599035617137}
   - component: {fileID: 6920351422107537203}
   - component: {fileID: 5854141815764978598}
+  - component: {fileID: 5983467049834884980}
   m_Layer: 5
   m_Name: Button-Close
   m_TagString: Untagged
@@ -1943,3 +2022,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5983467049834884980}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5983467049834884980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8866278227116456332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2

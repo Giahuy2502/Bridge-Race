@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 1029950599744742570}
   - component: {fileID: 4138605852464611970}
   - component: {fileID: 2551506178458987690}
+  - component: {fileID: 3339181561821832073}
   - component: {fileID: 4466197619822062016}
   m_Layer: 5
   m_Name: Button (1)
@@ -653,6 +654,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3339181561821832073}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3339181561821832073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808130287170861869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!114 &4466197619822062016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,6 +1616,7 @@ GameObject:
   - component: {fileID: 203434213454621758}
   - component: {fileID: 4037403348243837019}
   - component: {fileID: 6069962116153212551}
+  - component: {fileID: 8415553493407840570}
   - component: {fileID: 2592247112787152991}
   m_Layer: 5
   m_Name: Button-Play
@@ -1712,6 +1739,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8415553493407840570}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8415553493407840570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134203151104248227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!95 &2592247112787152991
 Animator:
   serializedVersion: 5
@@ -1879,6 +1931,7 @@ GameObject:
   - component: {fileID: 2524733922879772112}
   - component: {fileID: 2940526915884668892}
   - component: {fileID: 8025739356737777989}
+  - component: {fileID: 4174663271965211257}
   - component: {fileID: 7271022348212473402}
   m_Layer: 5
   m_Name: Button-NewGame
@@ -2001,6 +2054,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4174663271965211257}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4174663271965211257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322552142503897827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!95 &7271022348212473402
 Animator:
   serializedVersion: 5
@@ -3340,6 +3418,7 @@ GameObject:
   - component: {fileID: 4422069174655448350}
   - component: {fileID: 7791880658732654976}
   - component: {fileID: 4948617319278394037}
+  - component: {fileID: 3107041266041946745}
   - component: {fileID: 6156214085149977016}
   m_Layer: 5
   m_Name: Button
@@ -3467,6 +3546,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3107041266041946745}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3107041266041946745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6303923593574849725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!114 &6156214085149977016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4667,6 +4771,7 @@ GameObject:
   - component: {fileID: 2867049424243381583}
   - component: {fileID: 6899695201285764152}
   - component: {fileID: 5929137101267929196}
+  - component: {fileID: 632261931979247435}
   - component: {fileID: 6081631133934154760}
   m_Layer: 5
   m_Name: Button (2)
@@ -4793,6 +4898,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 632261931979247435}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &632261931979247435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8026260499631321027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!114 &6081631133934154760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4826,6 +4956,7 @@ GameObject:
   - component: {fileID: 8017414189637962560}
   - component: {fileID: 2375262272866093966}
   - component: {fileID: 2720047342186091865}
+  - component: {fileID: 170859087903522039}
   - component: {fileID: 4907508128223775014}
   m_Layer: 5
   m_Name: Button-Setting
@@ -4949,6 +5080,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 170859087903522039}
+        m_TargetAssemblyTypeName: UIButtonSound, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &170859087903522039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054129757686242177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34402679c515f5648adced82b9f53c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickFx: 2
 --- !u!95 &4907508128223775014
 Animator:
   serializedVersion: 5

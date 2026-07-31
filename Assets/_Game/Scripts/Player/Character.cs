@@ -22,6 +22,7 @@ public class Character : MonoBehaviour
     public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
     public Stage Stage { get => stage; set => stage = value; }
     public GameManager GameManager => GameManager.Instance;
+    private SoundManager SoundManager => SoundManager.Instance;
 
     public virtual void OnInit(ColorType colorType)
     {
@@ -51,6 +52,7 @@ public class Character : MonoBehaviour
         bricks.Add(newBrick);
         // Debug.Log("Brick added brick :" + bricks.Count);
         newBrick.OnInit(ColorType, this.Stage);
+        PlaySFX(FxID.SFX_CollectBrick);
     }
     public void RemoveBrick()
     {
@@ -59,6 +61,7 @@ public class Character : MonoBehaviour
         bricks.RemoveAt(bricks.Count - 1);
         // Debug.Log("Brick remove brick :" + bricks.Count);
         Stage.RespawnBrick(ColorType);
+        PlaySFX(FxID.SFX_BuildBridge);
     }
     private void ClearAllBricks()
     {
@@ -100,5 +103,10 @@ public class Character : MonoBehaviour
     public bool IsPlaying()
     {
         return GameManager.GameState == GameState.Playing;
+    }
+
+    private void PlaySFX(FxID sfxID)
+    {
+        SoundManager.PlayFx(sfxID);
     }
 }

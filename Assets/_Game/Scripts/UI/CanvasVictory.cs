@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,10 +14,13 @@ public class CanvasVictory : UICanvas
     private RankManager RankManager => RankManager.Instance;
     private DataManager DataManager => DataManager.Instance;
     private LevelManager LevelManager => LevelManager.Instance;
+    private SoundManager SoundManager => SoundManager.Instance;
 
     public override void Setup()
     {
         base.Setup();
+        SoundManager.PlayFx(FxID.SFX_Win);
+        SoundManager.ChangeSound(SoundID.BG_MainMenu,1f);
         numStar = GetCountStar(RankManager.GetPlayerRanking());
         SetStar(numStar);
         DataManager.SetStartLevel(LevelManager.CurrentLevel,numStar);

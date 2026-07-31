@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     public GameState GameState{ get { return gameState; } }
     private LevelManager LevelManager => LevelManager.Instance;
     private UIController UIController => UIController.Instance;
-    private DataManager DataManager => DataManager.Instance;
+    private SoundManager SoundManager => SoundManager.Instance;
     private InputManager InputManager => InputManager.Instance;
     public static Action EndGameAction;
 
@@ -96,5 +96,6 @@ public class GameManager : Singleton<GameManager>
     {
         InputManager.OnInit();
         ChangeState(GameState.Playing);
+        SoundManager.ChangeSound(SoundID.BG_GamePlay,0f);
     }
 }

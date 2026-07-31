@@ -4,6 +4,22 @@ using UnityEngine;
 
 namespace MyNamespace
 {
+    public enum SoundID
+    {
+        BG_MainMenu = 0,
+        BG_GamePlay = 1,
+    }
+
+    public enum FxID
+    {
+        SFX_BrickFall = 0,
+        SFX_BuildBridge = 1,
+        SFX_ButtonClick = 2,
+        SFX_CollectBrick = 3,
+        SFX_Lose = 4,
+        SFX_Hit = 5,
+        SFX_Win = 6,
+    }
     public enum ColorType
     {
         None = 0,
