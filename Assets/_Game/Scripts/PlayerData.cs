@@ -18,7 +18,6 @@ public class PlayerData : MonoBehaviour
             }
         }
     }
-
     public void SetStar(int levelID, int star)
     {
         for(int i = 0; i < playerLevelData.Count; i++)
@@ -35,6 +34,7 @@ public class PlayerData : MonoBehaviour
         {
             playerLevelData[i].Reset();
         }
+        playerLevelData[0].Unlock();
     }
  
     public int GetStarLevel(int levelID)
@@ -89,6 +89,10 @@ public class PlayerLevelData
 
     public void SetStars(int stars)
     {
+        if (stars < this.stars)
+        {
+            return;
+        }
         this.stars = stars;
     }
 }

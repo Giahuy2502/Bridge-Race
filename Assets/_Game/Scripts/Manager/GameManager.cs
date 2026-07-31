@@ -48,17 +48,8 @@ public class GameManager : Singleton<GameManager>
         InputManager.Despawn();
         LevelManager.OnEndGame();
     }
-    public void OnLoseGame()
-    {
-    }
-
-    public void Restart()
-    {
-        LevelManager.OnPlayGame();
-        Debug.Log("Play Game");
-    }
-
-    public void NextLevel()
+  
+   public void NextLevel()
     {
         Debug.Log("Play Game");
         LevelManager.OnNext();
@@ -77,8 +68,6 @@ public class GameManager : Singleton<GameManager>
     // ham goi khi nguoi choi bam vao nut play
     public void PlayGame()
     {
-        // OnDespawn();
-        // OnInit();
         LevelManager.OnPlayGame();
         camera.SetEndCamTF(LevelManager.GetEndCamTF());
         camera.SetEndGame(false);
@@ -89,10 +78,12 @@ public class GameManager : Singleton<GameManager>
     // ham goi khi game duoc restart ( thanh game moi)
     public void NewGame()
     {
-        OnDespawn();
-        OnInit();
-        LevelManager.OnPlayGame();
+        LevelManager.OnNewGame();
         Debug.Log("New Game");
+        camera.SetEndCamTF(LevelManager.GetEndCamTF());
+        camera.SetEndGame(false);
+        UIController.ShowGamePlay();
+        UIController.ShowLoading();
     }
 
     public void OnMainMenu()

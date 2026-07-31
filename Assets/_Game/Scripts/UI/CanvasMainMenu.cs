@@ -20,6 +20,11 @@ public class CanvasMainMenu : UICanvas
         GameManager.PlayGame();
         Close(0);
     }
+    public void NewGameButton()
+    {
+        GameManager.NewGame();
+        Close(0);
+    }
 
     public void SettingButton()
     {

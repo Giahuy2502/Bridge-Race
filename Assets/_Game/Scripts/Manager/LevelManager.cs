@@ -59,6 +59,16 @@ public class LevelManager : Singleton<LevelManager>
     {
         Despawn();
     }
+
+    public void OnNewGame()
+    {
+        currentLevel = 1;
+        DataManager.ResetData();
+        Despawn();
+        LoadLevel(currentLevel-1);
+        OnInit();
+        OnPlay();
+    }
     
     // ham goi khi choi lai level hien tai
 

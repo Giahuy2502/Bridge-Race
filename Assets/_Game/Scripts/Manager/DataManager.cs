@@ -21,6 +21,12 @@ public class DataManager : Singleton<DataManager>
             Debug.Log("level loaded");
         }
     }
+
+    public void ResetData()
+    {
+        level = null;
+        playerData.ResetData();
+    }
     public void DespawnCurrentLevel()
     {
         if (level == null) return;
@@ -37,7 +43,6 @@ public class DataManager : Singleton<DataManager>
         }
         return newLevel;
     }
-
     public void UnlockLevel(int levelID)
     {
         if (levelID > playerData.PlayerLevelData.Count)

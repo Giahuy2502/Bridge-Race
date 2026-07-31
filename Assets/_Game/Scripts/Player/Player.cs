@@ -115,9 +115,4 @@ public class Player : Character
         }
         return false;
     }
-
-    public override void SetWinState()
-    {
-        base.SetWinState();
-    }
 }
