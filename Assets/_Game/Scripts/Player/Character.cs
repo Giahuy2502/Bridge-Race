@@ -94,6 +94,7 @@ public class Character : MonoBehaviour
     public virtual void SetWinState()
     {
         ClearAllBricks();
+        ChangeAnim(Variables.CHEER_ANIM);
     }
 
     public bool IsPlaying()

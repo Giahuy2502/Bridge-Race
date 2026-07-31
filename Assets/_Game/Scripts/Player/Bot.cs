@@ -134,7 +134,6 @@ public class Bot : Character
         {
             agent.enabled = false; 
         }
-        StopMove();
     }
     
     [ContextMenu("Show Destination")]

@@ -31,6 +31,7 @@ namespace MyNamespace
         public const string DOOR_TAG = "Door";
         public const string IDLE_ANIM = "idle";
         public const string RUN_ANIM = "run";
+        public const string CHEER_ANIM = "cheer";
         public const string OPEN_ANIM = "open";
     }
 

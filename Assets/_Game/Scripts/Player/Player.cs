@@ -119,6 +119,5 @@ public class Player : Character
     public override void SetWinState()
     {
         base.SetWinState();
-        ChangeAnim(Variables.IDLE_ANIM);
     }
 }
