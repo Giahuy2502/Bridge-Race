@@ -62,6 +62,7 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("Play Game");
         LevelManager.OnNext();
+        camera.SetEndCamTF(LevelManager.GetEndCamTF());
         camera.SetEndGame(false);
         UIController.ShowGamePlay();
         UIController.ShowLoading();
@@ -79,6 +80,7 @@ public class GameManager : Singleton<GameManager>
         // OnDespawn();
         // OnInit();
         LevelManager.OnPlayGame();
+        camera.SetEndCamTF(LevelManager.GetEndCamTF());
         camera.SetEndGame(false);
         Debug.Log("Play Game");
         UIController.ShowGamePlay();

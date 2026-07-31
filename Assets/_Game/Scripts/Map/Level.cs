@@ -8,6 +8,7 @@ public class Level : MonoBehaviour
     [SerializeField] private NavMeshSurface surface;
     [SerializeField] private List<Platform> platforms = new List<Platform>();
     [SerializeField] private FinishPlatform finishPlatform;
+    [SerializeField] private Transform endCamTF;
     
     public void OnInit()
     {
@@ -50,5 +51,10 @@ public class Level : MonoBehaviour
             platform.Despawn();
         }
         Destroy(gameObject);
+    }
+
+    public Transform GetEndCameraTF()
+    {
+        return endCamTF;
     }
 }

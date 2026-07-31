@@ -8,6 +8,8 @@ public class DataManager : Singleton<DataManager>
     [SerializeField] private MapDataSO mapDataSO;
     [SerializeField] private PlayerData playerData;
     private Level level;
+    
+    public Level Level { get => level;private set => level = value; }
     public void LoadLevel(int levelIndex)
     {
         DespawnCurrentLevel();

@@ -187,6 +187,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         this.currentLevel = DataManager.GetNextLevel(currentLevel);
     }
+
+    public Transform GetEndCamTF()
+    {
+        return DataManager.Level.GetEndCameraTF();
+    }
 }
 
 [Serializable]

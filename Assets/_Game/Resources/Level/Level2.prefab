@@ -6638,6 +6638,7 @@ Transform:
   - {fileID: 8659266156994006568}
   - {fileID: 7890707885370659393}
   - {fileID: 6539674720366980612}
+  - {fileID: 4791093014573374055}
   m_Father: {fileID: 1546355929268681768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6343286805520422463
@@ -21281,6 +21282,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4482827333009668210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4791093014573374055}
+  m_Layer: 0
+  m_Name: EndGameCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4791093014573374055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4482827333009668210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.30070576, y: -0, z: -0, w: 0.953717}
+  m_LocalPosition: {x: 0.0037270768, y: 14.076407, z: -1.1120071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1570905895527838656}
+  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
 --- !u!1 &4505116311049770437
 GameObject:
   m_ObjectHideFlags: 0
@@ -43913,6 +43945,7 @@ MonoBehaviour:
   - {fileID: 2271280094371856751}
   - {fileID: 6499176227496931876}
   finishPlatform: {fileID: 6343286805520422463}
+  endCamTF: {fileID: 4791093014573374055}
 --- !u!1 &8856780784246667461
 GameObject:
   m_ObjectHideFlags: 0

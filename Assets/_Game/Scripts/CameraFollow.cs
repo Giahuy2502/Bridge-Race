@@ -31,6 +31,10 @@ public class CameraFollow : MonoBehaviour
     }
     private void MoveToEndGameCamera()
     {
+        if (endCamTF == null)
+        {
+            return;
+        }
         transitionTime += Time.deltaTime;
         float t = Mathf.Clamp01(transitionTime / transitionDuration);
         transform.position = Vector3.Lerp(transform.position, endCamTF.position, t);
@@ -40,5 +44,10 @@ public class CameraFollow : MonoBehaviour
     {
         this.isEndGame = isEndGame;
         transitionTime = 0f;
+    }
+
+    public void SetEndCamTF(Transform endCamTF)
+    {
+        this.endCamTF = endCamTF;
     }
 }
