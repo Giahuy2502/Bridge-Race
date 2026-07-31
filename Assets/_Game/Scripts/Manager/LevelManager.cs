@@ -17,6 +17,7 @@ public class LevelManager : Singleton<LevelManager>
     private GameManager GameManager => GameManager.Instance;
     private DataManager DataManager => DataManager.Instance;
     public Transform BrickParent { get => brickParent; set => brickParent = value; }
+    public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
     public void OnInit()
     {
         RankManager.OnInit();
@@ -177,16 +178,11 @@ public class LevelManager : Singleton<LevelManager>
         return true;
     }
     
-    
     public bool IsWinGame()
     {
         return !RankManager.IsPlayerLose();
     }
-
-    public int GetCurrentLevel()
-    {
-        return currentLevel;
-    }
+    
 }
 
 [Serializable]

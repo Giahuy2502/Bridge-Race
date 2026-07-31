@@ -15,7 +15,7 @@ public class CanvasGamePlay : UICanvas
     public override void Setup()
     {
         base.Setup();
-        UpdateLevelText(LevelManager.GetCurrentLevel());
+        UpdateLevelText(LevelManager.CurrentLevel);
         SetupRankingItems(LevelManager.GetPlayerData().Color);
     }
 
