@@ -7,6 +7,7 @@ public class CanvasMainMenu : UICanvas
     [SerializeField] List<ButtonLevel> levels = new List<ButtonLevel>();
     private GameManager GameManager => GameManager.Instance;
     private LevelManager LevelManager => LevelManager.Instance;
+    private DataManager DataManager => DataManager.Instance;
 
     public override void Setup()
     {
@@ -34,14 +35,16 @@ public class CanvasMainMenu : UICanvas
         }
         for (int i = 0; i < levels.Count; i++)
         {
-            levels[i].OnInit(this);
+            levels[i].OnInit(this,DataManager.IsLevelUnlock(i+1));
         }
         DeactivateAllFocus();
+        SetDefaultLevelStage();
         for (int i = 0; i < levels.Count; i++)
         {
             if (i == LevelManager.CurrentLevel - 1)
             {
                 levels[i].SetActiveFocus(true);
+                levels[i].SetSelectStage();
             }
         }
     }
@@ -56,6 +59,21 @@ public class CanvasMainMenu : UICanvas
         for (int i = 0; i < levels.Count; i++)
         {
             levels[i].SetActiveFocus(false);
+        }
+    }
+
+    public void SetDefaultLevelStage()
+    {
+        if (levels == null || levels.Count == 0)
+        {
+            Debug.LogError("No levels assigned to CanvasMainMenu");
+            return;
+        }
+        for (int i = 0; i < levels.Count; i++)
+        {
+            int levelID = i + 1;
+            levels[i].SetDefaulStage(DataManager.IsLevelUnlock(levelID));
+            levels[i].ActivateStars(DataManager.GetStarLevel(levelID));
         }
     }
 }

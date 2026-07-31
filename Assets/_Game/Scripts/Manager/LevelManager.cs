@@ -73,7 +73,7 @@ public class LevelManager : Singleton<LevelManager>
     public void OnNext()
     {
         Despawn();
-        currentLevel = DataManager.GetNextLevel(currentLevel);
+        SetNextLevel();
         LoadLevel(currentLevel-1);
         OnInit();
         OnPlay();
@@ -182,7 +182,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         return !RankManager.IsPlayerLose();
     }
-    
+
+    public void SetNextLevel()
+    {
+        this.currentLevel = DataManager.GetNextLevel(currentLevel);
+    }
 }
 
 [Serializable]

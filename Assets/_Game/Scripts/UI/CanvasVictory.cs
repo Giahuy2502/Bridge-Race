@@ -8,18 +8,23 @@ using UnityEngine.UI;
 public class CanvasVictory : UICanvas
 {
     [SerializeField] private List<Image> starts;
-    private int playerRank = 0;
+    private int numStar = 0;
     private GameManager GameManager => GameManager.Instance;
     private RankManager RankManager => RankManager.Instance;
+    private DataManager DataManager => DataManager.Instance;
+    private LevelManager LevelManager => LevelManager.Instance;
 
     public override void Setup()
     {
         base.Setup();
-        playerRank = GetCountStar(RankManager.GetPlayerRanking());
-        SetStar(playerRank);
+        numStar = GetCountStar(RankManager.GetPlayerRanking());
+        SetStar(numStar);
+        DataManager.SetStartLevel(LevelManager.CurrentLevel,numStar);
+        DataManager.UnlockLevel(LevelManager.CurrentLevel+1);
     }
     public void MainMenuButton()
     {
+        LevelManager.SetNextLevel();
         GameManager.OnMainMenu();
         Close(0);
         UIManager.Instance.Open<CanvasMainMenu>();

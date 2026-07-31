@@ -2477,6 +2477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 897491597}
   - component: {fileID: 897491596}
+  - component: {fileID: 897491598}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -2497,6 +2498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapDataSO: {fileID: 11400000, guid: 0cfc4eb38865ab048888903974aeda81, type: 2}
+  playerData: {fileID: 897491598}
 --- !u!4 &897491597
 Transform:
   m_ObjectHideFlags: 0
@@ -2512,6 +2514,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1092491312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &897491598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897491595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85802373b36b4745ba727815013915d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLevelData:
+  - levelID: 1
+    unlocked: 1
+    stars: 0
+  - levelID: 2
+    unlocked: 0
+    stars: 0
+  - levelID: 3
+    unlocked: 0
+    stars: 0
 --- !u!1 &932978015
 GameObject:
   m_ObjectHideFlags: 0

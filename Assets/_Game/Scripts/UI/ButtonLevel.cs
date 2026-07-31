@@ -8,42 +8,56 @@ public class ButtonLevel : MonoBehaviour
     [SerializeField] private List<Image> stars = new List<Image>();
     [SerializeField] private List<GameObject> stage = new List<GameObject>();
     [SerializeField] private GameObject focus;
+    private bool isUnlocked = false;
     
     private CanvasMainMenu canvasMainMenu;
     private LevelManager LevelManager => LevelManager.Instance;
-    public void OnInit(CanvasMainMenu canvasMainMenu)
+    public void OnInit(CanvasMainMenu canvasMainMenu, bool isUnlocked)
     {
         this.canvasMainMenu = canvasMainMenu;
+        this.isUnlocked = isUnlocked;
         DeactivateStars();
     }
 
-    private void SetStage(int stageIndex)
+    public void SetDefaulStage(bool isUnlocked)
     {
         if (stage == null || stage.Count == 0)
         {
             Debug.LogError("No Stages assigned to ButtonLevel");
             return;
         }
-
-        for (int i = 0; i < stage.Count; i++)
+        this.isUnlocked = isUnlocked;
+        if (!this.isUnlocked)
         {
-            if (i == stageIndex)
-            {
-                stage[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                stage[i].gameObject.SetActive(false);
-            }
+            stage[0].SetActive(true);
+            stage[1].SetActive(false);
+            stage[2].SetActive(false);
         }
+        else
+        {
+            stage[0].SetActive(false);
+            stage[1].SetActive(true);
+            stage[2].SetActive(false);
+        }
+    }
+
+    public void SetSelectStage()
+    {
+        stage[0].SetActive(false);
+        stage[1].SetActive(false);
+        stage[2].SetActive(true);
     }
 
     public void ClickLevelButton(int levelIndex)
     {
-        Debug.Log("OnClick " + this.name);
+        if (!isUnlocked)
+        {
+            return;
+        }
         canvasMainMenu.DeactivateAllFocus();
+        canvasMainMenu.SetDefaultLevelStage();
         SetActiveFocus(true);
-        Debug.Log("OnClick " + this.name);
+        SetSelectStage();
         LevelManager.CurrentLevel = levelIndex;
     }
 
@@ -62,6 +76,14 @@ public class ButtonLevel : MonoBehaviour
         for (int i = 0; i < stars.Count; i++)
         {
             stars[i].gameObject.SetActive(false);
+        }
+    }
+
+    public void ActivateStars(int starsCount)
+    {
+        for (int i = 0; i < starsCount; i++)
+        {
+            stars[i].gameObject.SetActive(true);
         }
     }
 }

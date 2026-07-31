@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DataManager : Singleton<DataManager>
 {
-    // [SerializeField] private List<Level> levels;
+    
     [SerializeField] private MapDataSO mapDataSO;
+    [SerializeField] private PlayerData playerData;
     private Level level;
     public void LoadLevel(int levelIndex)
     {
@@ -18,7 +19,6 @@ public class DataManager : Singleton<DataManager>
             Debug.Log("level loaded");
         }
     }
-    
     public void DespawnCurrentLevel()
     {
         if (level == null) return;
@@ -26,7 +26,6 @@ public class DataManager : Singleton<DataManager>
         Destroy(level.gameObject);
         level = null;
     }
-
     public int GetNextLevel(int prevlevel)
     {
         int newLevel = prevlevel + 1;
@@ -35,5 +34,30 @@ public class DataManager : Singleton<DataManager>
             newLevel = mapDataSO.GetMapObjectCount();
         }
         return newLevel;
+    }
+
+    public void UnlockLevel(int levelID)
+    {
+        if (levelID > playerData.PlayerLevelData.Count)
+        {
+            Debug.LogError("Player level id is out of range");
+            return;
+        }
+        playerData.UnlockLevel(levelID);
+    }
+
+    public void SetStartLevel(int levelID, int star)
+    {
+        playerData.SetStar(levelID, star);
+    }
+
+    public bool IsLevelUnlock(int levelID)
+    {
+        return playerData.IsLevelUnlocked(levelID);
+    }
+
+    public int GetStarLevel(int levelID)
+    {
+        return playerData.GetStarLevel(levelID);
     }
 }
