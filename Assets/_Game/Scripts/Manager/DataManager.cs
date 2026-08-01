@@ -47,8 +47,7 @@ public class DataManager : Singleton<DataManager>
     {
         if (levelID > playerData.PlayerLevelData.Count)
         {
-            Debug.LogError("Player level id is out of range");
-            return;
+           return;
         }
         playerData.UnlockLevel(levelID);
     }

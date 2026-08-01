@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using MyNamespace;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RankManager : Singleton<RankManager>
@@ -13,6 +14,8 @@ public class RankManager : Singleton<RankManager>
     public void OnInit()
     {
         finishedRankings.Clear();
+        stageRankings.Clear();
+        GameManager.EndGameAction = null;
         GameManager.EndGameAction += SortCharacters;
         GameManager.EndGameAction += SetFinishedPosition;
     }
@@ -23,7 +26,6 @@ public class RankManager : Singleton<RankManager>
         if(!finishedRankings.Contains(character))
         {
             finishedRankings.Add(character);
-            // Debug.Log("SetWinner: "+ character.name);
         }
     }
     private void SortCharacters()
@@ -39,7 +41,6 @@ public class RankManager : Singleton<RankManager>
                 if (!finishedRankings.Contains(currentValue[j]))
                 {
                     finishedRankings.Add(currentValue[j]);
-                    // Debug.Log("SortCharacters: "+ currentValue[j].name);
                 }
             }
         }
@@ -66,10 +67,9 @@ public class RankManager : Singleton<RankManager>
         }
         if (stageRankings[stage].Contains(character))
         {
-            return;
+           return;
         }
         stageRankings[stage].Add(character);
-        // Debug.Log("Registered Stage Passed: "+stage.name +" "+character.name);
         UIController.UpdateColorRanking();
     }
 

@@ -39,7 +39,7 @@ public class CanvasGamePlay : UICanvas
             RankingItemUI rankingItem = rankingItemUI[i];
             if (i >= colorRanking.Count)
             {
-                return;
+               return;
             }
             ColorType color = colorRanking[i];
             Material material = colorDataSO.GetMat(color);

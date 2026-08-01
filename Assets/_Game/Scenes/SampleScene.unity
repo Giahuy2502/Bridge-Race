@@ -2505,7 +2505,7 @@ MonoBehaviour:
     unlocked: 1
     stars: 0
   - levelID: 3
-    unlocked: 0
+    unlocked: 1
     stars: 0
 --- !u!1 &932978015
 GameObject:
@@ -3857,7 +3857,7 @@ MonoBehaviour:
   tf: {fileID: 1388335848}
   bricksTF: {fileID: 1830000477}
   brickOffSetY: 0.26
-  maxBrick: 7
+  maxBrick: 20
   agent: {fileID: 1388335847}
 --- !u!195 &1388335847
 NavMeshAgent:
