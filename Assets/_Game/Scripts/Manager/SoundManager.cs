@@ -56,12 +56,12 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySound(SoundID ID)
     {
+        soundSource.clip = soundAus[(int)ID];
+        soundSource.volume = volumeBG;
         if (!playerData.ISSoundOn)
         {
             return;
         }
-        soundSource.clip = soundAus[(int)ID];
-        soundSource.volume = volumeBG;
         soundSource.Play();
     }
 
@@ -88,10 +88,6 @@ public class SoundManager : Singleton<SoundManager>
 
     public void ChangeSound(SoundID ID, float time)
     {
-        if (!playerData.ISSoundOn)
-        {
-            return;
-        }
         if (!isLoaded) return;
         if (changeSoundCoroutine != null)
         {
@@ -114,8 +110,10 @@ public class SoundManager : Singleton<SoundManager>
         }
         soundSource.volume = 0f;
         soundSource.clip = soundAus[(int)ID];
-        soundSource.Play();
-        
+        if (playerData.ISSoundOn)
+        {
+            soundSource.Play();
+        }
         timer = 0f;
         while (timer < halfDuration)
         {
@@ -125,5 +123,35 @@ public class SoundManager : Singleton<SoundManager>
         }
         soundSource.volume = startVolume;
         changeSoundCoroutine = null;
+    }
+
+    public void SetSoundOn(bool on)
+    {
+        if (!isLoaded) return;
+        playerData.ISSoundOn = on;
+        if (on)
+        {
+            soundSource.Play();
+        }
+        else
+        {
+            soundSource.Stop();
+        }
+    }
+    public void SetSFXOn(bool on)
+    {
+        if (!isLoaded) return;
+        playerData.ISSFXOn = on;
+        if (on)
+        {
+            
+        }
+        else
+        {
+            for (int i = 0; i < fxSource.Count - 1; i++)
+            {
+                fxSource[i].Stop();
+            }
+        }
     }
 }

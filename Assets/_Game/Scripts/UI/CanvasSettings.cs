@@ -6,10 +6,19 @@ using UnityEngine;
 public class CanvasSettings : UICanvas
 {
     [SerializeField] private GameObject[] buttons;
+    [SerializeField] private SoundButton soundButton;
+    [SerializeField] private SFXButton sfxButton;
     private UICanvas prevCanvas;
     private GameManager GameManager => GameManager.Instance;
     private LevelManager LevelManager => LevelManager.Instance;
+    private SoundManager SoundManager => SoundManager.Instance;
 
+    public override void Setup()
+    {
+        base.Setup();
+        soundButton.OnInit();
+        sfxButton.OnInit();
+    }
     public void SetState(UICanvas canvas)
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -19,12 +28,16 @@ public class CanvasSettings : UICanvas
         if (canvas is CanvasMainMenu)
         {
             buttons[0].gameObject.SetActive(true);
+            buttons[4].gameObject.SetActive(true);
+            buttons[5].gameObject.SetActive(true);
         }
         else if (canvas is CanvasGamePlay)
         {
             buttons[1].gameObject.SetActive(true);
             buttons[2].gameObject.SetActive(true);
             buttons[3].gameObject.SetActive(true);
+            buttons[4].gameObject.SetActive(true);
+            buttons[5].gameObject.SetActive(true);
         }
         this.prevCanvas = canvas;
     }
@@ -35,6 +48,7 @@ public class CanvasSettings : UICanvas
         GameManager.OnMainMenu();
         UIManager.Instance.Open<CanvasMainMenu>();
     }
+
 
     public void RetryButton()
     {

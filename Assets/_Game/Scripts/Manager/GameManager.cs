@@ -90,6 +90,7 @@ public class GameManager : Singleton<GameManager>
     {
         this.gameState = GameState.OnMain;
         LevelManager.Despawn();
+        SoundManager.ChangeSound(SoundID.BG_MainMenu,0f);
     }
 
     public void LoadingComplete()

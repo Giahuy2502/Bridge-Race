@@ -66,4 +66,14 @@ public class DataManager : Singleton<DataManager>
     {
         return playerData.GetStarLevel(levelID);
     }
+
+    public bool GetIsSoundOn()
+    {
+        return playerData.ISSoundOn;
+    }
+
+    public bool GetIsMusicOn()
+    {
+        return playerData.ISSFXOn;
+    }
 }
