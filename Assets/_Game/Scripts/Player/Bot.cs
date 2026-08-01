@@ -117,7 +117,6 @@ public class Bot : Character
 
     public override void SetWinState()
     {
-        base.SetWinState();
         if (currentState != null)
         {
             currentState.OnExit(this);
@@ -134,6 +133,7 @@ public class Bot : Character
         {
             agent.enabled = false; 
         }
+        base.SetWinState();
     }
     
     [ContextMenu("Show Destination")]

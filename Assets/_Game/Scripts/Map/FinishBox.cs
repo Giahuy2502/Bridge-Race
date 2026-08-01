@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class FinishBox : MonoBehaviour
 {
+    [SerializeField] private List<ParticleSystem> particles;
     private GameManager GameManager => GameManager.Instance;
     private RankManager RankManager => RankManager.Instance;
     public void OnTriggerEnter(Collider other)
@@ -15,11 +16,15 @@ public class FinishBox : MonoBehaviour
         {
             RankManager.SetWinner(character);
             GameManager.OnEndGame();
+            PlayParticles();
         }
     }
 
-    public void RanksCharacter()
+    public void PlayParticles()
     {
-        
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Play();
+        }
     }
 }
