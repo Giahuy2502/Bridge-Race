@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    [SerializeField] private bool isSoundOn = false;
+    [SerializeField] private bool isSFXOn = false;
     [SerializeField] List<PlayerLevelData> playerLevelData;
     
+    public bool ISSoundOn { get => isSoundOn; set => isSoundOn = value; }
+    public bool ISSFXOn { get => isSFXOn; set => isSFXOn = value; }
     public List<PlayerLevelData> PlayerLevelData { get => playerLevelData; set => playerLevelData = value; }
 
     public void UnlockLevel(int levelID)

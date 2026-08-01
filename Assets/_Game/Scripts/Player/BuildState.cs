@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.XR;
 using UnityEngine;
 
 public class BuildState : IState
@@ -7,12 +8,14 @@ public class BuildState : IState
     private Bridge nearestBridge;
     private Vector3 targetPos;
     private int indexStair = 0;
-    private bool isMoving = false;
+    private bool isApproachingBridge = true;
+    private bool isCrossing = false;
     private Vector3 highestStairPos;
     private int stairWalkeableCount = 0;
     public void OnEnter(Bot bot)
     {
-        isMoving = false;
+        isApproachingBridge = true;
+        isCrossing = false;
         stairWalkeableCount = 0;
         nearestBridge = bot.GetNearestBridge();
         targetPos = nearestBridge.Stairs[0].transform.position + Vector3.back*1.15f;
@@ -21,31 +24,37 @@ public class BuildState : IState
 
     public void OnExcute(Bot bot)
     {
-        // di chuyen den stair gan nhat
+        if (bot.Bricks.Count <= 0 && !nearestBridge.IsFilledHighestStair(bot.ColorType))
+        {
+            bot.ChangeState(new PatrolState());
+            return;
+        } 
         if (bot.ReachedDestination())
         {
-            // di den bac thang cao nhat
-            if (Vector3.Distance(bot.transform.position, highestStairPos) <= 0.4f)
+            if (isApproachingBridge)
             {
-                // Debug.Log("Reached the highest stair");
-                nearestBridge = bot.GetNearestBridge();
+                isApproachingBridge = false;
+                highestStairPos = GetHighestStairPos(bot);
+                bot.SetDestination(highestStairPos);
+                return;
+            }
+            if(isCrossing)
+            {
+                bot.ChangeState(new PatrolState());
+                return;
+            }
+            if(!isApproachingBridge && !isCrossing)
+            {
                 if (nearestBridge.CanCrossBridge(stairWalkeableCount))
                 {
                     highestStairPos = bot.transform.position + Vector3.forward * 5;
                     bot.SetDestination(highestStairPos);
-                    // Debug.Log("Can Cross Bridge"+ stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
+                    isCrossing = true;
                 }
                 else
                 {
                     bot.ChangeState(new PatrolState());
-                    // Debug.Log("Can't Cross Bridge " + stairWalkeableCount +" "+ nearestBridge.Stairs.Count);
                 }
-            }
-            // di chuyen den truoc Bridge
-            else
-            {
-                highestStairPos = GetHighestStairPos(bot);
-                bot.SetDestination(highestStairPos);
             }
         }
     }
@@ -53,10 +62,6 @@ public class BuildState : IState
     public void OnExit(Bot bot)
     {
         bot.Agent.velocity = Vector3.zero;
-        // neu di qua bridge thi chuyen sang patrol state o stage moi
-        
-        // neu het brick thi chuyen sang patrol state va chon brick o tang duoi
-        
     }
 
     private bool ValidIndex(int index)
@@ -71,7 +76,7 @@ public class BuildState : IState
     private Vector3 GetHighestStairPos(Bot bot)
     {
         stairWalkeableCount = bot.GetStairWalkable(bot.Bricks.Count);
-        if (stairWalkeableCount == 0)
+        if (stairWalkeableCount <= 0)
         {
             bot.StopMove();
             return bot.transform.position;

@@ -2495,12 +2495,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85802373b36b4745ba727815013915d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSoundOn: 0
+  isSFXOn: 0
   playerLevelData:
   - levelID: 1
     unlocked: 1
     stars: 0
   - levelID: 2
-    unlocked: 0
+    unlocked: 1
     stars: 0
   - levelID: 3
     unlocked: 0
@@ -3855,7 +3857,7 @@ MonoBehaviour:
   tf: {fileID: 1388335848}
   bricksTF: {fileID: 1830000477}
   brickOffSetY: 0.26
-  maxBrick: 5
+  maxBrick: 7
   agent: {fileID: 1388335847}
 --- !u!195 &1388335847
 NavMeshAgent:
@@ -4187,9 +4189,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 897491598}
+  volumeBG: 0.5
   soundAus:
   - {fileID: 8300000, guid: 72c5b792384bde54aa5ab653d3f27fb8, type: 3}
   - {fileID: 8300000, guid: 0aa6067381089f0469a48c993033be11, type: 3}
+  volumeSFX: 0.5
   fxAus:
   - {fileID: 8300000, guid: 8b50a4b7ff9d65d4f924a2ebeaf468fa, type: 3}
   - {fileID: 8300000, guid: d91129f806bcb8e409f667b485a3241b, type: 3}

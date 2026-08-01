@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using UnityEngine;
 
 public class Bridge : MonoBehaviour
@@ -62,5 +63,10 @@ public class Bridge : MonoBehaviour
             if (!stairs[i].HasFilled) return false;
         }
         return true;
+    }
+
+    public bool IsFilledHighestStair(ColorType colorType)
+    {
+        return colorType == stairs[stairs.Count - 1].ColorType;
     }
 }

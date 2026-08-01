@@ -56,6 +56,10 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySound(SoundID ID)
     {
+        if (!playerData.ISSoundOn)
+        {
+            return;
+        }
         soundSource.clip = soundAus[(int)ID];
         soundSource.volume = volumeBG;
         soundSource.Play();
@@ -63,6 +67,10 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlayFx(FxID ID)
     {
+        if (!playerData.ISSFXOn)
+        {
+            return;
+        }
         if (isLoaded)
         {
             if (fxSource[(int)ID] == null)
@@ -80,6 +88,10 @@ public class SoundManager : Singleton<SoundManager>
 
     public void ChangeSound(SoundID ID, float time)
     {
+        if (!playerData.ISSoundOn)
+        {
+            return;
+        }
         if (!isLoaded) return;
         if (changeSoundCoroutine != null)
         {
