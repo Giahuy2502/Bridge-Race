@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private ColorType targetColor;
     [SerializeField] List<Brick> bricks = new List<Brick>();
     [SerializeField] private Animator animator;
     [SerializeField] Renderer renderer;
@@ -47,11 +46,15 @@ public class Character : MonoBehaviour
     {
         Vector3 newpos = GetNewestBrickPos();
         Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + newpos, bricksTF.rotation);
+        BrickEffect newBrickEffect = SimplePool.Spawn<BrickEffect>(PoolType.BrickEffect, bricksTF.position + newpos, bricksTF.rotation);
         newBrick.transform.parent = bricksTF;
         newBrick.transform.localPosition =  newpos;
+        newBrickEffect.transform.parent = bricksTF;
+        newBrickEffect.transform.localPosition =  newpos;
         bricks.Add(newBrick);
         // Debug.Log("Brick added brick :" + bricks.Count);
         newBrick.OnInit(ColorType, this.Stage);
+        newBrickEffect.PlayBrickEffect(this.ColorType);
         PlaySFX(FxID.SFX_CollectBrick);
     }
     public void RemoveBrick()

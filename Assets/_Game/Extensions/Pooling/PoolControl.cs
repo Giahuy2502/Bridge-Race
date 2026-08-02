@@ -26,4 +26,5 @@ public class PoolAmount
 public enum PoolType
 {
     Brick = 0,
+    BrickEffect=1
 }
