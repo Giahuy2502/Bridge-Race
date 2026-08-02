@@ -24,9 +24,10 @@ public class UIController : Singleton<UIController>
     }
     public IEnumerator ShowEndGameMenu(bool isWinGame)
     {
+        canvasGamePlay.SetActivateSettingButton(false);
+        HideJoyStick(0f);
         yield return new WaitForSeconds(endGameDuration);
         HideGamePlay(0f);
-        HideJoyStick(0f);
         if (isWinGame)
         {
             UIManager.Open<CanvasVictory>();
@@ -35,6 +36,7 @@ public class UIController : Singleton<UIController>
         {
             UIManager.Open<CanvasFail>();
         }
+        canvasGamePlay.SetActivateSettingButton(true);
     }
     public void HideGamePlay(float duration)
     {

@@ -2222,6 +2222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDestroyOnClose: 0
   levelText: {fileID: 712589135891869153}
+  settingButton: {fileID: 7360758552423812737}
   rankingItemUI:
   - {fileID: 5050947190625730355}
   - {fileID: 2610439904809126528}

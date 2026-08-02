@@ -5,10 +5,12 @@ using MyNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class CanvasGamePlay : UICanvas
 {
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private Button settingButton;
     [SerializeField] private List<RankingItemUI> rankingItemUI = new List<RankingItemUI>();
     [SerializeField] private ColorDataSO colorDataSO;
     private LevelManager LevelManager => LevelManager.Instance;
@@ -51,6 +53,11 @@ public class CanvasGamePlay : UICanvas
     {
         levelText.text = "Level "+ level.ToString();
         return;
+    }
+
+    public void SetActivateSettingButton(bool isActivate)
+    {
+        settingButton.gameObject.SetActive(isActivate);
     }
 }
 
