@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     private Stage stage;
     private float brickOffsetY;
     private string animName;
+    private Transform startPos;
     public ColorType ColorType { get; private set;}
     public List<Brick> Bricks { get => bricks; private set => bricks = value; }
     public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
@@ -34,13 +35,13 @@ public class Character : MonoBehaviour
     {
         this.transform.position = startPoints.position;
         this.transform.rotation = startPoints.rotation;
+        startPos = startPoints;
     }
     public virtual void Despawn()
     {
         ClearAllBricks();
         stage = null;
         animator.Rebind();
-        ChangeColor(ColorType.white);
     }
     public void AddBrick()
     {
@@ -111,5 +112,11 @@ public class Character : MonoBehaviour
     private void PlaySFX(FxID sfxID)
     {
         SoundManager.PlayFx(sfxID);
+    }
+
+    public Transform GetStartPos()
+    {
+        if (startPos == null) return tf;
+        return startPos;
     }
 }

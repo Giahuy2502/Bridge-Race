@@ -11,6 +11,7 @@ public class Player : Character
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed; 
     [SerializeField] private LayerMask stairLayer;
+    [SerializeField] private float deadY = -10f; // neu y cua player < deady => roi khoi map
     private Ray ray;
     private RaycastHit raycastHit;
     private Vector3 targerPos;
@@ -35,6 +36,10 @@ public class Player : Character
     private void Update()
     {
         if (!IsPlaying()) return;
+        if (!IsOnGround())
+        {
+            SetStartPoints();
+        };
         direction = InputManager.GetMoveDirection();
         float moveX = direction.x;
         float moveY = direction.y;
@@ -114,5 +119,21 @@ public class Player : Character
             }
         }
         return false;
+    }
+
+    public bool IsOnGround()
+    {
+        if (tf.position.y >= deadY)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void SetStartPoints()
+    {
+        Despawn();
+        OnInit(this.ColorType);
+        SetStartPoints(GetStartPos());
     }
 }

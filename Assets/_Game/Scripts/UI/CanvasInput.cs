@@ -7,5 +7,11 @@ public class CanvasInput : UICanvas
     [SerializeField] private JoyStick joyStick;
     
     public JoyStick JoyStick=> joyStick;
+
+    public override void Setup()
+    {
+        base.Setup();
+        joyStick.ResetState();
+    }
     
 }

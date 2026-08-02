@@ -44,7 +44,12 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         ActiveMoveFocus(GetVectorIndexMoveFocus(inputDirection));
     }
     public void OnPointerUp(PointerEventData eventData)
-    { 
+    {
+        ResetState();
+    }
+
+    public void ResetState()
+    {
         inputDirection = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
         DisableMoveFocus();
