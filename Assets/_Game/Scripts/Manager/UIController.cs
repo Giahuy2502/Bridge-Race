@@ -51,7 +51,17 @@ public class UIController : Singleton<UIController>
     public void ShowGamePlay()
     {
         canvasGamePlay = UIManager.Open<CanvasGamePlay>();
+        // canvasInput = UIManager.Open<CanvasInput>();
+    }
+
+    public void ShowJoyStick()
+    {
         canvasInput = UIManager.Open<CanvasInput>();
+    }
+
+    public void PlayCountdown()
+    {
+        canvasGamePlay.PlayCountDown();
     }
 
     public void ShowLoading()

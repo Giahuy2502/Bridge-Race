@@ -102,9 +102,18 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadingComplete()
     {
+        UIController.ShowJoyStick();
+        UIController.PlayCountdown();
         InputManager.OnInit();
-        ChangeState(GameState.Playing);
         SoundManager.ChangeSound(SoundID.BG_GamePlay,0f);
+    }
+
+    public void ChangeStateOnCountDown()
+    {
+        if (gameState != GameState.Pause)
+        {
+            ChangeState(GameState.Playing);
+        }
     }
     private void OnApplicationQuit()
     {
