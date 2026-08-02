@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -64,6 +66,30 @@ public class PlayerData : MonoBehaviour
         }
         return false;
     }
+
+    public void SaveData()
+    {
+        PlayerSaveData playerSaveData = new PlayerSaveData();
+        playerSaveData.isSoundOn = isSoundOn;
+        playerSaveData.isSFXOn = isSFXOn;
+        playerSaveData.playerLevelData = playerLevelData;
+        
+        string json = JsonUtility.ToJson(playerSaveData);
+        PlayerPrefs.SetString(Variables.SAVE_KEY, json);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadData()
+    {
+        if (PlayerPrefs.HasKey(Variables.SAVE_KEY))
+        {
+            string json = PlayerPrefs.GetString(Variables.SAVE_KEY);
+            PlayerSaveData playerSaveData = JsonUtility.FromJson<PlayerSaveData>(json);
+            isSoundOn = playerSaveData.isSoundOn;
+            isSFXOn = playerSaveData.isSFXOn;
+            playerLevelData = playerSaveData.playerLevelData;
+        }
+    }
     
 }
 [System.Serializable]
@@ -99,4 +125,12 @@ public class PlayerLevelData
         }
         this.stars = stars;
     }
+}
+
+[Serializable]
+public class PlayerSaveData
+{
+    public bool isSoundOn;
+    public bool isSFXOn;
+    public List<PlayerLevelData> playerLevelData;
 }

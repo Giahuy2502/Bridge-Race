@@ -76,4 +76,9 @@ public class DataManager : Singleton<DataManager>
     {
         return playerData.ISSFXOn;
     }
+
+    public PlayerData GetPlayerData()
+    {
+        return playerData;
+    }
 }

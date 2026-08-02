@@ -49,6 +49,7 @@ namespace MyNamespace
         public const string RUN_ANIM = "run";
         public const string CHEER_ANIM = "cheer";
         public const string OPEN_ANIM = "open";
+        public const string SAVE_KEY = "PlayerSaveData";
     }
 
     public static class MyCache

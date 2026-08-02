@@ -16,7 +16,14 @@ public class GameManager : Singleton<GameManager>
     private UIController UIController => UIController.Instance;
     private SoundManager SoundManager => SoundManager.Instance;
     private InputManager InputManager => InputManager.Instance;
+    private DataManager DataManager => DataManager.Instance;
     public static Action EndGameAction;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+        DataManager.GetPlayerData().LoadData();
+    }
 
     private void Start()
     {
@@ -98,5 +105,17 @@ public class GameManager : Singleton<GameManager>
         InputManager.OnInit();
         ChangeState(GameState.Playing);
         SoundManager.ChangeSound(SoundID.BG_GamePlay,0f);
+    }
+    private void OnApplicationQuit()
+    {
+        DataManager.GetPlayerData().SaveData();
+    }
+
+    public void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            DataManager.GetPlayerData().SaveData();
+        }
     }
 }
