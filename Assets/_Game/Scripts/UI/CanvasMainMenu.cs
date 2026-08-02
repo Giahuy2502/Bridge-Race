@@ -31,6 +31,11 @@ public class CanvasMainMenu : UICanvas
         UIManager.Instance.Open<CanvasSettings>().SetState(this);
     }
 
+    public void ShopButton()
+    {
+        UIManager.Instance.Open<CanvasShop>();
+    }
+
     public void SetupButtonLevels()
     {
         if (levels == null || levels.Count == 0)

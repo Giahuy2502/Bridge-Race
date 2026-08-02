@@ -27,7 +27,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void LoadLevel(int level)
     {
-        SetCharacterColor(ColorType.Green);
+        SetCharacterColor(GameManager.PlayerColor);
         // data manager load map
         DataManager.LoadLevel(level);
         // khoi tao character

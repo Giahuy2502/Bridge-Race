@@ -10,8 +10,9 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private CameraFollow camera;
     [SerializeField] private GameState gameState = GameState.Playing;
-    
+    [SerializeField] private ColorType playerColor;
     public GameState GameState{ get { return gameState; } }
+    public ColorType PlayerColor { get { return playerColor; } set{ playerColor = value; } }
     private LevelManager LevelManager => LevelManager.Instance;
     private UIController UIController => UIController.Instance;
     private SoundManager SoundManager => SoundManager.Instance;

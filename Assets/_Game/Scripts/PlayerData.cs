@@ -9,7 +9,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private bool isSoundOn = false;
     [SerializeField] private bool isSFXOn = false;
     [SerializeField] List<PlayerLevelData> playerLevelData;
-    
+    GameManager GameManager => GameManager.Instance;
     public bool ISSoundOn { get => isSoundOn; set => isSoundOn = value; }
     public bool ISSFXOn { get => isSFXOn; set => isSFXOn = value; }
     public List<PlayerLevelData> PlayerLevelData { get => playerLevelData; set => playerLevelData = value; }
@@ -72,6 +72,7 @@ public class PlayerData : MonoBehaviour
         PlayerSaveData playerSaveData = new PlayerSaveData();
         playerSaveData.isSoundOn = isSoundOn;
         playerSaveData.isSFXOn = isSFXOn;
+        playerSaveData.playerColor = GameManager.PlayerColor;
         playerSaveData.playerLevelData = playerLevelData;
         
         string json = JsonUtility.ToJson(playerSaveData);
@@ -88,7 +89,15 @@ public class PlayerData : MonoBehaviour
             isSoundOn = playerSaveData.isSoundOn;
             isSFXOn = playerSaveData.isSFXOn;
             playerLevelData = playerSaveData.playerLevelData;
+            GameManager.PlayerColor = playerSaveData.playerColor;
         }
+    }
+
+    [ContextMenu("Save Data")]
+    public void UpdateDataHandle()
+    {
+        SaveData();
+        LoadData();
     }
     
 }
@@ -132,5 +141,6 @@ public class PlayerSaveData
 {
     public bool isSoundOn;
     public bool isSFXOn;
+    public ColorType playerColor;
     public List<PlayerLevelData> playerLevelData;
 }
