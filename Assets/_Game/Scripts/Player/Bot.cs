@@ -135,7 +135,18 @@ public class Bot : Character
         }
         base.SetWinState();
     }
-    
+
+    public void SetBuildState(bool isBuilding)
+    {
+        if (isBuilding)
+        {
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        }
+        else
+        {
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        }
+    }
     [ContextMenu("Show Destination")]
     public void ShowDestination()
     {

@@ -36,6 +36,7 @@ public class BuildState : IState
                 isApproachingBridge = false;
                 highestStairPos = GetHighestStairPos(bot);
                 bot.SetDestination(highestStairPos);
+                bot.SetBuildState(true);
                 return;
             }
             if(isCrossing)
@@ -62,6 +63,7 @@ public class BuildState : IState
     public void OnExit(Bot bot)
     {
         bot.Agent.velocity = Vector3.zero;
+        bot.SetBuildState(false);
     }
 
     private bool ValidIndex(int index)
