@@ -72,7 +72,7 @@ public class PlayerData : MonoBehaviour
         PlayerSaveData playerSaveData = new PlayerSaveData();
         playerSaveData.isSoundOn = isSoundOn;
         playerSaveData.isSFXOn = isSFXOn;
-        playerSaveData.playerColor = GameManager.PlayerColor;
+        playerSaveData.playerColor = GameManager.GetPlayerColor();
         playerSaveData.playerLevelData = playerLevelData;
         
         string json = JsonUtility.ToJson(playerSaveData);
@@ -89,7 +89,7 @@ public class PlayerData : MonoBehaviour
             isSoundOn = playerSaveData.isSoundOn;
             isSFXOn = playerSaveData.isSFXOn;
             playerLevelData = playerSaveData.playerLevelData;
-            GameManager.PlayerColor = playerSaveData.playerColor;
+            GameManager.SetPlayerColor(playerSaveData.playerColor);
         }
     }
 

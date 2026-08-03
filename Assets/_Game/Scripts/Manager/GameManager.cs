@@ -5,59 +5,54 @@ using System.Data;
 using MyNamespace;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private CameraFollow camera;
     [SerializeField] private GameState gameState = GameState.Playing;
     [SerializeField] private ColorType playerColor;
-    public GameState GameState{ get { return gameState; } }
-    public ColorType PlayerColor { get { return playerColor; } set{ playerColor = value; } }
+    private UnityEvent endGameAction = new UnityEvent();
     private LevelManager LevelManager => LevelManager.Instance;
     private UIController UIController => UIController.Instance;
     private SoundManager SoundManager => SoundManager.Instance;
     private InputManager InputManager => InputManager.Instance;
     private DataManager DataManager => DataManager.Instance;
-    public static Action EndGameAction;
-
+    
     private void Awake()
     {
         Application.targetFrameRate = 60;
         DataManager.GetPlayerData().LoadData();
     }
-
     private void Start()
     {
         OnInit();
     }
-
     private void OnInit()
     {
         gameState = GameState.OnMain;
         UIController.ShowMenu();
         LevelManager.OnInit();
     }
-
     private void OnDespawn()
     {
     }
-    
+    // ham duoc goi khi endgame
     public void OnEndGame()
     {
         this.gameState = GameState.EndGame;
         camera.SetEndGame(true);
         StartCoroutine(CoEndGameHandler());
     }
-
     private IEnumerator CoEndGameHandler()
     {
-        EndGameAction?.Invoke();
+        endGameAction?.Invoke();
         yield return UIController.ShowEndGameMenu(LevelManager.IsWinGame());
         InputManager.Despawn();
         LevelManager.OnEndGame();
     }
-  
-   public void NextLevel()
+    // ham duoc goi khi chuyen sang level tiep theo
+    public void NextLevel()
     {
         Debug.Log("Play Game");
         LevelManager.OnNext();
@@ -66,13 +61,11 @@ public class GameManager : Singleton<GameManager>
         UIController.ShowGamePlay();
         UIController.ShowLoading();
     }
-
     public void ChangeState(GameState newState)
     {
         if (newState == this.gameState) return;
         this.gameState = newState;
     }
-    
     // ham goi khi nguoi choi bam vao nut play
     public void PlayGame()
     {
@@ -93,14 +86,14 @@ public class GameManager : Singleton<GameManager>
         UIController.ShowGamePlay();
         UIController.ShowLoading();
     }
-
+    // ham duoc goi moi khi quay lai main menu
     public void OnMainMenu()
     {
         this.gameState = GameState.OnMain;
         LevelManager.Despawn();
         SoundManager.ChangeSound(SoundID.BG_MainMenu,0f);
     }
-
+    // ham duoc goi khi loading canvas chay xong
     public void LoadingComplete()
     {
         UIController.ShowJoyStick();
@@ -108,7 +101,7 @@ public class GameManager : Singleton<GameManager>
         InputManager.OnInit();
         SoundManager.ChangeSound(SoundID.BG_GamePlay,0f);
     }
-
+    // ham chuyen trang thai game khi countdown chay xong
     public void ChangeStateOnCountDown()
     {
         if (gameState != GameState.Pause)
@@ -116,16 +109,42 @@ public class GameManager : Singleton<GameManager>
             ChangeState(GameState.Playing);
         }
     }
+    // luu data khi thoat game
     private void OnApplicationQuit()
     {
         DataManager.GetPlayerData().SaveData();
     }
-
+    // luu data khi thoat game
     public void OnApplicationPause(bool pause)
     {
         if (pause)
         {
             DataManager.GetPlayerData().SaveData();
         }
+    }
+
+    public GameState GetGameState()
+    {
+        return gameState;
+    }
+
+    public ColorType GetPlayerColor()
+    {
+        return playerColor;
+    }
+
+    public void SetPlayerColor(ColorType playerColor)
+    {
+        this.playerColor = playerColor;
+    }
+
+    public UnityEvent GetEndGameAction()
+    {
+        return endGameAction;
+    }
+
+    public void ResetEndGameAction()
+    {
+        endGameAction.RemoveAllListeners();
     }
 }

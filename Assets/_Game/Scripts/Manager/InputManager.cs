@@ -10,9 +10,10 @@ public class InputManager : Singleton<InputManager>
     private UIController UIController => UIController.Instance;
     public void OnInit()
     {
-        joyStick = UIController.CanvasInput.JoyStick;
+        joyStick = UIController.GetCanvasInput().JoyStick;
     }
 
+    // ham tra ve move direction
     public Vector2 GetMoveDirection()
     {
         if (joyStick == null)
@@ -24,6 +25,7 @@ public class InputManager : Singleton<InputManager>
         return moveDirection;
     }
 
+    // ham nay de tat input
     public void Despawn()
     {
         joyStick = null;

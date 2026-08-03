@@ -58,7 +58,7 @@ public class ButtonLevel : MonoBehaviour
         canvasMainMenu.SetDefaultLevelStage();
         SetActiveFocus(true);
         SetSelectStage();
-        LevelManager.CurrentLevel = levelIndex;
+        LevelManager.SetCurrentLevel(levelIndex);
     }
 
     public void SetActiveFocus(bool active)

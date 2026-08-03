@@ -48,7 +48,7 @@ public class CanvasShop : UICanvas
         }
         for (int i = 0; i < colorButtons.Count; i++)
         {
-            if (colorButtons[i].Color == GameManager.PlayerColor)
+            if (colorButtons[i].Color == GameManager.GetPlayerColor())
             {
                 colorButtons[i].SetActiveFocus(true);
             }

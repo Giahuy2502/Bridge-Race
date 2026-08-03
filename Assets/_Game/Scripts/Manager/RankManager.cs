@@ -15,12 +15,11 @@ public class RankManager : Singleton<RankManager>
     {
         finishedRankings.Clear();
         stageRankings.Clear();
-        GameManager.EndGameAction = null;
-        GameManager.EndGameAction += SortCharacters;
-        GameManager.EndGameAction += SetFinishedPosition;
+        GameManager.ResetEndGameAction();
+        GameManager.GetEndGameAction().AddListener(SortCharacters);
+        GameManager.GetEndGameAction().AddListener(SetFinishedPosition);
     }
-    
-
+    // ham duoc goi de set nguoi dung 1
     public void SetWinner(Character character)
     {
         if(!finishedRankings.Contains(character))
@@ -28,6 +27,7 @@ public class RankManager : Singleton<RankManager>
             finishedRankings.Add(character);
         }
     }
+    // ham duoc goi de sort cac character con lai
     private void SortCharacters()
     {
         List<Stage> keys = new List<Stage>(stageRankings.Keys);
@@ -45,7 +45,7 @@ public class RankManager : Singleton<RankManager>
             }
         }
     }
-
+    // ham set vi tri cac character ve cac winner stage
     private void SetFinishedPosition()
     {
         for (int i = 0; i < finishPositions.Count; i++)
@@ -57,8 +57,7 @@ public class RankManager : Singleton<RankManager>
             // Debug.Log("Set Positions: "+ finishedRankings[i].gameObject.name + " " +finishPositions[i].position);
         }
     }
-
-
+    // ham duoc goi moi khi nhan vat di vao stage moi
     public void RegisterStagePassed(Character character, Stage stage)
     {
         if (!stageRankings.ContainsKey(stage))
@@ -72,7 +71,7 @@ public class RankManager : Singleton<RankManager>
         stageRankings[stage].Add(character);
         UIController.UpdateColorRanking();
     }
-
+    // ham set finished position
     public void SetFinishedPosition(List<Transform> positions)
     {
         finishPositions.Clear();
@@ -85,7 +84,7 @@ public class RankManager : Singleton<RankManager>
     {
         
     }
-
+    // ham lay xep hang mau (dung cho UI ranking)
     public List<ColorType> GetCurrentColorRanking()
     {
         List<ColorType> colorRanking = new List<ColorType>();
@@ -105,7 +104,7 @@ public class RankManager : Singleton<RankManager>
         }
         return colorRanking;
     }
-
+    // lay vi tri xep hang cua player
     public int GetPlayerRanking()
     {
         for (int i = 0; i < finishedRankings.Count; i++)
@@ -121,7 +120,7 @@ public class RankManager : Singleton<RankManager>
         }
         return -1;
     }
-    
+    // ham kiem tra xem player co thua hay ko
     public bool IsPlayerLose()
     {
         return GetPlayerRanking() == (finishedRankings.Count-1);

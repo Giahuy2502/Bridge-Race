@@ -106,7 +106,7 @@ public class Character : MonoBehaviour
 
     public bool IsPlaying()
     {
-        return GameManager.GameState == GameState.Playing;
+        return GameManager.GetGameState() == GameState.Playing;
     }
 
     private void PlaySFX(FxID sfxID)

@@ -23,8 +23,8 @@ public class CanvasVictory : UICanvas
         SoundManager.ChangeSound(SoundID.BG_MainMenu,1f);
         numStar = GetCountStar(RankManager.GetPlayerRanking());
         SetStar(numStar);
-        DataManager.SetStartLevel(LevelManager.CurrentLevel,numStar);
-        DataManager.UnlockLevel(LevelManager.CurrentLevel+1);
+        DataManager.SetStartLevel(LevelManager.GetCurrentLevel(),numStar);
+        DataManager.UnlockLevel(LevelManager.GetCurrentLevel()+1);
     }
     public void MainMenuButton()
     {

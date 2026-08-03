@@ -51,7 +51,7 @@ public class CanvasMainMenu : UICanvas
         SetDefaultLevelStage();
         for (int i = 0; i < levels.Count; i++)
         {
-            if (i == LevelManager.CurrentLevel - 1)
+            if (i == LevelManager.GetCurrentLevel() - 1)
             {
                 levels[i].SetActiveFocus(true);
                 levels[i].SetSelectStage();

@@ -20,7 +20,7 @@ public class SelectColorButton : MonoBehaviour
     {
         canvasShop.DeactivateAllFocus();
         SetActiveFocus(true);
-        GameManager.PlayerColor = color;
+        GameManager.SetPlayerColor(color);
     }
 
     public void SetActiveFocus(bool active)

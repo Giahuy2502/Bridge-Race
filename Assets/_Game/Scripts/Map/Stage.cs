@@ -35,7 +35,7 @@ public class Stage : MonoBehaviour
         activeBricks.Clear();
         emptyPositions.Clear();
         bricks.Clear();
-        bricksParent = LevelManager.BrickParent;
+        bricksParent = LevelManager.GetBrickParentTF();
         SetCharacterColors(LevelManager.GetCharacterColors());
         StartCoroutine(IGenerateBricks());
         DeactiveAllBricks();

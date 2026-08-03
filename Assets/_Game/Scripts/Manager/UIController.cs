@@ -11,17 +11,11 @@ public class UIController : Singleton<UIController>
     private CanvasInput canvasInput;
     private UIManager UIManager => UIManager.Instance;
     private RankManager RankManager => RankManager.Instance;
-    private GameManager GameManager => GameManager.Instance;
-    public CanvasInput CanvasInput => canvasInput;
     public void ShowMenu()
     {
         UIManager.Open<CanvasMainMenu>();
     }
-
-    public void HideMenu(float duration)
-    {
-        UIManager.CloseUI<CanvasMainMenu>(duration);
-    }
+    // couroutine show endgame canvas
     public IEnumerator ShowEndGameMenu(bool isWinGame)
     {
         canvasGamePlay.SetActivateSettingButton(false);
@@ -38,37 +32,32 @@ public class UIController : Singleton<UIController>
         }
         canvasGamePlay.SetActivateSettingButton(true);
     }
-    public void HideGamePlay(float duration)
+    private void HideGamePlay(float duration)
     {
         UIManager.CloseUI<CanvasGamePlay>(duration);
     }
-
-    public void HideJoyStick(float duration)
+    private void HideJoyStick(float duration)
     {
         UIManager.CloseUI<CanvasInput>(duration);
     }
-
     public void ShowGamePlay()
     {
         canvasGamePlay = UIManager.Open<CanvasGamePlay>();
-        // canvasInput = UIManager.Open<CanvasInput>();
     }
-
     public void ShowJoyStick()
     {
         canvasInput = UIManager.Open<CanvasInput>();
     }
-
+    // ham play countdown
     public void PlayCountdown()
     {
         canvasGamePlay.PlayCountDown();
     }
-
     public void ShowLoading()
     {
         UIManager.Open<CanvasLoading>();
     }
-
+    // ham update color ranking khi co character vao stage moi
     public void UpdateColorRanking()
     {
         if (canvasGamePlay == null)
@@ -79,5 +68,10 @@ public class UIController : Singleton<UIController>
         colorRanking.Clear();
         colorRanking = RankManager.GetCurrentColorRanking();
         canvasGamePlay.UpdateColorRanking(colorRanking);
+    }
+
+    public CanvasInput GetCanvasInput()
+    {
+        return canvasInput;
     }
 }

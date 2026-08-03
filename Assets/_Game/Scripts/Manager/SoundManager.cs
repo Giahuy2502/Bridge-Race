@@ -7,23 +7,18 @@ using UnityEngine.Serialization;
 public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] PlayerData playerData;
-
     private AudioSource soundSource;
     private List<AudioSource> fxSource = new List<AudioSource>();
-
     [SerializeField][Range(0f, 1f)] private float volumeBG = 0.75f;
     [SerializeField] private AudioClip[] soundAus;
     [SerializeField][Range(0f, 1f)] private float volumeSFX = 0.75f;
     [SerializeField] private List<AudioClip> fxAus;
     private Coroutine changeSoundCoroutine;
-
     private bool isLoaded = false;
     private int indexSound;
-
     public void Awake()
     {
         DontDestroyOnLoad(gameObject);
-
         soundSource = gameObject.AddComponent<AudioSource>();
         soundSource.loop = true;
     }
@@ -32,7 +27,6 @@ public class SoundManager : Singleton<SoundManager>
     {
         Invoke(nameof(OnLoad), 1);
     }
-
     private void OnLoad()
     {
         if (soundAus.Length > 0)
@@ -52,8 +46,6 @@ public class SoundManager : Singleton<SoundManager>
             fxSource.Add(newFXSource);
         }
     }
-
-
     public void PlaySound(SoundID ID)
     {
         soundSource.clip = soundAus[(int)ID];
@@ -64,7 +56,6 @@ public class SoundManager : Singleton<SoundManager>
         }
         soundSource.Play();
     }
-
     public void PlayFx(FxID ID)
     {
         if (!playerData.ISSFXOn)
