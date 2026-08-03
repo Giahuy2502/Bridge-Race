@@ -574,6 +574,7 @@ MonoBehaviour:
   tf: {fileID: 155413035}
   bricksTF: {fileID: 1444912094}
   brickOffSetY: 0.26
+  stage: {fileID: 0}
   maxBrick: 5
   agent: {fileID: 155413029}
 --- !u!54 &155413031
@@ -3225,6 +3226,7 @@ MonoBehaviour:
   tf: {fileID: 1140852907}
   bricksTF: {fileID: 1994599677}
   brickOffSetY: 0.26
+  stage: {fileID: 0}
   maxBrick: 3
   agent: {fileID: 1140852909}
 --- !u!195 &1140852909
@@ -3556,7 +3558,7 @@ MonoBehaviour:
   - {fileID: 1286008473}
   - {fileID: 159751729}
   - {fileID: 466343850}
-  brickParent: {fileID: 1254753503}
+  brickParentTF: {fileID: 1254753503}
   currentLevel: 1
 --- !u!4 &1249745479
 Transform:
@@ -3865,6 +3867,7 @@ MonoBehaviour:
   tf: {fileID: 1388335848}
   bricksTF: {fileID: 1830000477}
   brickOffSetY: 0.26
+  stage: {fileID: 0}
   maxBrick: 20
   agent: {fileID: 1388335847}
 --- !u!195 &1388335847
@@ -5636,6 +5639,7 @@ MonoBehaviour:
   tf: {fileID: 150795002817149325}
   bricksTF: {fileID: 2093895752}
   brickOffSetY: 0.26
+  stage: {fileID: 0}
   movementSpeed: 5
   rotationSpeed: 8
   stairLayer:
