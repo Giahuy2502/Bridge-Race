@@ -20,7 +20,7 @@ public class FinishBox : MonoBehaviour
         }
     }
 
-    public void PlayParticles()
+    private void PlayParticles()
     {
         for (int i = 0; i < particles.Count; i++)
         {

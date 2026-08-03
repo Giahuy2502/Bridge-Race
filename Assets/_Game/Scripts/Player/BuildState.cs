@@ -18,7 +18,7 @@ public class BuildState : IState
         isCrossing = false;
         stairWalkeableCount = 0;
         nearestBridge = bot.GetNearestBridge();
-        targetPos = nearestBridge.Stairs[0].transform.position + Vector3.back*1.15f;
+        targetPos = nearestBridge.GetStairs()[0].transform.position + Vector3.back*1.15f;
         bot.SetDestination(targetPos);
     }
 
@@ -46,6 +46,11 @@ public class BuildState : IState
             }
             if(!isApproachingBridge && !isCrossing)
             {
+                if (nearestBridge == null)
+                {
+                    Debug.LogError("Nearest Bridge not found");
+                    return;
+                }
                 if (nearestBridge.CanCrossBridge(stairWalkeableCount))
                 {
                     highestStairPos = bot.transform.position + Vector3.forward * 5;
@@ -72,7 +77,7 @@ public class BuildState : IState
         {
             return false;
         }
-        return index >= 0 && index < nearestBridge.Stairs.Count;
+        return index >= 0 && index < nearestBridge.GetStairs().Count;
     }
     
     private Vector3 GetHighestStairPos(Bot bot)
@@ -88,6 +93,6 @@ public class BuildState : IState
         {
             bot.StopMove();
         }
-        return nearestBridge.Stairs[indexStair].transform.position + Vector3.up*0.25f;
+        return nearestBridge.GetStairs()[indexStair].transform.position + Vector3.up*0.25f;
     }
 }

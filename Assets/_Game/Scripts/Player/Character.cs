@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected Transform tf;
     [SerializeField] private Transform bricksTF;
     [SerializeField] private float brickOffSetY;
-    private Stage stage;
+    [SerializeField] private Stage stage;
     private float brickOffsetY;
     private string animName;
     private Transform startPos;

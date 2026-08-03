@@ -13,40 +13,34 @@ public class Brick : GameUnit
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private Stage stage;
     private bool isTaked = false;
-    public ColorType ColorType { get; private set;}
-    public Stage Stage { get => stage;set => stage = value; }
-    public Vector3 StartPosition { get => startPosition; set => startPosition = value; }
-    public bool IsTaked { get => isTaked; set => isTaked = value; }
+    private ColorType color;
     public void OnInit(ColorType color,Stage stage = null)
     {
         ChangeColor(color);
         ChangeTrailRendererColor(color,trailRenderers);
         if (stage != null)
         {
-            this.Stage = stage;
+            this.stage = stage;
         }
         isTaked = false;
         TurnOffTrailRenderer(trailRenderers);
-        this.name = "Brick "+ColorType.ToString();
+        this.name = "Brick "+color.ToString();
     }
-
     public void Despawn()
     {
         transform.SetParent(null);
-        // Debug.Log("Despawn brick" + TF.position +" "+ startPosition);
         transform.position = startPosition;
         transform.rotation = Quaternion.identity;
-        // Debug.Log("Despawn brick" + TF.position +" "+ startPosition);
         this.gameObject.SetActive(false);
         if(stage != null) stage.DespawnBrick(this);
     }
-
+    // ham doi mau brick
     private void ChangeColor(ColorType colorType)
     {
-        this.ColorType = colorType;
+        this.color = colorType;
         renderer.material = colorDataSO.GetMat(colorType);
     }
-
+    // ham chuyen mau trail renderer
     private void ChangeTrailRendererColor(ColorType colorType, TrailRenderer[] trailRenderers)
     {
         Material material = colorDataSO.GetMat(colorType);
@@ -68,12 +62,12 @@ public class Brick : GameUnit
         if (!isTaked && (other.CompareTag(Variables.PLAYER_TAG)||other.CompareTag(Variables.BOT_TAG)))
         {
             Character character = MyCache.GetCharacter<Character>(other);
-            if (ColorType != character.ColorType) return;
+            if (color != character.ColorType) return;
             isTaked = true;
             MoveBrick(character.BricksTF, character);
         }
     }
-
+    // ham di chuyen brick toi nhan vat
     private void MoveBrick(Transform characterBrick, Character character)
     {
         transform.SetParent(characterBrick);
@@ -96,6 +90,8 @@ public class Brick : GameUnit
         Despawn();
         character.AddBrick();
     }
+    
+    // di chuyen brick ra sau nhan vat
     IEnumerator MoveToBackCharacter(Vector3 backPos)
     {
         while (Vector3.Distance(transform.localPosition, backPos) > 0.1f)
@@ -105,6 +101,7 @@ public class Brick : GameUnit
             yield return null;
         }
     }
+    // ham bat trail renderer
     private void TurnOnTrailRenderer(TrailRenderer[] trailRenderers)
     {
         foreach (TrailRenderer trailRenderer in trailRenderers)
@@ -114,6 +111,7 @@ public class Brick : GameUnit
             trailRenderer.Clear();
         }
     }
+    // ham tat trail renderer
     private void TurnOffTrailRenderer(TrailRenderer[] trailRenderers)
     {
         foreach (TrailRenderer trailRenderer in trailRenderers)
@@ -122,10 +120,18 @@ public class Brick : GameUnit
             trailRenderer.emitting = false;
         }
     }
-
     public void SetStartPosition(Vector3 position)
     {
         startPosition = position;
         TF.position = startPosition;
+    }
+    public ColorType GetColor()
+    {
+        return color;
+    }
+
+    public Vector3 GetStartPosition()
+    {
+        return startPosition;
     }
 }

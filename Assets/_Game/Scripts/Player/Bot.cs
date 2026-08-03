@@ -112,7 +112,7 @@ public class Bot : Character
 
     public int GetStairWalkable(int brickCount)
     {
-        return Stage.GetStairWalkable(this.ColorType, brickCount,Stage.GetNearestBridge(this));
+        return Stage.GetNearestBridge(this).GetStairWalkable(this.ColorType, brickCount);
     }
 
     public override void SetWinState()

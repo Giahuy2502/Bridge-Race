@@ -17,25 +17,15 @@ public class Level : MonoBehaviour
             Debug.LogError("No platforms assigned!");
             return;
         }
-
         foreach (Platform platform in platforms)
         {
             platform.OnInit();
         }
-
         if (finishPlatform == null)
         {
             Debug.LogError("No finish platform assigned!");
         }
         finishPlatform.OnInit();
-        
-        // sau khi spawn xong cac platform thi phai bake lai surface
-        // if (surface == null)
-        // {
-        //     Debug.LogError("No surface assigned!");
-        //     return;
-        // }
-        // surface.BuildNavMesh();
     }
 
     public void Despawn()
@@ -45,7 +35,6 @@ public class Level : MonoBehaviour
             Debug.LogError("No platforms assigned!");
             return;
         }
-
         foreach (Platform platform in platforms)
         {
             platform.Despawn();

@@ -20,14 +20,8 @@ public class Stage : MonoBehaviour
     [SerializeField] private List<ColorType> characterColors = new List<ColorType>();
     private List<Brick> activeBricks = new List<Brick>();
     private List<ColorType> activeColors = new List<ColorType>();
-    private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>();
-    
+    private Dictionary<ColorType, List<Vector3>> emptyPositions = new Dictionary<ColorType, List<Vector3>>(); // luu vi tri cua cac vien gach da duoc nhat
     private LevelManager LevelManager => LevelManager.Instance;
-    // private void Start()
-    // {
-    //     OnInit();
-    // }
-
     public virtual void OnInit()
     {
         Debug.Log("Call OnInit Stage");
@@ -39,7 +33,6 @@ public class Stage : MonoBehaviour
         SetCharacterColors(LevelManager.GetCharacterColors());
         StartCoroutine(IGenerateBricks());
         DeactiveAllBricks();
-        SetOnInitBridge(this);
     }
     
     public void OnTriggerEnter(Collider other)
@@ -57,8 +50,10 @@ public class Stage : MonoBehaviour
         yield return null;
         GenerateBricks();
     }
+    // ham sinh cac brick tren stage
     private void GenerateBricks()
     {
+        // lay cac vi tri co the dat gach
         bricks.Clear();
         Bounds stageBounds = stageCollider.bounds;
         List<Vector3> spawnPoints = new List<Vector3>();
@@ -76,7 +71,7 @@ public class Stage : MonoBehaviour
                 }
             }
         }
-        
+        // tinh toan so luong gach tuong loai
         int totalBricks = spawnPoints.Count;
         int totalColors = characterColors.Count;
         int bricksPerColor = totalBricks / totalColors;
@@ -95,6 +90,7 @@ public class Stage : MonoBehaviour
                 colorGenerates.Add(characterColors[i]);
             }
         }
+        // dao thu tu spawn cac mau gach
         for (int i = 0; i < totalBricks; i++)
         {
             ColorType temp = colorGenerates[i];
@@ -102,12 +98,14 @@ public class Stage : MonoBehaviour
             colorGenerates[i] = colorGenerates[randomIndex];
             colorGenerates[randomIndex] = temp;
         }
+        // spawn gach
         for (int i = 0; i < totalBricks; i++)
         {
             Brick newBrick = SpawnBrick(spawnPoints[i], colorGenerates[i]);
             bricks.Add(newBrick);
         }
     }
+    // ham spawm brick
     private Brick SpawnBrick(Vector3 position, ColorType color)
     {
         Brick brick = SimplePool.Spawn<Brick>(PoolType.Brick, position, Quaternion.identity);
@@ -116,6 +114,7 @@ public class Stage : MonoBehaviour
         brick.gameObject.SetActive(false);
         return brick;
     }
+    // ham respawm brick khi character remove brick
     public void RespawnBrick(ColorType color)
     {
         foreach(Brick brick in bricks)
@@ -125,31 +124,32 @@ public class Stage : MonoBehaviour
                 Debug.Log("empty position not contained color: "+ color);
                 return;
             }
-            if (brick.ColorType == color && emptyPositions[color].Contains(brick.StartPosition))
+            if (brick.GetColor() == color && emptyPositions[color].Contains(brick.GetStartPosition()))
             {
                 brick.TF.SetParent(bricksParent);
-                brick.TF.position = brick.StartPosition;
+                brick.TF.position = brick.GetStartPosition();
                 brick.TF.rotation = Quaternion.identity;
                 brick.OnInit(color, this); 
                 brick.gameObject.SetActive(true);
                 activeBricks.Add(brick);
-                emptyPositions[color].Remove(brick.StartPosition);
+                emptyPositions[color].Remove(brick.GetStartPosition());
                 break;
             }
         }
     }
+    // ham despawn brick
     public void DespawnBrick(Brick brick)
     {
         brick.TF.SetParent(bricksParent);
         if (!activeBricks.Contains(brick) || !bricks.Contains(brick)) return;
         activeBricks.Remove(brick);
-        if (!emptyPositions.ContainsKey(brick.ColorType))
+        if (!emptyPositions.ContainsKey(brick.GetColor()))
         {
-            emptyPositions.Add(brick.ColorType, new List<Vector3>());
+            emptyPositions.Add(brick.GetColor(), new List<Vector3>());
         }
-        if (!emptyPositions[brick.ColorType].Contains(brick.StartPosition))
+        if (!emptyPositions[brick.GetColor()].Contains(brick.GetStartPosition()))
         {
-            emptyPositions[brick.ColorType].Add(brick.StartPosition);
+            emptyPositions[brick.GetColor()].Add(brick.GetStartPosition());
         }
     }
     // tra ve vi tri vien gach gan nhat so voi bot
@@ -161,7 +161,7 @@ public class Stage : MonoBehaviour
         Brick nearestBrick = null;
         foreach (Brick brick in activeBricks)
         {
-            if (brick.ColorType == color)
+            if (brick.GetColor() == color)
             {
                 if(nearestBrick == null) nearestBrick = brick;
                 hasBrickSameColor = true;
@@ -183,49 +183,18 @@ public class Stage : MonoBehaviour
         foreach (Bridge bridge in bridges)
         {
             float distance = Vector3.Distance(bot.transform.position, bridge.transform.position);
-            if (distance <= Vector3.Distance(nearestBridge.TF.position, bot.transform.position))
+            if (distance <= Vector3.Distance(nearestBridge.GetTransform().position, bot.transform.position))
             {
                 nearestBridge = bridge;
             }
         }
         return nearestBridge;
     }
-    // lay so stair co the di
-    public int GetStairWalkable(ColorType color, int brickCount, Bridge bridge)
-    {
-        int stairWalkable = 0;
-        foreach (Stair stair in bridge.Stairs)
-        {
-            if (stair.ColorType == color)
-            {
-                stairWalkable++;
-            }
-            if (stair.ColorType != color)
-            {
-                if (brickCount >= 1)
-                {
-                    brickCount--;
-                    stairWalkable++;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-        if (stairWalkable >= bridge.Stairs.Count)
-        {
-            stairWalkable = bridge.Stairs.Count;
-        }
-        return stairWalkable;
-    }
+    
     public void Despawn()
     {
-        // despawn brick 
         if (bricks == null || bricks.Count == 0)
         {
-            // Debug.LogError("No bricks found");
             return;
         }
 
@@ -241,7 +210,7 @@ public class Stage : MonoBehaviour
         emptyPositions.Clear();
         if (bridges == null || bridges.Count == 0)
         {
-            Debug.LogError("No bricks found");
+            Debug.LogError("No bridge found");
             return;
         }
 
@@ -250,14 +219,14 @@ public class Stage : MonoBehaviour
             bridge.Despawn();
         }
     }
-
+    // hien thi cac vien gach co mau chi dinh
     private void ActiveColorBricks(ColorType color)
     {
         if (activeColors.Contains(color)) return;
         activeColors.Add(color);
         foreach (Brick brick in bricks)
         {
-            if (brick.ColorType == color)
+            if (brick.GetColor() == color)
             {
                 brick.gameObject.SetActive(true);
                 if (!activeBricks.Contains(brick))
@@ -267,6 +236,7 @@ public class Stage : MonoBehaviour
             }
         }
     }
+    // deactivate toan bo so gach tren stage
     private void DeactiveAllBricks()
     {
         foreach (Brick brick in bricks)
@@ -274,15 +244,8 @@ public class Stage : MonoBehaviour
             brick.gameObject.SetActive(false);
         }
     }
-    private void SetOnInitBridge(Stage stage)
-    {
-        foreach (Bridge bridge in bridges)
-        {
-            bridge.OnInit(stage);
-        }
-    }
-
-    public void SetCharacterColors(List<ColorType> colors)
+    // lay danh sach mau cua character
+    private void SetCharacterColors(List<ColorType> colors)
     {
         this.characterColors.Clear();
         for (int i = 0; i < colors.Count; i++)

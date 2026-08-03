@@ -26,7 +26,6 @@ public class BrickEffect : GameUnit
     {
         if(color == colorType) return;
         this.color = colorType;
-        // brickEffectRenderer.material = colorDataSO.GetMat(colorType); => dung cach nay ton hieu nang
         ParticleSystem.MainModule main = brickEffect.main;
         main.startColor = colorDataSO.GetMat(colorType).color;
     }

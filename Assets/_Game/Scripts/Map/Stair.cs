@@ -10,18 +10,12 @@ public class Stair : MonoBehaviour
     [SerializeField] private Renderer renderer;
     [SerializeField] private ColorDataSO colorDataSO;
     [SerializeField] private float duration;
-    private float timer;
     [SerializeField] private ColorType colorType;
-    public ColorType ColorType{get{return colorType;}set{colorType = value;}}
-
     [SerializeField] private bool hasFilled;
     [SerializeField] private bool isBlocked;
-    private Coroutine changColorCoroutine;
     [SerializeField] private Stage stage;
-    public bool HasFilled{get{return hasFilled;}}
-    public Stage Stage{get{return stage;}set{stage = value;}}
-    
-
+    private float timer;
+    private Coroutine changColorCoroutine;
     public void OnInit(Stage stage)
     {
         hasFilled = false;
@@ -57,15 +51,12 @@ public class Stair : MonoBehaviour
                 ChangeColor(character.ColorType);
                 character.RemoveBrick();
             }
-            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count <= 0)
-            {
-                
-            }
         }
     }
-    public void ChangeColor(ColorType colorType)
+    // ham chuyen mau colorType
+    private void ChangeColor(ColorType colorType)
     {
-        this.ColorType = colorType;
+        this.colorType = colorType;
         Color newColor = colorDataSO.GetMat(colorType).color;
         if (changColorCoroutine != null)
         {
@@ -73,12 +64,12 @@ public class Stair : MonoBehaviour
         }
         changColorCoroutine = StartCoroutine(CoChangeColor(newColor, duration));
     }
-
+    // ham kiem tra xem co chan duoc player ko
     public bool CheckCanBlockPlayer(Character character)
     {
-        if (hasFilled && (ColorType == character.ColorType)) return false;
+        if (hasFilled && (colorType == character.ColorType)) return false;
         if(!hasFilled && character.Bricks.Count <=0) return true;
-        if(hasFilled && (ColorType != character.ColorType) && character.Bricks.Count <= 0) return true;
+        if(hasFilled && (colorType != character.ColorType) && character.Bricks.Count <= 0) return true;
         return false;
     }
 
@@ -88,7 +79,7 @@ public class Stair : MonoBehaviour
         Material mat = renderer.material;
         while (timer <= duration)
         {
-            mat.color = Color.Lerp(mat.color,targetColor, timer/this.duration);
+            mat.color = Color.Lerp(mat.color,targetColor, timer/duration);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -105,5 +96,15 @@ public class Stair : MonoBehaviour
             StopCoroutine(changColorCoroutine);
             changColorCoroutine = null;
         }
+    }
+
+    public ColorType GetColorType()
+    {
+        return colorType;
+    }
+
+    public bool HasFilled()
+    {
+        return hasFilled;
     }
 }
