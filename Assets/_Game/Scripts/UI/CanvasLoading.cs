@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class CanvasLoading : UICanvas
         base.Setup();
         timer = 0;
         UpdateFillAmount(0);
+        GameManager.ChangeState(GameState.OnMain);
     }
 
     private void Update()
