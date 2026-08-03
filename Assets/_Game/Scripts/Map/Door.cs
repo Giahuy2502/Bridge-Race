@@ -25,10 +25,10 @@ public class Door : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         Character character = MyCache.GetCharacter<Character>(other);
-        if (bridge.CanOpenDoor()&&!isOpened && character != null && stage == character.Stage)
+        if (bridge.CanOpenDoor()&&!isOpened && character != null && stage == character.GetStage())
         {
             isOpened = true;
-            ChangeColor(character.ColorType);
+            ChangeColor(character.GetColorType());
             PlayOpenAnim();
         }
     }

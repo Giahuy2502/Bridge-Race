@@ -24,7 +24,7 @@ public class BuildState : IState
 
     public void OnExcute(Bot bot)
     {
-        if (bot.Bricks.Count <= 0 && !nearestBridge.IsFilledHighestStair(bot.ColorType))
+        if (bot.GetListBricksCount() <= 0 && !nearestBridge.IsFilledHighestStair(bot.GetColorType()))
         {
             bot.ChangeState(new PatrolState());
             return;
@@ -67,7 +67,7 @@ public class BuildState : IState
 
     public void OnExit(Bot bot)
     {
-        bot.Agent.velocity = Vector3.zero;
+        bot.StopMove();
         bot.SetBuildState(false);
     }
 
@@ -82,7 +82,7 @@ public class BuildState : IState
     
     private Vector3 GetHighestStairPos(Bot bot)
     {
-        stairWalkeableCount = bot.GetStairWalkable(bot.Bricks.Count);
+        stairWalkeableCount = bot.GetStairWalkable(bot.GetListBricksCount());
         if (stairWalkeableCount <= 0)
         {
             bot.StopMove();

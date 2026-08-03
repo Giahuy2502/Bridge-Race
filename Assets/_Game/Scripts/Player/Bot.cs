@@ -10,13 +10,11 @@ public class Bot : Character
     [SerializeField] private int maxBrick;
     [SerializeField] NavMeshAgent agent;
     private IState currentState;
-    public int MaxBrick{get{return maxBrick;}}
-    public NavMeshAgent Agent{get{return agent;}}
 
     public override void OnInit(ColorType colorType)
     {
         base.OnInit(colorType);
-        this.name = "Bot-"+ColorType.ToString();
+        this.name = "Bot-"+colorType.ToString();
         agent.enabled = true;
         ChangeState(new IdleState());
     }
@@ -84,12 +82,13 @@ public class Bot : Character
 
     public void StopMove()
     {
+        agent.velocity = Vector3.zero;
         ChangeAnim(Variables.IDLE_ANIM);
     }
 
     public Brick GetNearestBrick()
     {
-        return Stage.GetNearestBrick(this);
+        return stage.GetNearestBrick(this);
     }
 
     public Vector3 GetNearestBrickPos(Brick brick)
@@ -100,19 +99,17 @@ public class Bot : Character
 
     public Bridge GetNearestBridge()
     {
-        return Stage.GetNearestBridge(this);
+        return stage.GetNearestBridge(this);
     }
 
     public bool ReachedDestination()
     {
-        return !agent.pathPending &&
-               agent.remainingDistance <= agent.stoppingDistance &&
-               (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
+        return !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
     }
 
     public int GetStairWalkable(int brickCount)
     {
-        return Stage.GetNearestBridge(this).GetStairWalkable(this.ColorType, brickCount);
+        return stage.GetNearestBridge(this).GetStairWalkable(this.colorType, brickCount);
     }
 
     public override void SetWinState()
@@ -146,6 +143,10 @@ public class Bot : Character
         {
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         }
+    }
+    public int GetMaxBrick()
+    {
+        return maxBrick;
     }
     [ContextMenu("Show Destination")]
     public void ShowDestination()

@@ -17,7 +17,6 @@ public class Player : Character
     private Vector3 targerPos;
     private float blockPosY;
     private Vector2 direction;
-    private GameManager GameManager => GameManager.Instance;
     private InputManager InputManager => InputManager.Instance;
     
     public override void OnInit(ColorType colorType)
@@ -46,8 +45,8 @@ public class Player : Character
         Vector3 movement = new Vector3(moveX, 0, moveY);
         Move(movement);
     }
-
-    public void Move(Vector3 movement)
+    // ham di chuyen nhan vat
+    private void Move(Vector3 movement)
     {
         if (movement.magnitude <= 0.1f)
         {
@@ -55,7 +54,7 @@ public class Player : Character
             return;
         }
         ChangeAnim(Variables.RUN_ANIM);
-        RotateToTarget(movement);
+        RotateToMoveDirection(movement);
         if (IsBlockByStair(movement) || IsBlockByDoor(movement))
         {
             if (Math.Abs(blockPosY - tf.position.y) > 0.2f)
@@ -68,26 +67,25 @@ public class Player : Character
         tf.position = Vector3.MoveTowards(tf.position, targerPos, Time.deltaTime * movementSpeed);
     }
 
-    public void RotateToTarget(Vector3 movement)
+    private void RotateToMoveDirection(Vector3 movement)
     {
         tf.rotation = Quaternion.Lerp(tf.rotation, Quaternion.LookRotation(movement.normalized), Time.deltaTime * rotationSpeed);
     }
-
-    // can fix lai ham nay
-    private bool IsBlockByStair(Vector3 movement)
+    
+    // kiem tra co bi chan boi stair
+    private bool IsBlockByStair(Vector3 movement)     
     {
         if (movement.z <= 0)
         {
             blockPosY = tf.position.y;
             return false;
         }
-
         Vector3 ray = tf.position + Vector3.up * 0.3f + Vector3.forward * 1f;
-        Debug.DrawRay(ray, Vector3.down * 2f, Color.red);
+        // Debug.DrawRay(ray, Vector3.down * 2f, Color.red);
         RaycastHit hit;
         if (Physics.Raycast(ray, Vector3.down, out hit, 2.5f, stairLayer))
         {
-            Stair stair = hit.collider.GetComponent<Stair>();
+            Stair stair = MyCache.GetStair<Stair>(hit.collider);
             if (stair != null)
             {
                 float newY = stair.transform.position.y - 0.15f;
@@ -100,7 +98,7 @@ public class Player : Character
         }
         return false;
     }
-
+    // kiem tra co bi chan boi door
     private bool IsBlockByDoor(Vector3 movement)
     {
         if (movement.z >= 0)
@@ -121,7 +119,7 @@ public class Player : Character
         return false;
     }
 
-    public bool IsOnGround()
+    private bool IsOnGround()
     {
         if (tf.position.y >= deadY)
         {
@@ -133,7 +131,7 @@ public class Player : Character
     private void SetStartPoints()
     {
         Despawn();
-        OnInit(this.ColorType);
+        OnInit(this.colorType);
         SetStartPoints(GetStartPos());
     }
 }

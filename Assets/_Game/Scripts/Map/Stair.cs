@@ -33,22 +33,22 @@ public class Stair : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         Character character = MyCache.GetCharacter<Character>(other);
-        if (character != null && stage == character.Stage)
+        if (character != null && stage == character.GetStage())
         {
-            if (!hasFilled && character.Bricks.Count > 0)
+            if (!hasFilled && character.GetListBricksCount() > 0)
             {
                 renderer.enabled = true;
-                ChangeColor(character.ColorType);
+                ChangeColor(character.GetColorType());
                 character.RemoveBrick();
                 hasFilled = true;
             }
-            else if(!hasFilled && character.Bricks.Count < 0)
+            else if(!hasFilled && character.GetListBricksCount() < 0)
             {
                 isBlocked = true;
             }
-            else if (hasFilled && colorType != character.ColorType && character.Bricks.Count > 0)
+            else if (hasFilled && colorType != character.GetColorType() && character.GetListBricksCount() > 0)
             {
-                ChangeColor(character.ColorType);
+                ChangeColor(character.GetColorType());
                 character.RemoveBrick();
             }
         }
@@ -67,9 +67,9 @@ public class Stair : MonoBehaviour
     // ham kiem tra xem co chan duoc player ko
     public bool CheckCanBlockPlayer(Character character)
     {
-        if (hasFilled && (colorType == character.ColorType)) return false;
-        if(!hasFilled && character.Bricks.Count <=0) return true;
-        if(hasFilled && (colorType != character.ColorType) && character.Bricks.Count <= 0) return true;
+        if (hasFilled && (colorType == character.GetColorType())) return false;
+        if(!hasFilled && character.GetListBricksCount() <=0) return true;
+        if(hasFilled && (colorType != character.GetColorType()) && character.GetListBricksCount() <= 0) return true;
         return false;
     }
 

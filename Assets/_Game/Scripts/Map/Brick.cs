@@ -62,9 +62,9 @@ public class Brick : GameUnit
         if (!isTaked && (other.CompareTag(Variables.PLAYER_TAG)||other.CompareTag(Variables.BOT_TAG)))
         {
             Character character = MyCache.GetCharacter<Character>(other);
-            if (color != character.ColorType) return;
+            if (color != character.GetColorType()) return;
             isTaked = true;
-            MoveBrick(character.BricksTF, character);
+            MoveBrick(character.GetBricksTF(), character);
         }
     }
     // ham di chuyen brick toi nhan vat

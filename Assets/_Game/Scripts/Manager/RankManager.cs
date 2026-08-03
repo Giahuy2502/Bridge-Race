@@ -96,9 +96,9 @@ public class RankManager : Singleton<RankManager>
 
             for (int j = 0; j < currentValue.Count; j++)
             {
-                if (!colorRanking.Contains(currentValue[j].ColorType))
+                if (!colorRanking.Contains(currentValue[j].GetColorType()))
                 {
-                    colorRanking.Add(currentValue[j].ColorType);
+                    colorRanking.Add(currentValue[j].GetColorType());
                 }
             }
         }

@@ -40,8 +40,8 @@ public class Stage : MonoBehaviour
         if (other.CompareTag(Variables.BOT_TAG)|| other.CompareTag(Variables.PLAYER_TAG))
         {
             Character character = MyCache.GetCharacter<Character>(other);
-            character.Stage = this;
-            ActiveColorBricks(character.ColorType);
+            character.SetStage(this);
+            ActiveColorBricks(character.GetColorType());
         }
     }
 
@@ -156,7 +156,7 @@ public class Stage : MonoBehaviour
     public Brick GetNearestBrick(Bot bot)
     {
         bool hasBrickSameColor = false;
-        ColorType color = bot.ColorType;
+        ColorType color = bot.GetColorType();
         Vector3 botPosition = bot.transform.position;
         Brick nearestBrick = null;
         foreach (Brick brick in activeBricks)

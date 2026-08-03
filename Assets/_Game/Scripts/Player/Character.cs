@@ -6,22 +6,19 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] List<Brick> bricks = new List<Brick>();
+    [SerializeField] private List<Brick> bricks = new List<Brick>();
     [SerializeField] private Animator animator;
-    [SerializeField] Renderer renderer;
-    [SerializeField] ColorDataSO colorDataSO;
+    [SerializeField] private Renderer renderer;
+    [SerializeField] private ColorDataSO colorDataSO;
     [SerializeField] protected Transform tf;
     [SerializeField] private Transform bricksTF;
     [SerializeField] private float brickOffSetY;
-    [SerializeField] private Stage stage;
+    [SerializeField] protected Stage stage;
+    protected ColorType colorType;
     private float brickOffsetY;
     private string animName;
     private Transform startPos;
-    public ColorType ColorType { get; private set;}
-    public List<Brick> Bricks { get => bricks; private set => bricks = value; }
-    public Transform BricksTF { get => bricksTF; private set => bricksTF = value; }
-    public Stage Stage { get => stage; set => stage = value; }
-    public GameManager GameManager => GameManager.Instance;
+    private GameManager GameManager => GameManager.Instance;
     private SoundManager SoundManager => SoundManager.Instance;
 
     public virtual void OnInit(ColorType colorType)
@@ -43,6 +40,7 @@ public class Character : MonoBehaviour
         stage = null;
         animator.Rebind();
     }
+    // ham them brick moi vao sau character
     public void AddBrick()
     {
         Vector3 newpos = GetNewestBrickPos();
@@ -54,69 +52,88 @@ public class Character : MonoBehaviour
         newBrickEffect.transform.localPosition =  newpos;
         bricks.Add(newBrick);
         // Debug.Log("Brick added brick :" + bricks.Count);
-        newBrick.OnInit(ColorType, this.Stage);
-        newBrickEffect.PlayBrickEffect(this.ColorType);
+        newBrick.OnInit(colorType, this.stage);
+        newBrickEffect.PlayBrickEffect(this.colorType);
         PlaySFX(FxID.SFX_CollectBrick);
     }
+    // ham xoa brick sau lung character
     public void RemoveBrick()
     {
         if (bricks.Count <= 0) return;
         bricks[bricks.Count - 1].Despawn();
         bricks.RemoveAt(bricks.Count - 1);
         // Debug.Log("Brick remove brick :" + bricks.Count);
-        Stage.RespawnBrick(ColorType);
+        stage.RespawnBrick(colorType);
         PlaySFX(FxID.SFX_BuildBridge);
     }
+    // ham xoa tat ca brick sau lung character
     private void ClearAllBricks()
     {
         while (bricks.Count > 0)
         {
             bricks[bricks.Count - 1].Despawn();
             bricks.RemoveAt(bricks.Count - 1);
-            Stage.RespawnBrick(ColorType);
+            stage.RespawnBrick(colorType);
         }
         bricksTF.gameObject.SetActive(false);
         // Debug.Log("Bricks destroyed: "+ bricks.Count+" "+this.name);
     }
-    public void ChangeAnim(string anim)
+    protected void ChangeAnim(string anim)
     {
         if (animName == anim) return;
         animator.ResetTrigger(animName);
         animName = anim;
         animator.SetTrigger(animName);
     }
-    public void ChangeColor(ColorType colorType)
+    private void ChangeColor(ColorType colorType)
     {
-        this.ColorType = colorType;
+        this.colorType = colorType;
         renderer.material = colorDataSO.GetMat(colorType);
     }
-
     // tra ve vi tri cua brick moi so voi brickTF
     public Vector3 GetNewestBrickPos()
     {
         brickOffsetY = bricks.Count * brickOffSetY;
         return Vector3.up * brickOffsetY;
     }
-
     public virtual void SetWinState()
     {
         ClearAllBricks();
         ChangeAnim(Variables.CHEER_ANIM);
     }
-
-    public bool IsPlaying()
+    // kiem tra xem co dang trong gameplay hay ko
+    protected bool IsPlaying()
     {
         return GameManager.GetGameState() == GameState.Playing;
     }
-
     private void PlaySFX(FxID sfxID)
     {
         SoundManager.PlayFx(sfxID);
     }
-
-    public Transform GetStartPos()
+    // ham lay vi tri ban dau trong map
+    protected Transform GetStartPos()
     {
         if (startPos == null) return tf;
         return startPos;
+    }
+    public Stage GetStage()
+    {
+        return stage;
+    }
+    public void SetStage(Stage stage)
+    {
+        this.stage = stage;
+    }
+    public ColorType GetColorType()
+    {
+        return colorType;
+    }
+    public int GetListBricksCount()
+    {
+        return bricks.Count;
+    }
+    public Transform GetBricksTF()
+    {
+        return bricksTF;
     }
 }
