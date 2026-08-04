@@ -96,9 +96,7 @@ public class GameManager : Singleton<GameManager>
     // ham duoc goi khi loading canvas chay xong
     public void LoadingComplete()
     {
-        UIController.ShowJoyStick();
         UIController.PlayCountdown();
-        InputManager.OnInit();
         SoundManager.ChangeSound(SoundID.BG_GamePlay,0f);
     }
     // ham chuyen trang thai game khi countdown chay xong
@@ -121,6 +119,12 @@ public class GameManager : Singleton<GameManager>
         {
             DataManager.GetPlayerData().SaveData();
         }
+    }
+
+    public void SetUpJoyStick()
+    {
+        UIController.ShowJoyStick();
+        InputManager.OnInit();
     }
 
     public GameState GetGameState()

@@ -35,5 +35,6 @@ public class CountDown : MonoBehaviour
     public void OnCountDownFinished()
     {
         GameManager.ChangeStateOnCountDown();
+        GameManager.SetUpJoyStick();
     }
 }
