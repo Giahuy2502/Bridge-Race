@@ -11,7 +11,6 @@ public class CanvasSettings : UICanvas
     private UICanvas prevCanvas;
     private GameManager GameManager => GameManager.Instance;
     private LevelManager LevelManager => LevelManager.Instance;
-    private SoundManager SoundManager => SoundManager.Instance;
 
     public override void Setup()
     {
@@ -41,6 +40,7 @@ public class CanvasSettings : UICanvas
         }
         this.prevCanvas = canvas;
     }
+    // ham quay lai main menu
     public void MainMenuButton()
     {
         this.prevCanvas = null;
@@ -48,8 +48,7 @@ public class CanvasSettings : UICanvas
         GameManager.OnMainMenu();
         UIManager.Instance.Open<CanvasMainMenu>();
     }
-
-
+    // ham choi lai man choi hien tai
     public void RetryButton()
     {
         this.prevCanvas = null;

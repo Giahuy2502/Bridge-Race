@@ -24,11 +24,12 @@ public class CameraFollow : MonoBehaviour
             MoveToTarget();
         }
     }
-
+    // di chuyen theo nhan vat
     private void MoveToTarget()
     {
         transform.position = Vector3.Lerp(transform.position, target.position + offset, Time.deltaTime* speed);
     }
+    // di chuyen den end game camera 
     private void MoveToEndGameCamera()
     {
         if (endCamTF == null)

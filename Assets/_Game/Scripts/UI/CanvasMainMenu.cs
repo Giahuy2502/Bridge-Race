@@ -14,29 +14,30 @@ public class CanvasMainMenu : UICanvas
         base.Setup();
         SetupButtonLevels();
     }
-
+    // ham play button
     public void PlayButton()
     {
         GameManager.PlayGame();
         Close(0);
     }
+    // ham new game button
     public void NewGameButton()
     {
         GameManager.NewGame();
         Close(0);
     }
-
+    // ham setting button
     public void SettingButton()
     {
         UIManager.Instance.Open<CanvasSettings>().SetState(this);
     }
-
+    // ham shop button 
     public void ShopButton()
     {
         UIManager.Instance.Open<CanvasShop>();
     }
-
-    public void SetupButtonLevels()
+    // ham khoi tao cac button level
+    private void SetupButtonLevels()
     {
         if (levels == null || levels.Count == 0)
         {
@@ -58,7 +59,7 @@ public class CanvasMainMenu : UICanvas
             }
         }
     }
-
+    // ham tat focus tat ca level button
     public void DeactivateAllFocus()
     {
         if (levels == null || levels.Count == 0)
@@ -71,7 +72,7 @@ public class CanvasMainMenu : UICanvas
             levels[i].SetActiveFocus(false);
         }
     }
-
+    // ham set stage cho button level
     public void SetDefaultLevelStage()
     {
         if (levels == null || levels.Count == 0)

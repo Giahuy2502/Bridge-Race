@@ -21,13 +21,13 @@ public class CanvasGamePlay : UICanvas
         UpdateLevelText(LevelManager.GetCurrentLevel());
         SetupRankingItems(LevelManager.GetPlayerData().Color);
     }
-
+    // chay count down
     public void PlayCountDown()
     {
         countDown.OnInit();
     }
-
-    public void SetupRankingItems(ColorType playerColor)
+    // khoi tao bang xep hang
+    private void SetupRankingItems(ColorType playerColor)
     {
         for (int i = 0; i < rankingItemUI.Count; i++)
         {
@@ -39,7 +39,7 @@ public class CanvasGamePlay : UICanvas
     {
         UIManager.Instance.Open<CanvasSettings>().SetState(this);
     }
-
+    // cap nhat bang xep hang
     public void UpdateColorRanking(List<ColorType> colorRanking)
     {
         for (int i = 0; i < rankingItemUI.Count; i++)
@@ -54,13 +54,13 @@ public class CanvasGamePlay : UICanvas
             rankingItem.SetColor(color,material);
         }
     }
-
-    public void UpdateLevelText(int level)
+    // cap nhat level text
+    private void UpdateLevelText(int level)
     {
         levelText.text = "Level "+ level.ToString();
         return;
     }
-
+    // bat/tat setting button
     public void SetActivateSettingButton(bool isActivate)
     {
         settingButton.gameObject.SetActive(isActivate);

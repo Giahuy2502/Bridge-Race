@@ -18,7 +18,7 @@ public class ButtonLevel : MonoBehaviour
         this.isUnlocked = isUnlocked;
         DeactivateStars();
     }
-
+    // set trang thai cua stage
     public void SetDefaulStage(bool isUnlocked)
     {
         if (stage == null || stage.Count == 0)
@@ -40,7 +40,7 @@ public class ButtonLevel : MonoBehaviour
             stage[2].SetActive(false);
         }
     }
-
+    // set trang thai duoc bam
     public void SetSelectStage()
     {
         stage[0].SetActive(false);
@@ -60,12 +60,12 @@ public class ButtonLevel : MonoBehaviour
         SetSelectStage();
         LevelManager.SetCurrentLevel(levelIndex);
     }
-
+    // ham set focus
     public void SetActiveFocus(bool active)
     {
         focus.SetActive(active);
     }
-
+    // tat tat ca sao
     private void DeactivateStars()
     {
         if (stars == null || stars.Count == 0)
@@ -78,7 +78,7 @@ public class ButtonLevel : MonoBehaviour
             stars[i].gameObject.SetActive(false);
         }
     }
-
+    // bat sao
     public void ActivateStars(int starsCount)
     {
         for (int i = 0; i < starsCount; i++)

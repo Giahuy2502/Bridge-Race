@@ -7,10 +7,8 @@ public class SelectColorButton : MonoBehaviour
 {
     [SerializeField] private GameObject focus;
     [SerializeField] private ColorType color;
-    GameManager GameManager => GameManager.Instance;
+    private GameManager GameManager => GameManager.Instance;
     private CanvasShop canvasShop;
-    public ColorType Color{get{return color;}}
-
     public void OnInit(CanvasShop canvasShop)
     {
         this.canvasShop = canvasShop;
@@ -27,5 +25,8 @@ public class SelectColorButton : MonoBehaviour
     {
         focus.SetActive(active);
     }
-    
+    public ColorType GetColor()
+    {
+        return color;
+    }
 }

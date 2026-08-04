@@ -50,7 +50,7 @@ public class SoundManager : Singleton<SoundManager>
     {
         soundSource.clip = soundAus[(int)ID];
         soundSource.volume = volumeBG;
-        if (!playerData.ISSoundOn)
+        if (!playerData.GetIsSoundOn())
         {
             return;
         }
@@ -58,7 +58,7 @@ public class SoundManager : Singleton<SoundManager>
     }
     public void PlayFx(FxID ID)
     {
-        if (!playerData.ISSFXOn)
+        if (!playerData.GetIsSFXOn())
         {
             return;
         }
@@ -101,7 +101,7 @@ public class SoundManager : Singleton<SoundManager>
         }
         soundSource.volume = 0f;
         soundSource.clip = soundAus[(int)ID];
-        if (playerData.ISSoundOn)
+        if (playerData.GetIsSoundOn())
         {
             soundSource.Play();
         }
@@ -119,7 +119,7 @@ public class SoundManager : Singleton<SoundManager>
     public void SetSoundOn(bool on)
     {
         if (!isLoaded) return;
-        playerData.ISSoundOn = on;
+        playerData.SetIsSoundOn(on);
         if (on)
         {
             soundSource.Play();
@@ -132,7 +132,7 @@ public class SoundManager : Singleton<SoundManager>
     public void SetSFXOn(bool on)
     {
         if (!isLoaded) return;
-        playerData.ISSFXOn = on;
+        playerData.SetIsSFXOn(on);
         if (on)
         {
             

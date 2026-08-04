@@ -12,10 +12,8 @@ public class CanvasLoading : UICanvas
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private float duration = 2f;
-    
     private float fillAmount = 0;
     private float timer = 0;
-    
     private GameManager GameManager => GameManager.Instance;
 
     public override void Setup()

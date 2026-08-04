@@ -26,6 +26,7 @@ public class CanvasVictory : UICanvas
         DataManager.SetStartLevel(LevelManager.GetCurrentLevel(),numStar);
         DataManager.UnlockLevel(LevelManager.GetCurrentLevel()+1);
     }
+    // ham quay lai main menu
     public void MainMenuButton()
     {
         LevelManager.SetNextLevel();
@@ -33,13 +34,13 @@ public class CanvasVictory : UICanvas
         Close(0);
         UIManager.Instance.Open<CanvasMainMenu>();
     }
-
+    // chuyen sang level tiep theo
     public void NextLevelButton()
     {
         GameManager.NextLevel();
         Close(0);
     }
-
+    // set star
     private void SetStar(int count)
     {
         DisableAllStars();
@@ -48,7 +49,7 @@ public class CanvasVictory : UICanvas
             starts[i].gameObject.SetActive(true);
         }
     }
-
+    // ham lay so sao tu xep hang nguoi choi
     private int GetCountStar(int playerRank)
     {
         switch (playerRank)
@@ -63,7 +64,7 @@ public class CanvasVictory : UICanvas
                 return 0;
         }
     }
-
+    // tat toan bo star
     private void DisableAllStars()
     {
         for (int i = 0; i < starts.Count; i++)

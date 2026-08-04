@@ -9,11 +9,8 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private bool isSoundOn = false;
     [SerializeField] private bool isSFXOn = false;
     [SerializeField] List<PlayerLevelData> playerLevelData;
-    GameManager GameManager => GameManager.Instance;
-    public bool ISSoundOn { get => isSoundOn; set => isSoundOn = value; }
-    public bool ISSFXOn { get => isSFXOn; set => isSFXOn = value; }
-    public List<PlayerLevelData> PlayerLevelData { get => playerLevelData; set => playerLevelData = value; }
-
+    private GameManager GameManager => GameManager.Instance;
+    
     public void UnlockLevel(int levelID)
     {
         for(int i = 0; i < playerLevelData.Count; i++)
@@ -91,6 +88,30 @@ public class PlayerData : MonoBehaviour
             playerLevelData = playerSaveData.playerLevelData;
             GameManager.SetPlayerColor(playerSaveData.playerColor);
         }
+    }
+
+    public bool GetIsSoundOn()
+    {
+        return isSoundOn;
+    }
+
+    public void SetIsSoundOn(bool isOn)
+    {
+        this.isSoundOn = isOn;
+    }
+
+    public bool GetIsSFXOn()
+    {
+        return isSFXOn;
+    }
+
+    public void SetIsSFXOn(bool isOn)
+    {
+        this.isSFXOn = isOn;
+    }
+    public int GetPlayerLevelDataCount()
+    {
+        return playerLevelData.Count;
     }
 
     [ContextMenu("Save Data")]

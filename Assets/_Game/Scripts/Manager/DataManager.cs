@@ -50,7 +50,7 @@ public class DataManager : Singleton<DataManager>
     // ham mo khoa level moi
     public void UnlockLevel(int levelID)
     {
-        if (levelID > playerData.PlayerLevelData.Count)
+        if (levelID > playerData.GetPlayerLevelDataCount())
         {
            return;
         }
@@ -74,12 +74,12 @@ public class DataManager : Singleton<DataManager>
     // ham kiem tra xem sound on 
     public bool GetIsSoundOn()
     {
-        return playerData.ISSoundOn;
+        return playerData.GetIsSoundOn();
     }
     // ham kiem tra xem music on 
     public bool GetIsMusicOn()
     {
-        return playerData.ISSFXOn;
+        return playerData.GetIsSFXOn();
     }
     public PlayerData GetPlayerData()
     {

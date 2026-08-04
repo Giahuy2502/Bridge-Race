@@ -14,13 +14,14 @@ public class CanvasFail : UICanvas
         SoundManager.PlayFx(FxID.SFX_Win);
         SoundManager.ChangeSound(SoundID.BG_MainMenu,1f);
     }
+    // quay lai menu
      public void MainMenuButton()
      {
             GameManager.OnMainMenu();
             Close(0);
             UIManager.Instance.Open<CanvasMainMenu>();
      }
-
+     // choi lai level
      public void RetryButton()
      {
          GameManager.PlayGame();

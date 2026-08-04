@@ -12,8 +12,8 @@ public class CanvasShop : UICanvas
         base.Setup();
         SetupColorButtons();
     }
-    
-    public void SetupColorButtons()
+    // khoi tao cac button color
+    private void SetupColorButtons()
     {
         if (colorButtons == null || colorButtons.Count == 0)
         {
@@ -27,7 +27,7 @@ public class CanvasShop : UICanvas
         DeactivateAllFocus();
         ActivateCurrentColorFocus();
     }
-    
+    // tat tat ca cac focus
     public void DeactivateAllFocus()
     {
         if (colorButtons == null || colorButtons.Count == 0)
@@ -39,7 +39,7 @@ public class CanvasShop : UICanvas
             colorButtons[i].SetActiveFocus(false);
         }
     }
-
+    // bat focus cho color hien tai
     private void ActivateCurrentColorFocus()
     {
         if (colorButtons == null || colorButtons.Count == 0)
@@ -48,7 +48,7 @@ public class CanvasShop : UICanvas
         }
         for (int i = 0; i < colorButtons.Count; i++)
         {
-            if (colorButtons[i].Color == GameManager.GetPlayerColor())
+            if (colorButtons[i].GetColor() == GameManager.GetPlayerColor())
             {
                 colorButtons[i].SetActiveFocus(true);
             }
