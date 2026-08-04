@@ -579,7 +579,7 @@ MonoBehaviour:
   bricksTF: {fileID: 1444912094}
   brickOffSetY: 0.26
   stage: {fileID: 0}
-  maxBrick: 5
+  maxBrick: 15
   agent: {fileID: 155413029}
   idleTime: 1
 --- !u!54 &155413031
@@ -3303,7 +3303,7 @@ MonoBehaviour:
   bricksTF: {fileID: 1994599677}
   brickOffSetY: 0.26
   stage: {fileID: 0}
-  maxBrick: 3
+  maxBrick: 10
   agent: {fileID: 1140852909}
   idleTime: 1
 --- !u!195 &1140852909
