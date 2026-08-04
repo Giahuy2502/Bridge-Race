@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class IdleState : IState
 {
-    private float time = 0;
-    private float idleTime = 1f;
     public void OnEnter(Bot bot)
     {
-        time = 0f;
+        bot.SetTimer(0f);
         bot.StopMove();
     }
 
     public void OnExcute(Bot bot)
     {
-        time += Time.deltaTime;
-        if (time >= idleTime)
+        bot.AddToTimer(Time.deltaTime);
+        if (bot.GetTimer() >= bot.GetIdleTime())
         {
             bot.ChangeState(new PatrolState());
         }
