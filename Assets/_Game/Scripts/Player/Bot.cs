@@ -109,11 +109,25 @@ public class Bot : Character
     {
         return nearestBridge;
     }
-    public bool ReachedDestination()
+    
+    // kiem tra xem bot den vi tri destination chua
+    public bool IsReachedDestination()
     {
-        return !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && (!agent.hasPath || agent.velocity.sqrMagnitude == 0f);
+        if (agent.pathPending)
+        {
+            return false;
+        }
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            return false;
+        }
+        if (agent.hasPath && agent.velocity.sqrMagnitude != 0f)
+        {
+            return false;
+        }
+        return true;
     }
-    public int GetStairWalkable(int brickCount)
+    private int GetStairWalkable(int brickCount)
     {
         return stage.GetNearestBridge(this).GetStairWalkable(this.colorType, brickCount);
     }

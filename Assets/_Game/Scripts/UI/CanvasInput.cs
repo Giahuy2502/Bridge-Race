@@ -15,6 +15,7 @@ public class CanvasInput : UICanvas
     {
         base.Setup();
         joyStick.ResetState();
+        joyStick.SetActivate(false);
     }
     
 }

@@ -27,9 +27,8 @@ public class PatrolState : IState
 
     public void OnExcute(Bot bot)
     {
-        if (bot.ReachedDestination())
+        if (bot.IsReachedDestination())
         {
-            bot.StopMove();
             if(bot.GetListBricksCount() < bot.GetMaxBrick())
             {
                 Brick brick = bot.GetNearestBrick();
@@ -58,6 +57,6 @@ public class PatrolState : IState
 
     public void OnExit(Bot bot)
     {
-        bot.StopMove();
+        
     }
 }

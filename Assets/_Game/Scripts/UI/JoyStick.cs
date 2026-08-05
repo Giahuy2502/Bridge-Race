@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -17,10 +18,18 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
 
     private Vector2 inputDirection = Vector2.zero;
     private Vector2 position = Vector2.zero;
-    
+    private Vector3 defaultBGPosition = Vector3.zero;
+
+    private void Awake()
+    {
+        defaultBGPosition = BG.position;
+    }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        OnDrag(eventData);
+        SetActivate(true);
+        BG.position = eventData.position;
+        handle.anchoredPosition = Vector2.zero;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -41,11 +50,13 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     public void OnPointerUp(PointerEventData eventData)
     {
         ResetState();
+        SetActivate(false);
     }
 
     public void ResetState()
     {
         inputDirection = Vector2.zero;
+        BG.position = defaultBGPosition;
         handle.anchoredPosition = Vector2.zero;
         DisableMoveFocus();
     }
@@ -101,4 +112,9 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         return inputDirection;
     }
 
+    public void SetActivate(bool activate)
+    {
+        BG.gameObject.SetActive(activate);
+        handle.gameObject.SetActive(activate);
+    }
 }

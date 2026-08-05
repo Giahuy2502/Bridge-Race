@@ -23,7 +23,7 @@ public class BuildState : IState
             bot.ChangeState(new PatrolState());
             return;
         } 
-        if (bot.ReachedDestination())
+        if (bot.IsReachedDestination())
         {
             if (bot.IsApproachingBridge())
             {

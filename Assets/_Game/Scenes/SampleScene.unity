@@ -5740,7 +5740,7 @@ MonoBehaviour:
   bricksTF: {fileID: 2093895752}
   brickOffSetY: 0.26
   stage: {fileID: 0}
-  movementSpeed: 5
+  movementSpeed: 5.5
   rotationSpeed: 8
   stairLayer:
     serializedVersion: 2
