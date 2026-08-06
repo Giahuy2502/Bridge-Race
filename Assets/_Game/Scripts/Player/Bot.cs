@@ -25,42 +25,25 @@ public class Bot : Character
     {
         base.OnInit(colorType);
         this.name = "Bot-"+colorType.ToString();
-        agent.enabled = true;
+        SetAbleAgent(true);
         ChangeState(new IdleState());
     }
     public override void Despawn()
     {
         base.Despawn();
-        if (agent != null && agent.isOnNavMesh)
-        {
-            agent.ResetPath();
-            agent.velocity = Vector3.zero;
-            agent.isStopped = true;
-            agent.enabled = false;
-        }
-        else if (agent != null)
-        {
-            agent.enabled = false; 
-        }
+        SetAbleAgent(false);
         this.gameObject.SetActive(false);
     }
     private void Update()
     {
         if (!IsPlaying())
         {
-            if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh && !agent.isStopped)
-            {
-                agent.isStopped = true;
-                agent.velocity = Vector3.zero;
-            }
+            PauseAgent(true);
             return;
         }
         if (IsPlaying())
         {
-            if (agent != null && agent.isStopped)
-            {
-                agent.isStopped = false;
-            }
+            PauseAgent(false);
         }
         if (currentState != null)
         {
@@ -138,17 +121,7 @@ public class Bot : Character
             currentState.OnExit(this);
             currentState = null;
         }
-        if (agent != null && agent.isOnNavMesh)
-        {
-            agent.ResetPath();
-            agent.velocity = Vector3.zero;
-            agent.isStopped = true;
-            agent.enabled = false;
-        }
-        else if (agent != null)
-        {
-            agent.enabled = false; 
-        }
+        SetAbleAgent(false);
         base.SetWinState();
     }
     public void SetBuildState(bool isBuilding)
@@ -162,8 +135,49 @@ public class Bot : Character
             agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         }
     }
-    public int GetMaxBrick()
+
+    private void SetAbleAgent(bool isAble)
     {
+        if (isAble)
+        {
+            agent.enabled = true;
+        }
+        else
+        {
+            if (agent != null && agent.isOnNavMesh)
+            {
+                agent.ResetPath();
+                agent.velocity = Vector3.zero;
+                agent.isStopped = true;
+                agent.enabled = false;
+            }
+            else if (agent != null)
+            {
+                agent.enabled = false; 
+            }
+        }
+    }
+
+    private void PauseAgent(bool isPaused)
+    {
+        if (isPaused)
+        {
+            if (agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh && !agent.isStopped)
+            {
+                agent.isStopped = true;
+                agent.velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            if (agent != null && agent.isStopped)
+            {
+                agent.isStopped = false;
+            }
+        }
+    }
+    public int GetMaxBrick()
+    {     
         return maxBrick;
     }
     // ham lay vi tri bac thang cao nhat co the di
