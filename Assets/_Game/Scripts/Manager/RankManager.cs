@@ -125,4 +125,19 @@ public class RankManager : Singleton<RankManager>
     {
         return GetPlayerRanking() == (finishedRankings.Count-1);
     }
+    // ham lay so sao tu xep hang nguoi choi
+    public int GetCountStar(int playerRank)
+    {
+        switch (playerRank)
+        {
+            case 0:
+                return 3;
+            case 1:
+                return 2;
+            case 2:
+                return 1;
+            default:
+                return 0;
+        }
+    }
 }

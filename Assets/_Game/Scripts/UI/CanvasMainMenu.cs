@@ -34,7 +34,7 @@ public class CanvasMainMenu : UICanvas
     // ham shop button 
     public void ShopButton()
     {
-        UIManager.Instance.Open<CanvasShop>();
+        UIManager.Instance.Open<CanvasShop>().OnInit(GameManager.GetPlayerColor());
     }
     // ham khoi tao cac button level
     private void SetupButtonLevels()

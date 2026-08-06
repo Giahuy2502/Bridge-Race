@@ -14,12 +14,11 @@ public class CanvasGamePlay : UICanvas
     [SerializeField] private List<RankingItemUI> rankingItemUI = new List<RankingItemUI>();
     [SerializeField] private ColorDataSO colorDataSO;
     [SerializeField] private CountDown countDown;
-    private LevelManager LevelManager => LevelManager.Instance;
-    public override void Setup()
+
+    public void OnInit(int currentLevel, ColorType playerColorType)
     {
-        base.Setup();
-        UpdateLevelText(LevelManager.GetCurrentLevel());
-        SetupRankingItems(LevelManager.GetPlayerData().Color);
+        UpdateLevelText(currentLevel);
+        SetupRankingItems(playerColorType);
     }
     // chay count down
     public void PlayCountDown()

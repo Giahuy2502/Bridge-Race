@@ -11,6 +11,10 @@ public class UIController : Singleton<UIController>
     private CanvasInput canvasInput;
     private UIManager UIManager => UIManager.Instance;
     private RankManager RankManager => RankManager.Instance;
+    private SoundManager SoundManager => SoundManager.Instance;
+    private DataManager DataManager => DataManager.Instance;
+    private LevelManager LevelManager => LevelManager.Instance;
+    private GameManager GameManager => GameManager.Instance;
     public void ShowMenu()
     {
         UIManager.Open<CanvasMainMenu>();
@@ -24,7 +28,12 @@ public class UIController : Singleton<UIController>
         HideGamePlay(0f);
         if (isWinGame)
         {
-            UIManager.Open<CanvasVictory>();
+            int numStar = RankManager.GetCountStar(RankManager.GetPlayerRanking());
+            UIManager.Open<CanvasVictory>().SetStar(numStar);
+            SoundManager.PlayFx(FxID.SFX_Win);
+            SoundManager.ChangeSound(SoundID.BG_MainMenu,1f);
+            DataManager.SetStartLevel(LevelManager.GetCurrentLevel(),numStar);
+            DataManager.UnlockLevel(LevelManager.GetCurrentLevel()+1);
         }
         else
         {
@@ -43,6 +52,7 @@ public class UIController : Singleton<UIController>
     public void ShowGamePlay()
     {
         canvasGamePlay = UIManager.Open<CanvasGamePlay>();
+        canvasGamePlay.OnInit(LevelManager.GetCurrentLevel(), GameManager.GetPlayerColor());
     }
     public void ShowJoyStick()
     {

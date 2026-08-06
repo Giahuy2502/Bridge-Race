@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using MyNamespace;
 using UnityEngine;
 
 public class CanvasShop : UICanvas
 {
     [SerializeField] List<SelectColorButton> colorButtons = new List<SelectColorButton>();
-    private GameManager GameManager => GameManager.Instance;
-   
-    public override void Setup()
+    private ColorType playerColor;
+    public void OnInit(ColorType playerColor)
     {
-        base.Setup();
+        this.playerColor = playerColor;
         SetupColorButtons();
     }
     // khoi tao cac button color
@@ -48,7 +48,7 @@ public class CanvasShop : UICanvas
         }
         for (int i = 0; i < colorButtons.Count; i++)
         {
-            if (colorButtons[i].GetColor() == GameManager.GetPlayerColor())
+            if (colorButtons[i].GetColor() == playerColor)
             {
                 colorButtons[i].SetActiveFocus(true);
             }
