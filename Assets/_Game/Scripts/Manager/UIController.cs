@@ -23,8 +23,22 @@ public class UIController : Singleton<UIController>
     public IEnumerator ShowEndGameMenu(bool isWinGame)
     {
         canvasGamePlay.SetActivateSettingButton(false);
-        HideJoyStick(0f);
-        yield return new WaitForSeconds(endGameDuration);
+        if (!RankManager.IsPlayerWinner())
+        {
+            canvasGamePlay.SetActivateEndGameNotifi(true);
+            HideJoyStick(0f); 
+            yield return new WaitForSeconds(endGameDuration/2);
+            RankManager.SetFinishedPosition();
+            GameManager.SetEndCam();
+            yield return new WaitForSeconds(endGameDuration/2);
+        }
+        else
+        {
+            HideJoyStick(0f); 
+            RankManager.SetFinishedPosition();
+            GameManager.SetEndCam();
+            yield return new WaitForSeconds(endGameDuration);
+        }
         HideGamePlay(0f);
         if (isWinGame)
         {

@@ -12,12 +12,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private CameraFollow camera;
     [SerializeField] private GameState gameState = GameState.Playing;
     [SerializeField] private ColorType playerColor;
-    private UnityEvent endGameAction = new UnityEvent();
     private LevelManager LevelManager => LevelManager.Instance;
     private UIController UIController => UIController.Instance;
     private SoundManager SoundManager => SoundManager.Instance;
     private InputManager InputManager => InputManager.Instance;
     private DataManager DataManager => DataManager.Instance;
+    private RankManager RankManager => RankManager.Instance;
     
     private void Awake()
     {
@@ -41,12 +41,16 @@ public class GameManager : Singleton<GameManager>
     public void OnEndGame()
     {
         this.gameState = GameState.EndGame;
-        camera.SetEndGame(true);
         StartCoroutine(CoEndGameHandler());
+    }
+
+    public void SetEndCam()
+    {
+        camera.SetEndGame(true);
     }
     private IEnumerator CoEndGameHandler()
     {
-        endGameAction?.Invoke();
+        RankManager.SortCharacters();
         yield return UIController.ShowEndGameMenu(LevelManager.IsWinGame());
         InputManager.Despawn();
         LevelManager.OnEndGame();
@@ -140,15 +144,5 @@ public class GameManager : Singleton<GameManager>
     public void SetPlayerColor(ColorType playerColor)
     {
         this.playerColor = playerColor;
-    }
-
-    public UnityEvent GetEndGameAction()
-    {
-        return endGameAction;
-    }
-
-    public void ResetEndGameAction()
-    {
-        endGameAction.RemoveAllListeners();
     }
 }

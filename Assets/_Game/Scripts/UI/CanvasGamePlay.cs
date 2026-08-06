@@ -14,6 +14,19 @@ public class CanvasGamePlay : UICanvas
     [SerializeField] private List<RankingItemUI> rankingItemUI = new List<RankingItemUI>();
     [SerializeField] private ColorDataSO colorDataSO;
     [SerializeField] private CountDown countDown;
+    [SerializeField] private GameObject endGameNotifi;
+
+    public override void Setup()
+    {
+        base.Setup();
+        endGameNotifi.SetActive(false);
+    }
+
+    public override void CloseDirectly()
+    {
+        endGameNotifi.SetActive(false);
+        base.CloseDirectly();
+    }
 
     public void OnInit(int currentLevel, ColorType playerColorType)
     {
@@ -63,6 +76,11 @@ public class CanvasGamePlay : UICanvas
     public void SetActivateSettingButton(bool isActivate)
     {
         settingButton.gameObject.SetActive(isActivate);
+    }
+
+    public void SetActivateEndGameNotifi(bool isActivate)
+    {
+        endGameNotifi.SetActive(isActivate);
     }
 }
 

@@ -15,9 +15,6 @@ public class RankManager : Singleton<RankManager>
     {
         finishedRankings.Clear();
         stageRankings.Clear();
-        GameManager.ResetEndGameAction();
-        GameManager.GetEndGameAction().AddListener(SortCharacters);
-        GameManager.GetEndGameAction().AddListener(SetFinishedPosition);
     }
     // ham duoc goi de set nguoi dung 1
     public void SetWinner(Character character)
@@ -28,7 +25,7 @@ public class RankManager : Singleton<RankManager>
         }
     }
     // ham duoc goi de sort cac character con lai
-    private void SortCharacters()
+    public void SortCharacters()
     {
         List<Stage> keys = new List<Stage>(stageRankings.Keys);
         for (int i = keys.Count - 1; i >= 0; i--)
@@ -46,7 +43,7 @@ public class RankManager : Singleton<RankManager>
         }
     }
     // ham set vi tri cac character ve cac winner stage
-    private void SetFinishedPosition()
+    public void SetFinishedPosition()
     {
         for (int i = 0; i < finishPositions.Count; i++)
         {
@@ -124,6 +121,11 @@ public class RankManager : Singleton<RankManager>
     public bool IsPlayerLose()
     {
         return GetPlayerRanking() == (finishedRankings.Count-1);
+    }
+
+    public bool IsPlayerWinner()
+    {
+        return GetPlayerRanking() == 0;
     }
     // ham lay so sao tu xep hang nguoi choi
     public int GetCountStar(int playerRank)
