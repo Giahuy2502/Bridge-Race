@@ -41,7 +41,7 @@ public class Character : MonoBehaviour
         animator.Rebind();
     }
     // ham them brick moi vao sau character
-    public void AddBrick()
+    public virtual void AddBrick()
     {
         Vector3 newpos = GetNewestBrickPos();
         Brick newBrick = SimplePool.Spawn<Brick>(PoolType.Brick,bricksTF.position + newpos, bricksTF.rotation);
@@ -54,17 +54,15 @@ public class Character : MonoBehaviour
         // Debug.Log("Brick added brick :" + bricks.Count);
         newBrick.OnInit(colorType, this.stage);
         newBrickEffect.PlayBrickEffect(this.colorType);
-        PlaySFX(FxID.SFX_CollectBrick);
     }
     // ham xoa brick sau lung character
-    public void RemoveBrick()
+    public virtual void RemoveBrick()
     {
         if (bricks.Count <= 0) return;
         bricks[bricks.Count - 1].Despawn();
         bricks.RemoveAt(bricks.Count - 1);
         // Debug.Log("Brick remove brick :" + bricks.Count);
         stage.RespawnBrick(colorType);
-        PlaySFX(FxID.SFX_BuildBridge);
     }
     // ham xoa tat ca brick sau lung character
     private void ClearAllBricks()
@@ -106,7 +104,7 @@ public class Character : MonoBehaviour
     {
         return GameManager.GetGameState() == GameState.Playing;
     }
-    private void PlaySFX(FxID sfxID)
+    protected void PlaySFX(FxID sfxID)
     {
         SoundManager.PlayFx(sfxID);
     }

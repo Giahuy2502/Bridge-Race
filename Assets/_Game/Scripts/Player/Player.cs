@@ -134,4 +134,16 @@ public class Player : Character
         OnInit(this.colorType);
         SetStartPoints(GetStartPos());
     }
+
+    public override void AddBrick()
+    {
+        base.AddBrick();
+        PlaySFX(FxID.SFX_CollectBrick);
+    }
+
+    public override void RemoveBrick()
+    {
+        base.RemoveBrick();
+        PlaySFX(FxID.SFX_BuildBridge);
+    }
 }
